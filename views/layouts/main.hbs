@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css" />   
+    <link rel="stylesheet" href="../../assets/css/styles.css" />   
+
+    <script src="../../assets/js/jquery-3.4.1.min.js"></script> 
+    <script src="../../assets/js/paginathing.js"></script> 
+</head>
+<body>
+    <div class="container text-lg">
+        <div class="row py-2">
+            <div class="col-md">
+                {{> home/header }}
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md-3">
+                <div class="card h-100 shadow">
+                    {{> home/side }}
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card h-100 shadow">
+                    {{> home/content }}
+                </div>
+            </div>
+        </div>
+        <div class="row py-2">
+            <div class="col-md">
+                {{> home/bottom }}
+            </div>
+        </div>
+    </div>
+    <script>
+        function getDetailProduct(id) {
+            window.location = `products/` + id;
+            return false;
+        }
+        $('#movies').paginathing({
+            perPage: 4,
+            containerClass: 'container',
+            insertAfter : '#movies',
+            firstLast: false,
+            pageNumbers: false
+
+        })
+    </script>
+
+</body>
+</html>

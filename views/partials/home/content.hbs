@@ -1,0 +1,57 @@
+<div class="card-header text-white bg-primary">Main</div>
+<div class="card-body">
+    {{#if showList}}
+    <div class="container text-black-50 bg-light">
+        <div id="movies" class="row text-dark">
+                {{#each ps}}
+                    <div onclick="getDetailProduct('{{ProID}}')" class="movie-card col-md-3 p-3 text-white">
+                        <div id = {{ProID}} class="well text-center d-flex flex-wrap justify-content-center ">
+                            <img src="../../../sp/{{ProID}}/main_thumbs.jpg">
+                            <div class="align-self-center">
+                                <h5 class= "pt-1 text-dark">{{ProName}}</h5>
+                                <h6 class="card-vote_average text-dark"><strong>Price:</strong> {{Price}}</h6>
+                                <p class="card-text text-dark">{{TinyDes}}</p>
+                            </div>
+                            <div class="align-self-end">
+                                <a onclick="getDetailProduct('{{ProID}}')" class="btn btn-primary btn-sm">See detail...</a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+                  
+        </div>
+    </div>
+
+     {{else}}
+        {{#each ps}}
+            <div class= "container m-3 bg-light">
+                <div class="row p-3">
+                    <img src="../../../sp/{{ProID}}/main.jpg" class="card-img-top" alt="...">
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <div class="align-self-center">
+                            <img src="../../../sp/{{ProID}}/1_thumbs.jpg" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-md-8 ">
+                        <h2 class = "text-dark pb-5 pt-3">{{ProName}}</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Price:</strong> {{Price}}</li>
+                            <li class="list-group-item"><strong>TinyDes:</strong> {{TinyDes}}</li>
+                            <li class="list-group-item"><strong>Quantity:</strong> {{Quantity}}</li>                    
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row-md-3 pt-3 pb-3 ">
+                    <div class="well text-dark">
+                        <h3>Description</h3>
+                        {{{FullDes}}}
+                        <a href="/" class="btn btn-default bg-secondary">Go back</a>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>
