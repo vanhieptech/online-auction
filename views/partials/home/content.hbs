@@ -1,57 +1,72 @@
-<div class="card-header text-white bg-primary">Main</div>
-<div class="card-body">
-    {{#if showList}}
-    <div class="container text-black-50 bg-light">
-        <div id="movies" class="row text-dark">
-                {{#each ps}}
-                    <div onclick="getDetailProduct('{{ProID}}')" class="movie-card col-md-3 p-3 text-white">
-                        <div id = {{ProID}} class="well text-center d-flex flex-wrap justify-content-center ">
-                            <img src="../../../sp/{{ProID}}/main_thumbs.jpg">
-                            <div class="align-self-center">
-                                <h5 class= "pt-1 text-dark">{{ProName}}</h5>
-                                <h6 class="card-vote_average text-dark"><strong>Price:</strong> {{Price}}</h6>
-                                <p class="card-text text-dark">{{TinyDes}}</p>
-                            </div>
-                            <div class="align-self-end">
-                                <a onclick="getDetailProduct('{{ProID}}')" class="btn btn-primary btn-sm">See detail...</a>
-                            </div>
+<div class="index-module productv2" style="background:#f9f9f9">
+    <!-- 作品、案例、产品 -->
+    <div class="backcolor workv4a ">
+        <div class="workv4-h">
+            <div class="clear" style="height:60px;"></div>
+            <div class="index_title text-center pb30 wow slideInUp">
+                <h3 class="f30">dsfgsdfg</h3> <span class="i-back"></span>
+            </div>
+            <div class="kwidth">
+                <!-- 默认风格 -->
+                <ul class="wul105 workul number_4">
+                    <li class="wow slideInUp" data-wow-delay=".2s">
+                        <a style="height:170px;" href='pdetail.html' class="img"><img
+                                src="../../picture/1-1p3131646000-l.jpg" style="height:170px;" alt="清江西高安县厚生50两方宝" />
+                        </a>
+                        <div class="title">
+                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>sdfgsdfgds</a></h5>
+                            <p class="f12 pb10 entitle">sdfgdsfgsdfg</p>
                         </div>
-                    </div>
-                {{/each}}
-                  
+                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                    </li>
+                    <li class="wow slideInUp" data-wow-delay=".3s">
+                        <a style="height:170px;" href='pdetail.html' class="img"><img
+                                src="../../picture/1-1p3131645280-l.jpg" style="height:170px;" alt="战国下邲阳背" />
+                        </a>
+                        <div class="title">
+                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>dsfgdsfgdsfg</a></h5>
+                            <p class="f12 pb10 entitle">dsfgdsfgdsf</p>
+                        </div>
+                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                    </li>
+                    <li class="wow slideInUp" data-wow-delay=".4s">
+                        <a style="height:170px;" href='pdetail.html' class="img"><img
+                                src="../../picture/1-1p3131645020-l.jpg" style="height:170px;" alt="玉雕福禄寿三星山子" /> </a>
+                        <div class="title">
+                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>dsfgsdfgsdfg</a></h5>
+                            <p class="f12 pb10 entitle">dfsgdsfgsdfg</p>
+                        </div>
+                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                    </li>
+                    <li class="wow slideInUp" data-wow-delay=".5s">
+                        <a style="height:170px;" href='pdetail.html' class="img"><img
+                                src="../../picture/1-1p3131644200-l.jpg" style="height:170px;" alt="白玉兽面纹簋式盖炉" /> </a>
+                        <div class="title">
+                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>sdfgdsfgsdfg</a></h5>
+                            <p class="f12 pb10 entitle">dsfgdsfgdsfg</p>
+                        </div>
+                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                    </li>
+                    <li class="wow slideInUp" data-wow-delay=".6s">
+                        <a style="height:170px;" href='/pdetail.html' class="img"><img
+                                src="../../picture/1-1p3131642280-l.jpg" style="height:170px;" alt="月夜笛语" />
+                        </a>
+                        <div class="title">
+                            <h5 class="f14 pt15 pb10"><a href='/pdetail.html'>dsfgdsfgdsfg</a></h5>
+                            <p class="f12 pb10 entitle">dsfgdsfgdsfg</p>
+                        </div>
+                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                    </li>
+                </ul>
+                <div class="hg20"></div>
+                <a class="more wow slideInUp" data-wow-delay=".9s" href="product.html">Xem Thêm</a>
+                <!-- /默认风格 -->
+            </div>
+            <div class="clear" style="height:55px;"></div>
         </div>
     </div>
-
-     {{else}}
-        {{#each ps}}
-            <div class= "container m-3 bg-light">
-                <div class="row p-3">
-                    <img src="../../../sp/{{ProID}}/main.jpg" class="card-img-top" alt="...">
-                </div>
-                <div class="row pt-3">
-                    <div class="col-md-4 d-flex justify-content-center">
-                        <div class="align-self-center">
-                            <img src="../../../sp/{{ProID}}/1_thumbs.jpg" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="col-md-8 ">
-                        <h2 class = "text-dark pb-5 pt-3">{{ProName}}</h2>
-                        <ul class="list-group">
-                            <li class="list-group-item"><strong>Price:</strong> {{Price}}</li>
-                            <li class="list-group-item"><strong>TinyDes:</strong> {{TinyDes}}</li>
-                            <li class="list-group-item"><strong>Quantity:</strong> {{Quantity}}</li>                    
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="row-md-3 pt-3 pb-3 ">
-                    <div class="well text-dark">
-                        <h3>Description</h3>
-                        {{{FullDes}}}
-                        <a href="/" class="btn btn-default bg-secondary">Go back</a>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-    {{/if}}
+    <!-- 作品、案例、产品 -->
+    <script type="text/javascript">
+        $("a[rel=example_group]").fancybox();
+    </script>
 </div>
