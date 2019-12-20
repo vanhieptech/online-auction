@@ -4,50 +4,12 @@
         <div class="workv4-h">
             <div class="clear" style="height:60px;"></div>
             <div class="index_title text-center pb30 wow slideInUp">
-                <h3 class="f30">dsfgsdfg</h3> <span class="i-back"></span>
+                <h3 class="f30">{{title_top}}</h3> <span class="i-back"></span>
             </div>
-            <div class="kwidth">
+            <div class="">
                 <!-- 默认风格 -->
                 <ul class="wul105 workul number_4">
-                    <li class="wow slideInUp" data-wow-delay=".2s">
-                        <a style="height:170px;" href='pdetail.html' class="img"><img
-                                src="../../picture/1-1p3131646000-l.jpg" style="height:170px;" alt="清江西高安县厚生50两方宝" />
-                        </a>
-                        <div class="title">
-                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>sdfgsdfgds</a></h5>
-                            <p class="f12 pb10 entitle">sdfgdsfgsdfg</p>
-                        </div>
-                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
-                    </li>
-                    <li class="wow slideInUp" data-wow-delay=".3s">
-                        <a style="height:170px;" href='pdetail.html' class="img"><img
-                                src="../../picture/1-1p3131645280-l.jpg" style="height:170px;" alt="战国下邲阳背" />
-                        </a>
-                        <div class="title">
-                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>dsfgdsfgdsfg</a></h5>
-                            <p class="f12 pb10 entitle">dsfgdsfgdsf</p>
-                        </div>
-                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
-                    </li>
-                    <li class="wow slideInUp" data-wow-delay=".4s">
-                        <a style="height:170px;" href='pdetail.html' class="img"><img
-                                src="../../picture/1-1p3131645020-l.jpg" style="height:170px;" alt="玉雕福禄寿三星山子" /> </a>
-                        <div class="title">
-                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>dsfgsdfgsdfg</a></h5>
-                            <p class="f12 pb10 entitle">dfsgdsfgsdfg</p>
-                        </div>
-                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
-                    </li>
-                    <li class="wow slideInUp" data-wow-delay=".5s">
-                        <a style="height:170px;" href='pdetail.html' class="img"><img
-                                src="../../picture/1-1p3131644200-l.jpg" style="height:170px;" alt="白玉兽面纹簋式盖炉" /> </a>
-                        <div class="title">
-                            <h5 class="f14 pt15 pb10"><a href='pdetail.html'>sdfgdsfgsdfg</a></h5>
-                            <p class="f12 pb10 entitle">dsfgdsfgdsfg</p>
-                        </div>
-                        <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
-                    </li>
-                    <li class="wow slideInUp" data-wow-delay=".6s">
+                    {{!-- <li class="wow slideInUp" data-wow-delay=".6s">
                         <a style="height:170px;" href='/pdetail.html' class="img"><img
                                 src="../../picture/1-1p3131642280-l.jpg" style="height:170px;" alt="月夜笛语" />
                         </a>
@@ -56,10 +18,22 @@
                             <p class="f12 pb10 entitle">dsfgdsfgdsfg</p>
                         </div>
                         <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
-                    </li>
+                    </li> --}}
+                    {{#each ps}}
+                        <li class="wow slideInUp" data-wow-delay=".4s">
+                            <a style="height:170px;" href='/' class="img"><img
+                                    src="../../../sp/{{ProID}}/main_thumbs.jpg" style="height:170px;" alt="月夜笛语" />
+                            </a>
+                            <div class="title">
+                                <h5 class="f14 pt15 pb10"><a href='/'>{{ProName}}</a></h5>
+                                <p class="f12 pb10 entitle">{{TinyDes}}</p>
+                            </div>
+                            <a class="jia"><span class="glyphicon glyphicon-plus"></span></a> <i class="bor2"></i>
+                        </li>
+                    {{/each}}
                 </ul>
                 <div class="hg20"></div>
-                <a class="more wow slideInUp" data-wow-delay=".9s" href="product.html">Xem Thêm</a>
+                <a class="more wow slideInUp" data-wow-delay=".3s" href="/">See more</a>
                 <!-- /默认风格 -->
             </div>
             <div class="clear" style="height:55px;"></div>

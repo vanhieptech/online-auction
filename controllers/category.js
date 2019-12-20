@@ -14,12 +14,30 @@ module.exports = {
                 cat.isActive = false;
             }
             cats[0].isActive = true;
+            console.log(cats)
             res.render('home', {
-                title: 'cat test',
+                title: 'Online Auction',
                 cats: cats,
             });
         } catch (error) {
             console.log('Error Controller Category getAll: ', error)
+        }
+    },
+    getTop: async(req, res) => {
+        // const id = parseInt(req.params.id);
+        const catID = 4;
+        try {
+
+            const ps = await mPro.allByCatId(catID);
+            console.log(ps)
+            res.render('home', {
+                title: 'Online Auction',
+                showList: true,
+                title_top: 'Top 5 newest',
+                ps: ps
+            });
+        } catch (error) {
+            console.log('Error Controller Category getByCatId', error)
         }
     },
     getByCatId: async(req, res) => {

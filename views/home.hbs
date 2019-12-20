@@ -1,0 +1,259 @@
+<!--header -->
+<div class="header" id="drop">
+    {{>home/header}}
+</div>
+<!-- /header -->
+<link rel="stylesheet" type="text/css" href="../../assets/css/index.css">
+<!--  body -->
+<div id="usezan-v7">
+    <link rel="stylesheet" href="../../assets/css/swiper.css">
+    <link rel="stylesheet" href="../../assets/css/animate.min.css">
+    <style>
+        .swiper-container {
+            min-width: 1180px;
+            width: 100%;
+            height: auto;
+            background: #000;
+        }
+    </style>
+    <div class="swiper-container swiper-container-horizontal" style="height:620px;">
+        <div class="swiper-wrapper"
+            style="height: 620px; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-active"
+                style="width: 1230px; min-width: 1180px; height: 620px; background-image: url(&quot;../../images/1-1p313104h0534.jpg&quot;);">
+                <a class="block wrapper-a" style="width:100%;min-width:1180px;height:620px;"></a>
+            </div>
+            <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-next"
+                style="width: 1230px; min-width: 1180px; height: 620px; background-image: url(&quot;../../images/1-1p313104f3458.jpg&quot;);">
+                <a class="block wrapper-a" style="width:100%;min-width:1180px;height:620px;"></a>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        {{!-- <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span
+                    class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
+                    class="swiper-pagination-bullet"></span></div> --}}
+        <!-- Add Arrows -->
+    </div>
+    <script src="../../assets/js/swiper.min.js"></script>
+    <script src="../../assets/js/swiper.animate1.0.2.min.js"></script>
+    <script type="text/javascript">
+        var _text = $(".wrapper-intro"),
+            _windows = $(document).width(),
+            _height = $(document).height(),
+            _twidth = _text.width(),
+            _theight = _text.height(),
+            _parheight = $(".swiper-wrapper").height(),
+            _px = 'px';
+        var _direction = "horizontal",
+            _effect = "slide",
+            _autoplay = "7000",
+            _texttype = "center",
+            _textleft = "200",
+            _texttop = "250",
+            _scroll = false,
+            _a = (_windows - _twidth) / 2,
+            _b = (_parheight - _theight) / 2;
+        if (_texttype == 'center') {
+            _text.css({
+                'left': _a + _px,
+                'top': _b + _px
+            })
+        } else if (_texttype == 'left') {
+            _text.css({
+                'left': _textleft + _px,
+                'top': _texttop + _px
+            })
+        } else {
+            _text.css({
+                'right': _textleft + _px,
+                'top': _texttop + _px
+            })
+        }
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            effect: _effect,
+            lazyLoading: true,
+            autoplay: _autoplay,
+            autoplayDisableOnInteraction: false,
+            direction: _direction,
+            mousewheelControl: _scroll,
+            mousewheelReleaseOnEdges: true,
+            keyboardControl: true,
+            onInit: function (swiper) {
+                swiperAnimateCache(swiper);
+                swiperAnimate(swiper)
+            },
+            onSlideChangeEnd: function (swiper) {
+                swiperAnimate(swiper)
+            }
+        });
+    </script>
+    {{!-- <div class="index-module servicev2" style="background:#fff">
+            <!-- 我们的服务 -->
+            <div class="backcolor service4a ">
+                <div class="service4-h">
+                    <div class="clear" style="height:40px;"></div>
+                    <div class="kwidth">
+                        <div class="servic_0">
+                            <!--  默认风格 -->
+                            <ul class="wul105">
+                                <li class="wow slideInUp" data-wow-delay=".1s">
+                                    <a href="product.html"> <img src="../../picture/1-1p313105519511.png" alt="瓷器" />
+                                        <h5 class="f18 pb8 pt10">asd</h5>
+                                        <p class="f12 line22">asdasd</p>
+                                    </a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay=".2s">
+                                    <a href="product.html"> <img src="../../picture/1-1p31310553y91.png" alt="玉器" />
+                                        <h5 class="f18 pb8 pt10">asd</h5>
+                                        <p class="f12 line22">asdasdasd</p>
+                                    </a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay=".3s">
+                                    <a href="product.html"> <img src="../../picture/1-1p313105555457.png" alt="字画" />
+                                        <h5 class="f18 pb8 pt10">asd</h5>
+                                        <p class="f12 line22">asdasdasd</p>
+                                    </a>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay=".4s">
+                                    <a href="product.html"> <img src="../../picture/1-1p313105615g5.png" alt="钱币" />
+                                        <h5 class="f18 pb8 pt10">asdasd</h5>
+                                        <p class="f12 line22">asdasdasd</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--  /默认风格 -->
+                        </div>
+                    </div>
+                    <div class="clear" style="height:30px;"></div>
+                </div>
+            </div>
+            <!-- /我们的服务-->
+        </div>
+        <div class="index-module casev2" style="background:#fff">
+            <!-- 作品、案例、产品 -->
+            <div class="backcolor casev7a ">
+                <div class="casev7-h">
+                    <div class="clear" style="height:50px;"></div>
+                    <div class="kwidth nopd">
+                        <div class="case-index">
+                            <div class="hd">
+                                <ul>
+                                </ul>
+                            </div>
+                            <!-- 默认风格 -->
+                            <ul class="wul105 caseul">
+                                <li class="wow slideInUp" data-wow-delay="0.2s">
+                                    <a href="pdetail.html" class="img fl"><img src="picture/1-1p3131100040-l.jpg"
+                                            alt="枫竹小隐" /> </a>
+                                    <div class="case-index-r fl">
+                                        <h5><a href="pdetail.html">asdasdasd</a></h5>
+                                        <p class="f14 entitle">asdasdasd...</p>
+                                    </div>
+                                </li>
+                                <li class="wow slideInUp" data-wow-delay="0.3s">
+                                    <a href="pdetail.html" class="img fl"><img src="picture/1-1p3131059380-l.jpg"
+                                            alt="绿地紫龙碗一对" /> </a>
+                                    <div class="case-index-r fl">
+                                        <h5><a href="pdetail.html">asdasdasd</a></h5>
+                                        <p class="f14 entitle">asdasdasdas...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- /默认风格 -->
+                        </div>
+                    </div>
+                    <div class="clear" style="height:50px;"></div>
+                </div>
+            </div>
+            <!-- 作品、案例、产品 -->
+        </div> --}}
+    {{>home/content}}
+    <!-- footer -->
+    <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
+    <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
+        style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
+        {{>home/bottom}}
+    </div>
+    <!-- /footer -->
+    <script type="text/javascript">
+        var qq_left = "3",
+            qq_topbottom = 50;
+        $(".kefu_q3 .default").on("click", function () {
+            $(this).animate({
+                "right": -120 + '%'
+            }, 100);
+            $(".default-hide").animate({
+                "margin-right": 0
+            }, 300);
+        })
+        $(".colse").on("click", function () {
+            $(".default-hide").animate({
+                "margin-right": -120 + '%'
+            }, 100);
+            $(".kefu_q3 .default").animate({
+                "right": qq_left + 'px',
+                "bottom": qq_topbottom + 'px'
+            }, 300);
+        })
+    </script>
+</div>
+<!--  /body -->
+<!-- <script src="../../assets/js/online.js"></script> -->
+<!-- SCRIPTS -->
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="../../assets/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //团队
+        $(".teamv2").slide({
+            titCell: ".hd ul",
+            mainCell: ".temaul",
+            autoPage: true,
+            effect: "left",
+            autoPlay: true,
+            scroll: 4,
+            vis: 4,
+            interTime: 3500
+        });
+        //团队简介
+        $(".click-detail").on("click", function () {
+            var _parents = $(this).parents("li");
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 1,
+                shadeClose: true,
+                area: ['920px', '400px'],
+                content: _parents.find(".layer-open").html()
+            });
+        })
+        //合作客户
+        $(".customersv4a").slide({
+            mainCell: ".partnerul ul",
+            autoPage: true,
+            effect: "left",
+            autoPlay: false,
+            scroll: 6,
+            vis: 6,
+            interTime: 3500
+        });
+        //成功案例
+        $(".casev7a").slide({
+            titCell: ".hd ul",
+            mainCell: "ul.caseul",
+            autoPage: true,
+            effect: "left",
+            autoPlay: true,
+            scroll: 1,
+            interTime: 3500
+        });
+    })
+</script>
