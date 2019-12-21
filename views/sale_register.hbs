@@ -1,0 +1,80 @@
+<header>
+    <!-- Navbar -->
+    {{>home/header}}
+</header>
+<body>
+    <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-active"
+                        style="height:850px;
+                        background-image: url(&quot;../../images/2-1p313104h0534.jpg&quot);
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        display: flex; justify-content: center;">
+        <div style="width: 40%;">
+            <form action="/sale-register", method="POST">
+                <div class="card">
+                    <!--Header-->
+                    <div class="header pt-3 peach-gradient">
+                        <div class="row d-flex justify-content-center">
+                            <h3 class="white-text font-weight-bold">SALE</h3>
+                        </div>
+                    </div>
+                    <div class="card-body mx-1 mt-1">
+                    <!--Body-->
+                    <div class="md-form">
+                        <input type="text" id="Form-name" name="product_name" class="form-control">
+                        <label for="Form-name">Product's name</label>
+                    </div>
+
+                    <div class="md-form">
+                        <input type="text" id="Form-starting-price" name="starting_price" class="form-control">
+                        <label for="Form-starting-price">Starting price</label>
+                    </div>
+
+                    <div class="md-form">
+                        <input type="text" id="Form-step-price" name="step_price" class="form-control">
+                        <label for="Form-step-price">Step price</label>
+                    </div>
+                    
+                    <div class="md-form">
+                        <input type="text" id="Form-price-to-buy-now" name="price_tobuynow" class="form-control">
+                        <label for="Form-price-to-buy-now">Price to buy now</label>
+                    </div>
+
+                    <div class="md-form">
+                        <textarea type="text" id="description" name="pro_description" rows="2" class="form-control md-textarea"></textarea>
+                        <label for="description">Product Description</label>
+                        <div class="form-group">
+                        </div>
+                    </div>
+
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="materialChecked2" name="extension" checked>
+                        <label class="form-check-label" for="materialChecked2">Extension</label>
+                    </div>
+                    <div class="md-form" action="#">
+                        <div class="file-field">
+                            <div class="btn btn-primary btn-sm float-left">
+                                <span>Choose files</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            </div>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+                    <div class="row d-flex mb-4">
+                        <!--Grid column-->
+                        <div class="col-md-1 col-md-5 d-flex  ml-auto">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-grey btn-rounded z-depth-1a waves-effect waves-light">Send</button>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

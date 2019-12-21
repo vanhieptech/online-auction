@@ -14,6 +14,9 @@ router.get('/signup', (req, res) => {
 router.get('/signin', (req, res) => {
     res.render('signin')
 })
+router.get('/sale-register', (req, res) => {
+    res.render('sale_register.hbs')
+})
 
 
 
