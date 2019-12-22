@@ -27,7 +27,8 @@ module.exports = function(passport) {
             passReqToCallback : true
         },
         function(req, username, password, done) {
-			
+			if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+			return done(null, false, req.flash('loginMessage', 'TÃªn ngÆ°á»i dÃ¹ng khÃ´ng tá»n táº¡i'));}
             connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
@@ -42,8 +43,9 @@ module.exports = function(passport) {
 					var ADDR=req.body.Address;
 					var Em=req.body.Email;
 					var phone=req.body.phone;
-                    var insertQuery = "INSERT INTO users ( username,fullname, password,Address,Email,phone ) values (?,?,?,?,?,?)";
-                    connection.query(insertQuery,[newUserMysql.username,FN,newUserMysql.password,ADDR,Em,phone],function(err, rows) {
+					var bir=req.body.birthday;
+                    var insertQuery = "INSERT INTO users ( username,fullname, password,Address,Email,phone,birthday ) values (?,?,?,?,?,?,?)";
+                    connection.query(insertQuery,[newUserMysql.username,FN,newUserMysql.password,ADDR,Em,phone,bir],function(err, rows) {
                         newUserMysql.id = rows.insertId;
                         return done(null, newUserMysql);
                     });
