@@ -60,6 +60,10 @@ module.exports = function(passport) {
             passReqToCallback : true
         },
         function(req, username, password, done) {
+			if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+			return done(null, false, req.flash('loginMessage', 'TÃªn ngÆ°á»i dÃ¹ng khÃ´ng tá»n táº¡i'));
+  }
+
             connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows){
                 if (err)
                     return done(err);
