@@ -17,9 +17,12 @@ router.get('/signin', (req, res) => {
 router.get('/sale-register', (req, res) => {
     res.render('sale_register.hbs')
 })
+router.get('/error', (req, res) => {
+    res.render('error.hbs')
+})
 router.post('/login', passport.authenticate('local-login', {
             successRedirect : '/', 
-            failureRedirect : '/login', 
+            failureRedirect : '/signin', 
             failureFlash : true 
 		}),
         function(req, res) {
@@ -32,6 +35,7 @@ router.post('/login', passport.authenticate('local-login', {
             }
 res.redirect('/');
 	    });
+		
 	router.get('/signup', function(req, res) {
 		res.render('signup', { message: req.flash('signupMessage') });
 	});
