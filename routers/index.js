@@ -36,6 +36,13 @@ router.post('/login', passport.authenticate('local-login', {
 res.redirect('/');
 	    });
 		
+		
+		
+		
+		
+		
+		
+
 	router.get('/signup', function(req, res) {
 		res.render('signup', { message: req.flash('signupMessage') });
 	});
