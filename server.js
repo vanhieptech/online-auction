@@ -1,4 +1,4 @@
-const express = require('express'),
+const express = require("express"),
     app = express(),
     exphbs = require('express-handlebars');
 const dotEnv = require('dotenv');
@@ -19,14 +19,24 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-dotEnv.config();
-const PORT = process.env.PORT || 3000
-
 const hbs = exphbs.create({
-    defaultLayout: 'main',
-    extname: 'hbs'
+    defaultLayout: "main",
+    extname: "hbs"
 });
+// config view engine using handlebars
+app.engine("hbs", hbs.engine);
+app.set("view engine", "hbs");
+//Config dir to using multi css, js
+app.use(express.static(__dirname + "/public"));
 
+//Config session to setting login
+app.use(
+    session({
+        secret: "qweasdzxc",
+        resave: false,
+        saveUninitialized: true
+    })
+);
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -46,5 +56,5 @@ app.use(flash());
 app.use('/', require('./routers'));
 app.use(express.static(__dirname + '/public'));
 app.listen(PORT, () => {
-    console.log(`Server listening at PORT: ${PORT}`)
+    console.log(`Server listening at PORT: ${PORT}`);
 });

@@ -1,5 +1,5 @@
-const db = require('../database/mysql');
-const tbName = 'Categories'
+const db = require("../database/mysql");
+const tbName = "Categories";
 
 module.exports = {
     all: async() => {
@@ -7,9 +7,8 @@ module.exports = {
             const sql = `SELECT * FROM ${tbName}`;
             const rows = await db.load(sql);
             return rows;
-
         } catch (error) {
-            console.log('Error Model: Category: all', error);
+            console.log("Error Model: Category: all", error);
         }
     }
 };
