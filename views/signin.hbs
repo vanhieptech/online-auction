@@ -103,7 +103,7 @@
                                     <h3><i class="fas fa-user mt-2 mb-2"></i> Log in:</h3>
                                 </div>
                                 <!--Body-->
-                                <form action="/login" method="post">
+                                <form action="/login" method="post" id="comment_form">
                                 <div class="md-form">
                                     <i class="fas fa-user prefix white-text"></i>
                                     <input type="text" id="orangeForm-name" class="form-control" name='username'>
@@ -114,8 +114,11 @@
                                     <input type="password" id="orangeForm-pass" class="form-control" name="password">
                                     <label for="orangeForm-pass">Your password</label>
                                 </div>
+								<div class="form-group">
+									<div class="g-recaptcha mx-auto col-md-8 my-4" data-sitekey="6LffYTQUAAAAALMWZgHBUBIFoM4dELcVVoqiCItE" id="capcha" name="capcha"></div>
+								  </div>
                                 <div class="text-center">
-                                    <button class="btn purple-gradient btn-lg" type="submit">Sign up</button>
+                                    <button class="btn purple-gradient btn-lg" type="submit"  onclick="check()">Sign up</button>
                                     <hr>
                                     <div class="inline-ul text-center d-flex justify-content-center">
                                         <a class="p-2 m-2 fa-lg tw-ic"><i class="fab fa-twitter white-text"></i></a>
@@ -146,7 +149,9 @@
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+<!-- reCaptcha Google-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="../../assets/js/mdb.min.js"></script>    
 <script>
     new WOW().init();
 </script>
