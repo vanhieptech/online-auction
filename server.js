@@ -2,20 +2,24 @@ const express = require("express"),
     app = express(),
     exphbs = require('express-handlebars');
 const dotEnv = require('dotenv');
-var session  = require('express-session');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var passport = require('passport');
-var flash    = require('connect-flash');
-var config            =     require('./config/config')
-const FacebookStrategy  =     require('passport-facebook').Strategy
+var flash = require('connect-flash');
+var config = require('./config/config')
+const FacebookStrategy = require('passport-facebook').Strategy
 require('./config/passport')(passport);
+
+const PORT = process.env.PORT || 3000
+
+
 //config cho express handlebars
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
-	extended: true
+    extended: true
 }));
 app.use(bodyParser.json());
 
@@ -45,10 +49,10 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.use(session({
-	secret: 'vidyapathaisalwaysrunning',
-	resave: true,
-	saveUninitialized: true
- } ));
+    secret: 'vidyapathaisalwaysrunning',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

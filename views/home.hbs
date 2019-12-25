@@ -171,7 +171,7 @@
             </div>
             <!-- 作品、案例、产品 -->
         </div> --}}
-    {{>home/content}}
+    {{>home/category}}
     <!-- footer -->
     <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
     <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
@@ -210,6 +210,20 @@
 <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+<script>
+    // Porfolio isotope and filter
+    var portfolioIsotope = $(".portfolio-container").isotope({
+        itemSelector: ".portfolio-item",
+        layoutMode: "fitRows"
+    });
+
+    $("#portfolio-flters li").on("click", function () {
+        $("#portfolio-flters li").removeClass("filter-active");
+        $(this).addClass("filter-active");
+
+        portfolioIsotope.isotope({ filter: $(this).data("filter") });
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         //团队

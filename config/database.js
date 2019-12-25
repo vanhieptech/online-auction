@@ -3,8 +3,8 @@ module.exports = {
     'connection': {
         'host': 'localhost',
         'user': 'root',
-        'password': '123456789'
+        'password': '12345678'
     },
-	'database': 'bhtt',
+    'database': 'qlbh',
     'users_table': 'users'
 };
