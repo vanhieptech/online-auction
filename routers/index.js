@@ -1,9 +1,14 @@
 const express = require("express");
+const multer  = require("multer");
 const router = express.Router();
+const bodyParser = require('body-parser');
+const fs = require('fs');
 const CategoryController = require("../controllers/category");
 const ProductController = require("../controllers/product");
+const AddProduct = require('../database/seller');
 var passport = require("passport");
-
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: true }));
 //Router to home
 router.get("/", CategoryController.getTop);
 
@@ -79,4 +84,30 @@ router.get(
     }
 );
 
+var ProID = Math.floor((Math.random() * 1000000) + 1);
+const folderName = `./public/sp/${ProID}`;
+try {
+  if (!fs.existsSync(folderName)) {
+    fs.mkdirSync(folderName)
+  }
+} catch (err) {
+  console.error(err)
+}
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, folderName)
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+var upload = multer({ storage: storage });
+router.post('/sale-register', upload.array("file_picture",10), function (req, res, next) 
+{
+    res.send('THANH CONG');
+    var pro = req.body;
+    console.log(pro);
+    console.log(req.files);
+    AddProduct.all(ProID, pro.product_name, pro.starting_price, pro.step_price, pro.price_tobuynow, pro.pro_description, ProID, pro.extension);
+});
 module.exports = router;

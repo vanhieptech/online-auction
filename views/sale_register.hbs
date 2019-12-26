@@ -1,16 +1,17 @@
+<script type="text/javascript" src="../../assets/js/ckeditor/ckeditor.js"></script>
 <header>
     <!-- Navbar -->
     {{>home/header}}
 </header>
 <body>
     <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-active"
-                        style="height:850px;
+                        style="height:1150px;
                         background-image: url(&quot;../../images/2-1p313104h0534.jpg&quot);
                         background-repeat: no-repeat;
                         background-attachment: fixed;
                         display: flex; justify-content: center;">
-        <div style="width: 40%;">
-            <form action="/sale-register", method="POST">
+        <div style="width: 50%;">
+            <form action="/sale-register", method="POST" enctype = "multipart/form-data">
                 <div class="card">
                     <!--Header-->
                     <div class="header pt-3 peach-gradient">
@@ -21,43 +22,42 @@
                     <div class="card-body mx-1 mt-1">
                     <!--Body-->
                     <div class="md-form">
+                        <label for="Form-name">Product's name</label></br>
                         <input type="text" id="Form-name" name="product_name" class="form-control">
-                        <label for="Form-name">Product's name</label>
                     </div>
-
                     <div class="md-form">
+                        <label for="Form-starting-price">Starting price</label></br>
                         <input type="text" id="Form-starting-price" name="starting_price" class="form-control">
-                        <label for="Form-starting-price">Starting price</label>
                     </div>
 
                     <div class="md-form">
+                        <label for="Form-step-price">Step price</label></br>
                         <input type="text" id="Form-step-price" name="step_price" class="form-control">
-                        <label for="Form-step-price">Step price</label>
                     </div>
                     
                     <div class="md-form">
+                        <label for="Form-price-to-buy-now">Price to buy now</label></br>
                         <input type="text" id="Form-price-to-buy-now" name="price_tobuynow" class="form-control">
-                        <label for="Form-price-to-buy-now">Price to buy now</label>
                     </div>
-
+                    
                     <div class="md-form">
-                        <textarea type="text" id="description" name="pro_description" rows="2" class="form-control md-textarea"></textarea>
-                        <label for="description">Product Description</label>
+                        <label for="description">Product Description</label></br>
                         <div class="form-group">
                         </div>
+                        <textarea  id="editor" class="form-control md-textarea" name="product_description" rows="5"></textarea>
                     </div>
 
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="materialChecked2" name="extension" checked>
                         <label class="form-check-label" for="materialChecked2">Extension</label>
                     </div>
-                    <div class="md-form" action="#">
+                    <div class="md-form">
                         <div class="file-field">
                             <div class="btn btn-primary btn-sm float-left">
                                 <span>Choose files</span>
-                                <input type="file" multiple>
+                                <input type="file" name="file_picture" multiple>
                             </div>
-                            <div class="file-path-wrapper">
+                                <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text" placeholder="Upload one or more files">
                             </div>
                         </div>
@@ -77,4 +77,7 @@
             </form>
         </div>
     </div>
+    <script>
+        CKEDITOR.replace('editor');
+	</script>
 </body>
