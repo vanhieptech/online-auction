@@ -29,7 +29,7 @@ module.exports = function(passport) {
         function(req, username, password, done) {
 			if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
 			return done(null, false, req.flash('loginMessage', 'TÃªn ngÆ°á»i dÃ¹ng khÃ´ng tá»n táº¡i'));}
-            connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
+            connection.query("SELECT * FROM users WHERE f_Username = ?",[username], function(err, rows) {
                 if (err)
                     return done(err);
                 if (rows.length) {
@@ -44,10 +44,11 @@ module.exports = function(passport) {
 					var Em=req.body.Email;
 					var phone=req.body.phone;
 					var bir=req.body.birthday;
-                    var insertQuery = "INSERT INTO users ( username,fullname, password,Address,Email,phone,birthday ) values (?,?,?,?,?,?,?)";
-                    connection.query(insertQuery,[newUserMysql.username,FN,newUserMysql.password,ADDR,Em,phone,bir],function(err, rows) {
+                    var insertQuery = "INSERT INTO users ( f_Username,f_Password, f_Name,f_Email,f_DOB,f_phone,f_address,f_Permission ) values (?,?,?,?,?,?,?,?)";
+                    connection.query(insertQuery,[newUserMysql.username,newUserMysql.password,FN,Em,bir,phone,ADDR,'0'],function(err, rows) {
                         newUserMysql.id = rows.insertId;
                         return done(null, newUserMysql);
+						
                     });
                 }
             });
@@ -63,18 +64,18 @@ module.exports = function(passport) {
         },
         function(req, username, password, done) {
 			if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-			return done(null, false, req.flash('loginMessage', 'TÃªn ngÆ°á»i dÃ¹ng khÃ´ng tá»n táº¡i'));
+			return done(null, false);
   }
-
-            connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows){
+             connection.query('SELECT * FROM users WHERE f_Username = ?',[username],  function(err, rows){
                 if (err)
                     return done(err);
                 if (!rows.length) {
-                    return done(null, false, req.flash('loginMessage', 'TÃªn ngÆ°á»i dÃ¹ng khÃ´ng tá»n táº¡i'));
+                    return done(null, false);
                 }
-
-                if (!bcrypt.compareSync(password, rows[0].password))
-                    return done(null, false, req.flash('loginMessage', 'Máº­t kháº©u khÃ´ng chÃ­nh xÃ¡c'));
+				
+                if (!bcrypt.compareSync(password, rows[0].f_Password))
+                    return done(null, false);
+				
 
                 return done(null, rows[0]);
             });
