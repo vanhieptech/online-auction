@@ -21,25 +21,17 @@ router.get("/signin", (req, res) => {
 });
 
 router.post(
-    "/login",
+    "/signin",
     passport.authenticate("local-login", {
         successRedirect: "/",
         failureRedirect: "/signin",
         failureFlash: true
-    }),
-    function(req, res) {
-        console.log("hello");
-
-        if (req.body.remember) {
-            req.session.cookie.maxAge = 1000 * 60 * 3;
-        } else {
-            req.session.cookie.expires = false;
-        }
-        res.redirect("/");
-    }
+    })
 );
 
 //Router to sign up
+
+
 
 router.get("/signup", function(req, res) {
     res.render("signup", { message: req.flash("signupMessage") });

@@ -10,6 +10,6 @@ module.exports = {
   use_database: false,
   host: "localhost",
   username: "root",
-  password: "123456789",
-  database: "BHTT"
+  password: "12345678",
+  database: "mysql"
 };

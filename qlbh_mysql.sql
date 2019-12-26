@@ -13,6 +13,8 @@
 
  Date: 03/08/2018 22:14:47
 */
+create database mysql;
+use mysql;
 SET
   NAMES utf8;
 SET
@@ -552,7 +554,7 @@ COMMIT;
   -- ----------------------------
   DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-    `f_ID` INT (11) NOT NULL AUTO_INCREMENT,
+    `id` INT AUTO_INCREMENT,
     `f_Username` VARCHAR (50) CHARACTER 
 			SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `f_Password` VARCHAR (255) CHARACTER 
@@ -561,9 +563,11 @@ CREATE TABLE `users` (
 			SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `f_Email` VARCHAR (50) CHARACTER 
 			SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-    `f_DOB` date NOT NULL,
-    `f_Permission` INT (11) NOT NULL,
-    PRIMARY KEY (`f_ID`) USING BTREE
+    `f_DOB` datetime NOT NULL,
+    `f_phone` int NOT NULL,
+    `f_address` nvarchar(50) NOT NULL,
+    `f_Permission` INT NOT NULL,
+    PRIMARY KEY (`id`) USING BTREE
   ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER 
 		SET = utf8 COLLATE = utf8_unicode_ci;
 SET
