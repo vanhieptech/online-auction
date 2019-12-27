@@ -8,89 +8,8 @@
 <div id="usezan-v7">
     <link rel="stylesheet" href="../../assets/css/swiper.css">
     <link rel="stylesheet" href="../../assets/css/animate.min.css">
-    <style>
-        .swiper-container {
-            min-width: 1180px;
-            width: 100%;
-            height: auto;
-            background: #000;
-        }
-    </style>
-    <div class="swiper-container swiper-container-horizontal" style="height:620px;">
-        <div class="swiper-wrapper"
-            style="height: 620px; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-            <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-active"
-                style="width: 1230px; min-width: 1180px; height: 620px; background-image: url(&quot;../../images/1-1p313104h0534.jpg&quot;);">
-                <a class="block wrapper-a" style="width:100%;min-width:1180px;height:620px;"></a>
-            </div>
-            <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-next"
-                style="width: 1230px; min-width: 1180px; height: 620px; background-image: url(&quot;../../images/1-1p313104f3458.jpg&quot;);">
-                <a class="block wrapper-a" style="width:100%;min-width:1180px;height:620px;"></a>
-            </div>
-        </div>
-        <!-- Add Pagination -->
-        {{!-- <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span
-                    class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span
-                    class="swiper-pagination-bullet"></span></div> --}}
-        <!-- Add Arrows -->
-    </div>
     <script src="../../assets/js/swiper.min.js"></script>
     <script src="../../assets/js/swiper.animate1.0.2.min.js"></script>
-    <script type="text/javascript">
-        var _text = $(".wrapper-intro"),
-            _windows = $(document).width(),
-            _height = $(document).height(),
-            _twidth = _text.width(),
-            _theight = _text.height(),
-            _parheight = $(".swiper-wrapper").height(),
-            _px = 'px';
-        var _direction = "horizontal",
-            _effect = "slide",
-            _autoplay = "7000",
-            _texttype = "center",
-            _textleft = "200",
-            _texttop = "250",
-            _scroll = false,
-            _a = (_windows - _twidth) / 2,
-            _b = (_parheight - _theight) / 2;
-        if (_texttype == 'center') {
-            _text.css({
-                'left': _a + _px,
-                'top': _b + _px
-            })
-        } else if (_texttype == 'left') {
-            _text.css({
-                'left': _textleft + _px,
-                'top': _texttop + _px
-            })
-        } else {
-            _text.css({
-                'right': _textleft + _px,
-                'top': _texttop + _px
-            })
-        }
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            effect: _effect,
-            lazyLoading: true,
-            autoplay: _autoplay,
-            autoplayDisableOnInteraction: false,
-            direction: _direction,
-            mousewheelControl: _scroll,
-            mousewheelReleaseOnEdges: true,
-            keyboardControl: true,
-            onInit: function (swiper) {
-                swiperAnimateCache(swiper);
-                swiperAnimate(swiper)
-            },
-            onSlideChangeEnd: function (swiper) {
-                swiperAnimate(swiper)
-            }
-        });
-    </script>
     {{!-- <div class="index-module servicev2" style="background:#fff">
             <!-- 我们的服务 -->
             <div class="backcolor service4a ">

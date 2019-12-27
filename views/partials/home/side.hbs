@@ -1,8 +1,9 @@
-<div class="card-header text-white bg-primary">Header</div>
+<div class="card-header text-white amber darken-1">Phân loại sản phẩm</div>
 <div class="list-group">
     {{#each cats}}
-    <a href= "/cat/{{CatID}}/products" class="list-group-item list-group-item-action {{#if isActive}}active{{/if}}">
-        {{CatName}}
-    </a>
+        <a href="/cat/{{CatID}}/products"
+            class="list-group-item list-group-item-action  {{#if isActive}}active amber lighten-2 {{/if}}">
+            {{CatName}}
+        </a>
     {{/each}}
 </div>
