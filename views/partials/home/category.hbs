@@ -1,154 +1,134 @@
 <style>
+    #products img {
+        width: 100%;
+    }
+
+    @media(min-width: 960px) {
+        #products .col-md-3 .product-card {
+            width: auto;
+            height: 150px;
+        }
+
+        #products .col-md-3 .well {
+            height: 350px;
+        }
+
+        #products .col-md-3 .view {
+            width: 100%;
+            height: 150px;
+        }
+
+        #products .col-md-3 img {
+            width: auto;
+            height: 100%;
+
+        }
+    }
 </style>
-<link rel="stylesheet" href="../../../assets/css/ionicons/css/ionicons.min.css">
-<!--==========================
-      Portfolio Section
-    ============================-->
-<section id="portfolio" class="section-bg">
-    <div class="container">
-        <header class="section-header">
-            <h3 class="section-title">Our Portfolio</h3>
-        </header>
-        <div class="row">
-            <div class="col-lg-12">
-                <ul id="portfolio-flters">
-                    <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-card">Card</li>
-                    <li data-filter=".filter-web">Web</li>
-                </ul>
+<div class="container-fluid text-lg p-lg-5">
+    <div class="row py-2">
+        <div class="col-md-3 pl-5">
+            <div class="card h-100 shadow">
+                {{> home/side }}
             </div>
         </div>
-        <div class="row portfolio-container">
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/app1.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1"
-                            class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">App 1</a></h4>
-                        <p>App</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/web3.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Web 3</a></h4>
-                        <p>Web</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/app2.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">App 2</a></h4>
-                        <p>App</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/card2.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Card 2</a></h4>
-                        <p>Card</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/web2.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Web 2</a></h4>
-                        <p>Web</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/app3.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">App 3</a></h4>
-                        <p>App</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/card1.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Card 1</a></h4>
-                        <p>Card</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/card3.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Card 3</a></h4>
-                        <p>Card</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <img src="../../../picture/portfolio/web1.jpg" class="img-fluid" alt="">
-                        <a href="../../../picture/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio"
-                            data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
-                        <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                    </figure>
-                    <div class="portfolio-info">
-                        <h4><a href="#">Web 1</a></h4>
-                        <p>Web</p>
-                    </div>
+        <div class="col-md-9">
+            <div class="card h-100 shadow">
+                <div class="card-header text-white amber darken-1">Danh sách sản phẩm</div>
+                <div class="card-body">
+                    {{#if showList}}
+                        <div class="container text-black-50">
+                            <div id="products" class="row text-dark">
+                                {{#each ps}}
+                                    <div onclick="getDetailProduct('{{ProID}}')"
+                                        class="product-card text-white col-md-3 mb-4 pt-3 d-flex justify-content-center">
+                                        <div id={{ProID}}
+                                            class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                                            <!--Card view-->
+                                            <div class="view overlay zoom d-flex justify-content-center">
+                                                <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
+                                                <div class="mask flex-center waves-effect waves-light ">
+                                                    <p
+                                                        class="card-body text-white  rgba-black-strong p-2 align-self-end">
+                                                        {{ProName}}</p>
+                                                </div>
+                                            </div>
+                                            <!-- Card time -->
+                                            <div class="rounded-top mdb-color lighten-3 text-center mt-3">
+                                                <ul class="list-unstyled list-inline font-small p-1 m-0">
+                                                    <li class="list-inline-item pr-2 white-text"><i
+                                                            class="far fa-clock pr-1"></i>05/10/2015</li>
+                                                    <li class="list-inline-item pr-2 white-text"><i
+                                                            class="fas fa-hourglass-half"></i>3:02:01s</li>
+                                                </ul>
+                                            </div>
+                                            <!--Card content-->
+                                            <div class="orange text-white rounded-bottom m-0">
+                                                <ul class="list-unstyled list-inline font-small p-1 m-0">
+                                                    <li>
+                                                        <ul
+                                                            class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                                                            <li class="list-inline-item pr-2 white-text"><i
+                                                                    class="fas fa-hand-holding-usd"></i>50000</li>
+                                                            <li class="list-inline-item pr-2 white-text"><i
+                                                                    class="fas fa-user-clock pr-1"></i>UserName
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <ul
+                                                            class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                                                            <li class="list-inline-item pr-2 white-text"><i
+                                                                    class="fas fa-dollar-sign"></i>{{Price}}</li>
+                                                            <li class="list-inline-item pr-2 white-text"><i
+                                                                    class="fas fa-hammer pr-2"></i>15
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                {{!-- <div class="align-self-end">
+                                                    <a onclick="getDetailProduct('{{ProID
+                                                        class="btn peach-gradient btn-sm ">Đấu giá ngay!!!</a>
+                                                </div> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    {{else}}
+                        {{#each ps}}
+                            <div class="container m-3 bg-light">
+                                <div class="row p-3">
+                                    <img src="../../../sp/{{ProID}}/main.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="row pt-3">
+                                    <div class="col-md-4 d-flex justify-content-center">
+                                        <div class="align-self-center">
+                                            <img src="../../../sp/{{ProID}}/1_thumbs.jpg" class="thumbnail">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        <h2 class="text-dark pb-5 pt-3">{{ProName}}</h2>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"><strong>Price:</strong> {{Price}}</li>
+                                            <li class="list-group-item"><strong>TinyDes:</strong> {{TinyDes}}</li>
+                                            <li class="list-group-item"><strong>Quantity:</strong> {{Quantity}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row-md-3 pt-3 pb-3 ">
+                                    <div class="well text-dark">
+                                        <h3>Description</h3>
+                                        {{{FullDes}}}
+                                        <a href="/" class="btn btn-default bg-secondary">Go back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    {{/if}}
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- #portfolio -->
-<!-- Isotope package JavaScript -->
-<script type="text/javascript" src="../../assets/js/isotope/isotope.pkgd.min.js"></script>
+</div>

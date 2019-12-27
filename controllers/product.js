@@ -13,7 +13,7 @@ module.exports = {
             cats[0].isActive = true;
             res.render("home", {
                 title: "cat test",
-                cats: cats
+                cats: catsz
             });
         } catch (error) {
             console.log("Error Controller Category getAll: ", error);
