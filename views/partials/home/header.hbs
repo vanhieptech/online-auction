@@ -22,7 +22,7 @@
                 </li>
                 <!-- Dropdown -->
                 <li class="nav-item dropdown multi-level-dropdown ">
-                    <a href="/cat/1/products" id="menu" data-toggle="dropdown"
+                    <a {{!onclick="getCategories()"}} id="menu" data-toggle="dropdown"
                         class="nav-link dropdown-toggle w-100">Danh mục</a>
                     <ul
                         class="dropdown-menu dropdown-menu-right dropdown-warning rounded-3 white-color border-0 z-depth-1">
@@ -30,7 +30,7 @@
                             <a href="/cat/1/products" class="text-black w-100 p-0 pl-2 mt-1">Sách</a>
                         </li>
                         <li class="dropdown-item dropdown-submenu p-0 ">
-                            <a href="/cat/2/products" data-toggle="dropdown"
+                            <a {{!onclick="getCatByTech()"}} data-toggle="dropdown"
                                 class="dropdown-toggle text-black w-100 p-0 pl-2 mt-1 ">Điện
                                 tử</a>
                             <ul
@@ -72,3 +72,13 @@
         </div>
     </div>
 </nav>
+<script>
+    function getCategories() {
+        window.location = `cat/`
+        return false;
+    }
+    function getCatByTech() {
+        window.location = `cat/2/products`
+        return false;
+    }
+</script>

@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000
 
 
 //config cho express handlebars
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -58,7 +58,9 @@ app.use(passport.session());
 app.use(flash());
 //điều hướng về controller
 app.use('/', require('./routers'));
-app.use(express.static(__dirname + '/public'));
+
+
+
 app.listen(PORT, () => {
     console.log(`Server listening at PORT: ${PORT}`);
 });

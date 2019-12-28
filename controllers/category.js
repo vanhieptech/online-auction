@@ -12,27 +12,35 @@ module.exports = {
             for (let cat of cats) {
                 cat.isActive = false;
             }
+            const ps = await mPro.allByCatId('1');
             cats[0].isActive = true;
             console.log(cats);
-            res.render("home", {
+            res.render("categories", {
                 title: "Online Auction",
-                cats: cats
+                cats: cats,
+                showList: true,
+                ps: ps
             });
         } catch (error) {
             console.log("Error Controller Category getAll: ", error);
         }
     },
     getTop: async(req, res) => {
-        // const id = parseInt(req.params.id);
-        const catID = 4;
         try {
-            const ps = await mPro.allByCatId(catID);
-            console.log(ps);
+            // Top 5 sản phẩm gần kết thúc
+            const psByTimeout = await mPro.getTop5ProductsReadyFinish()
+                // Top 5 sản phẩm có nhiều lượt ra giá nhất
+            const psByBID = await mPro.getTop5ProductsbyBID()
+                // Top 5 sản phẩm có giá cao nhất
+            const psByPrice = await mPro.getTop5ProductsbyPrice()
+
+
             res.render("home", {
                 title: "Online Auction",
                 showList: true,
-                title_top: "Top 5 newest",
-                ps: ps
+                psByTimeout: psByTimeout,
+                psByBID: psByBID,
+                psByPrice: psByPrice
             });
         } catch (error) {
             console.log("Error Controller Category getByCatId", error);
@@ -51,8 +59,8 @@ module.exports = {
                 }
             }
 
-            res.render("home", {
-                title: "SHOPPING...",
+            res.render("categories", {
+                title: "Online Auction",
                 cats: cats,
                 showList: true,
                 ps: ps

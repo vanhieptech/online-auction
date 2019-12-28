@@ -42,5 +42,38 @@ module.exports = {
         } catch (error) {
             console.log("Error Model: Product: all Pro Id", error);
         }
-    }
+    },
+    //Chú ý Tìm cách truy vấn về time thực
+    getTop5ProductsReadyFinish: async() => {
+        try {
+            const sql = `SELECT * FROM ${tbName} ORDER BY Price DESC LIMIT 5`;
+            const rows = await db.load(sql);
+
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: all", error);
+        }
+    },
+
+    //Chú ý sửa lại top 5 sản phẩm CÓ NHIỀU LƯỢT RA GIÁ NHẤTTTTT THAY COLUMN Voted
+    getTop5ProductsbyBID: async() => {
+        try {
+            const sql = `SELECT * FROM ${tbName} ORDER BY Voted DESC LIMIT 5`;
+            const rows = await db.load(sql);
+
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: all", error);
+        }
+    },
+    getTop5ProductsbyPrice: async() => {
+        try {
+            const sql = `SELECT * FROM ${tbName} ORDER BY Price DESC LIMIT 5`;
+            const rows = await db.load(sql);
+
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: all", error);
+        }
+    },
 };
