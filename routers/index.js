@@ -1,11 +1,12 @@
 const express = require("express");
-const multer  = require("multer");
 const router = express.Router();
 const bodyParser = require('body-parser');
+const multer  = require("multer");
 const fs = require('fs');
+const db = require('../database/mysql');
 const CategoryController = require("../controllers/category");
 const ProductController = require("../controllers/product");
-const AddProduct = require('../database/seller');
+const Seller = require("../controllers/seller");
 var passport = require("passport");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -75,31 +76,23 @@ router.get(
         res.redirect("/");
     }
 );
-
-var ProID = Math.floor((Math.random() * 1000000) + 1);
-const folderName = `./public/sp/${ProID}`;
-try {
-  if (!fs.existsSync(folderName)) {
-    fs.mkdirSync(folderName)
-  }
-} catch (err) {
-  console.error(err)
-}
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, folderName)
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-  })
-var upload = multer({ storage: storage });
-router.post('/sale-register', upload.array("file_picture",10), function (req, res, next) 
-{
-    res.send('THANH CONG');
-    var pro = req.body;
-    console.log(pro);
-    console.log(req.files);
-    AddProduct.all(ProID, pro.product_name, pro.starting_price, pro.step_price, pro.price_tobuynow, pro.pro_description, ProID, pro.extension);
+router.post('/sale-register', async function(req,res){
+    Seller.AddPro(req,res);
+    const sql= `SELECT max(ProID) as'ID' FROM products`;
+    var maxID = await db.load(sql);
+    var ProID =(maxID[0].ID+1);
+    const folderName = `./public/sp/${ProID}`;
+    if (!fs.existsSync(folderName))
+        fs.mkdirSync(folderName);
+    var storage2 = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, folderName);
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.originalname);
+        }
+    })
+    var upload = multer({ storage: storage2 });
+    router.post('/sale-register-upload',upload.array("file_picture",10),function(req,res){res.send('OK');});
 });
 module.exports = router;

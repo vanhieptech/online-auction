@@ -72,9 +72,9 @@ CREATE TABLE `orders` (
   -- Table structure for products
   -- ----------------------------
   DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
+  CREATE TABLE `products` (
     `ProID` INT (11) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `OwnerID` int (11) UNSIGNED NOT NULL ,
+    `OwnerID` int (11) UNSIGNED NULL ,
     `UserID` int (11) UNSIGNED NOT NULL,
     `ProName` VARCHAR (50) CHARACTER 
 		SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -83,13 +83,14 @@ CREATE TABLE `products` (
     `FullDes` text CHARACTER 
 		SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `Price` INT (11) NOT NULL,
-	`Step` INT (11) NOT NULL,
+	  `Step` INT (11) NOT NULL,
     `PriceToBuy` int (11),
     `CatID` INT (11) NOT NULL,
-    `Voted` int (11) NOT NULL,
-    `Rate` int (11) NOT NULL,
+    `Voted` int (11) NULL,
+    `Rate` int (11) NULL,
     `TimeStart` datetime NOT NULL,
     `TimeFinish` datetime NOT NULL,
+    `Extension` BIT NOT NULL,
     PRIMARY KEY (`ProID`) USING BTREE
   ) ENGINE = MyISAM AUTO_INCREMENT = 31 CHARACTER 
 	SET = utf8 COLLATE = utf8_unicode_ci;

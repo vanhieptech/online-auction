@@ -11,12 +11,12 @@
                         background-attachment: fixed;
                         display: flex; justify-content: center;">
         <div style="width: 50%;">
-            <form action="/sale-register", method="POST" enctype = "multipart/form-data">
+            <form action="/sale-register", method="POST">
                 <div class="card">
                     <!--Header-->
                     <div class="header pt-3 peach-gradient">
                         <div class="row d-flex justify-content-center">
-                            <h3 class="white-text font-weight-bold">SALE</h3>
+                            <h3 class="white-text font-weight-bold">PRODUCT</h3>
                         </div>
                     </div>
                     <div class="card-body mx-1 mt-1">
@@ -51,21 +51,10 @@
                         <input type="checkbox" class="form-check-input" id="materialChecked2" name="extension" checked>
                         <label class="form-check-label" for="materialChecked2">Extension</label>
                     </div>
-                    <div class="md-form">
-                        <div class="file-field">
-                            <div class="btn btn-primary btn-sm float-left">
-                                <span>Choose files</span>
-                                <input type="file" name="file_picture" multiple>
-                            </div>
-                                <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                            </div>
-                        </div>
-                    </div>
                     <!--Grid row-->
                     <div class="row d-flex mb-4">
                         <!--Grid column-->
-                        <div class="col-md-1 col-md-5 d-flex  ml-auto">
+                        <div class="col-md-1 col-md-7 d-flex  ml-auto">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-grey btn-rounded z-depth-1a waves-effect waves-light">Send</button>
                             </div>
