@@ -34,9 +34,9 @@
         </div>
         <div class="col-md-9">
             <div class="card h-100 shadow">
-                <div class="card-header text-white amber darken-1">Danh sách sản phẩm</div>
-                <div class="card-body">
-                    {{#if showList}}
+                {{#if showList}}
+                    <div class="card-header text-white amber darken-1">Danh sách sản phẩm</div>
+                    <div class="card-body">
                         <div class="container text-black-50">
                             <div id="products" class="row text-dark">
                                 {{#each ps}}
@@ -58,8 +58,9 @@
                                                 <ul class="list-unstyled list-inline font-small p-1 m-0">
                                                     <li class="list-inline-item pr-2 white-text"><i
                                                             class="far fa-clock pr-1"></i>05/10/2015</li>
-                                                    <li class="list-inline-item pr-2 white-text"><i
-                                                            class="fas fa-hourglass-half"></i>3:02:01s</li>
+                                                    <li class="timer-countdown list-inline-item pr-2 white-text"><i
+                                                            class="fas fa-hourglass-half"
+                                                            data-countdown="01/01/2020"></i></li>
                                                 </ul>
                                             </div>
                                             <!--Card content-->
@@ -96,38 +97,38 @@
                                 {{/each}}
                             </div>
                         </div>
-                    {{else}}
-                        {{#each ps}}
-                            <div class="container m-3 bg-light">
-                                <div class="row p-3">
-                                    <img src="../../../sp/{{ProID}}/main.jpg" class="card-img-top" alt="...">
-                                </div>
-                                <div class="row pt-3">
-                                    <div class="col-md-4 d-flex justify-content-center">
-                                        <div class="align-self-center">
-                                            <img src="../../../sp/{{ProID}}/1_thumbs.jpg" class="thumbnail">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 ">
-                                        <h2 class="text-dark pb-5 pt-3">{{ProName}}</h2>
-                                        <ul class="list-group">
-                                            <li class="list-group-item"><strong>Price:</strong> {{Price}}</li>
-                                            <li class="list-group-item"><strong>TinyDes:</strong> {{TinyDes}}</li>
-                                            <li class="list-group-item"><strong>Quantity:</strong> {{Quantity}}</li>
-                                        </ul>
+                    </div>
+                {{else}}
+                    {{#each ps}}
+                        <div class="container m-3 bg-light">
+                            <div class="row p-3">
+                                <img src="../../../sp/{{ProID}}/1_1.jpg" class="card-img-top" alt="...">
+                            </div>
+                            <div class="row pt-3">
+                                <div class="col-md-4 d-flex justify-content-center">
+                                    <div class="align-self-center">
+                                        <img src="../../../sp/{{ProID}}/1_2.jpg" class="thumbnail">
                                     </div>
                                 </div>
-                                <div class="row-md-3 pt-3 pb-3 ">
-                                    <div class="well text-dark">
-                                        <h3>Description</h3>
-                                        {{{FullDes}}}
-                                        <a href="/" class="btn btn-default bg-secondary">Go back</a>
-                                    </div>
+                                <div class="col-md-8 ">
+                                    <h2 class="text-dark pb-5 pt-3">{{ProName}}</h2>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Price:</strong> {{Price}}</li>
+                                        <li class="list-group-item"><strong>TinyDes:</strong> {{TinyDes}}</li>
+                                        <li class="list-group-item"><strong>Quantity:</strong> {{Quantity}}</li>
+                                    </ul>
                                 </div>
                             </div>
-                        {{/each}}
-                    {{/if}}
-                </div>
+                            <div class="row-md-3 pt-3 pb-3 ">
+                                <div class="well text-dark">
+                                    <h3>Description</h3>
+                                    {{{FullDes}}}
+                                    <a href="/" class="btn btn-default bg-secondary">Go back</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>

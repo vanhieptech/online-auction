@@ -32,7 +32,7 @@ module.exports = {
                 }
             }
 
-            res.render("home", {
+            res.render("categories", {
                 title: "Product Detail",
                 cats: cats,
                 showList: false,

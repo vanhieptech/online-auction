@@ -50,3 +50,51 @@ exports.mysql = (sql, params) => {
         //Something that i dont know :)
     });
 };
+
+exports.del = (tbName, idField, id) => {
+    return new Promis((resole, reject) => {
+        const con = createConnection();
+        con.connect(err => {
+            if (err) {
+                reject(err);
+            }
+        });
+        let sql = "DELETE FROM ?? WHERE ?? = ?";
+        const params = [tbName, idField, id];
+        sql = mysql.format(sql, params);
+        con.query(sql, (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resole(results.affectedRows);
+            }
+        });
+        con.end();
+    });
+};
+
+exports.update = (tbName, idField, entity) => {
+    return new Promise((resole, reject) => {
+        const con = createConnection();
+        con.connect(err => {
+            if (err) {
+                reject(err);
+            }
+        });
+        const id = entity[idField];
+        delete entity[idField];
+        let sql = `UPDATE ${tbName} SET ? WHERE ${idField} = ${id}`;
+        con.query(sql, entity, (error, results, fields) => {
+            if (error) {
+                reject(error);
+            } else {
+                resole(resultes.changedRows);
+            }
+        });
+        con.end();
+    });
+};
+
+exports.errorHandle = promise => {
+    return promise.then(data => [data, undefined]).catch(err => [undefined, err]);
+};

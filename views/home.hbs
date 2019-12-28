@@ -90,7 +90,7 @@
             </div>
             <!-- 作品、案例、产品 -->
         </div> --}}
-    {{>home/category}}
+    {{>home/content}}
     <!-- footer -->
     <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
     <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
@@ -121,6 +121,13 @@
     </script>
 </div>
 <!--  /body -->
+<script type="text/javascript">
+    function getDetailProduct(id) {
+        window.location = `products/` + id;
+        return false;
+    }
+
+</script>
 <!-- <script src="../../assets/js/online.js"></script> -->
 <!-- SCRIPTS -->
 <!-- Bootstrap tooltips -->
@@ -129,64 +136,3 @@
 <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
-<script>
-    // Porfolio isotope and filter
-    var portfolioIsotope = $(".portfolio-container").isotope({
-        itemSelector: ".portfolio-item",
-        layoutMode: "fitRows"
-    });
-
-    $("#portfolio-flters li").on("click", function () {
-        $("#portfolio-flters li").removeClass("filter-active");
-        $(this).addClass("filter-active");
-
-        portfolioIsotope.isotope({ filter: $(this).data("filter") });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        //团队
-        $(".teamv2").slide({
-            titCell: ".hd ul",
-            mainCell: ".temaul",
-            autoPage: true,
-            effect: "left",
-            autoPlay: true,
-            scroll: 4,
-            vis: 4,
-            interTime: 3500
-        });
-        //团队简介
-        $(".click-detail").on("click", function () {
-            var _parents = $(this).parents("li");
-            layer.open({
-                type: 1,
-                title: false,
-                closeBtn: 1,
-                shadeClose: true,
-                area: ['920px', '400px'],
-                content: _parents.find(".layer-open").html()
-            });
-        })
-        //合作客户
-        $(".customersv4a").slide({
-            mainCell: ".partnerul ul",
-            autoPage: true,
-            effect: "left",
-            autoPlay: false,
-            scroll: 6,
-            vis: 6,
-            interTime: 3500
-        });
-        //成功案例
-        $(".casev7a").slide({
-            titCell: ".hd ul",
-            mainCell: "ul.caseul",
-            autoPage: true,
-            effect: "left",
-            autoPlay: true,
-            scroll: 1,
-            interTime: 3500
-        });
-    })
-</script>

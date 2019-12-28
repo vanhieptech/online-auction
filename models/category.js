@@ -1,14 +1,18 @@
-const db = require("../database/mysql");
-const tbName = "Categories";
+const db = require("../database/mysql"),
+    run = db.errorHandle;
+
+const tbName = "Categories",
+    idFields = "CatID";
 
 module.exports = {
     all: async() => {
-        try {
-            const sql = `SELECT * FROM ${tbName}`;
-            const rows = await db.load(sql);
-            return rows;
-        } catch (error) {
-            console.log("Error Model: Category: all", error);
+        const sql = `SELECT * FROM ${tbName}`;
+        const [rows, err] = await run(db.load(sql));
+
+        if (err) {
+            console.log("Error Model: Category: all", err);
+            throw err;
         }
+        return rows;
     }
 };
