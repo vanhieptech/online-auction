@@ -5,7 +5,7 @@ function createConnection() {
         host: "localhost",
         user: "root",
         password: "12345678",
-        database: "mysql"
+        database: "qlbh"
     });
 }
 
@@ -40,6 +40,7 @@ exports.add = (tbName, entity) => {
             if (error) {
                 reject(error);
             }
+            console.log(`results: ----`, results)
             resole(results.insertId);
         });
         con.end();
