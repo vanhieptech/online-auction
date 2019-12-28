@@ -14,5 +14,29 @@ module.exports = {
             throw err;
         }
         return rows;
+    },
+    del: async id => {
+        const [nr, err] = await run(db.del(tbName, idField, id));
+        if (err) {
+            console.log("Error Model: Category: del", err);
+            throw err;
+        }
+        return nr;
+    },
+    update: async entity => {
+        const [nr, err] = await run(db.update(tbName, idField, entity));
+        if (err) {
+            console.log("Error Model: Category: update", err);
+            throw err;
+        }
+        return nr;
+    },
+    add: async entity => {
+        const [id, err] = await run(db.add(tbName, entity));
+        if (err) {
+            console.log("Error Model: Category: add", err);
+            throw err;
+        }
+        return id;
     }
 };

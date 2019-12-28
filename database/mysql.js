@@ -40,6 +40,7 @@ exports.add = (tbName, entity) => {
             if (error) {
                 reject(error);
             }
+            console.log(`results: ----`, results)
             resole(results.insertId);
         });
         con.end();

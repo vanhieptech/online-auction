@@ -19,6 +19,7 @@
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" type="text/css" href="../../assets/css/mdb.min.css">
     {{!-- <link rel="stylesheet" type="text/css" href="../../assets/css/jquery.countdownTimer.css"> --}}
+    <link rel="stylesheet" href="../../assets/css/owlcarousel/assets/owl.carousel.min.css">
     {{!-- Framework js --}}
     <script type="text/javascript" src="../../assets/js/jquery-3.4.1.min.js"></script>
     {{!-- <script type="text/javascript" src="../../assets/js/jquery.countdownTimer.min.js"></script> --}}
@@ -33,6 +34,25 @@
 
 <body>
     {{{body}}}
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+    <script type="text/javascript">
+        function getDetailProduct(id) {
+            window.location = `products/` + id;
+            return false;
+        }
+
+    </script>
+    <!-- <script src="../../assets/js/online.js"></script> -->
+    <!-- SCRIPTS -->
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../../assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+    <script src="../../assets/css/owlcarousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/main.js"></script>
 </body>
 <script type="text/javascript">
 
@@ -45,7 +65,12 @@
                 );
             });
         });
+
+
+
     });
+
+
 
 </script>
 

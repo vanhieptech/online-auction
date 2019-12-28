@@ -53,21 +53,26 @@
                         </li>
                     </ul>
                 </li>
-                {{!--
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user"></i> Profile </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="#">My account</a>
-                                <a class="dropdown-item" href="#">Log out</a>
-                            </div>
-                        </li> --}}
-                <!-- Login / register -->
-                <a id="navbar-static-signin" href='/signin' alt="Sign In"
-                    class="text-info align-self-center ml-2 auth-modal-toggle waves-effect waves-light"
-                    data-auth-modal-tab="sign-up">Sign In</a>
-                <a id="navbar-static-login" href='/signup' alt="Sign Up"
-                    class="btn peach-gradient btn-rounded btn-sm waves-effect waves-light auth-modal-toggle">SIGN UP</a>
+                {{#if showProfile}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> Profile </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-info"
+                            aria-labelledby="navbarDropdownMenuLink-4">
+                            <a class="dropdown-item" href="#">My account</a>
+                            <a class="dropdown-item" href="/logout">Log out</a>
+                        </div>
+                    </li>
+                {{else}}
+                    <!-- Login / register -->
+                    <a id="navbar-static-signin" href='account/login' alt="Sign In"
+                        class="text-info align-self-center ml-2 auth-modal-toggle waves-effect waves-light"
+                        data-auth-modal-tab="sign-up">Sign In</a>
+                    <a id="navbar-static-login" href='account/register' alt="Sign Up"
+                        class="btn peach-gradient btn-rounded btn-sm waves-effect waves-light auth-modal-toggle">SIGN
+                        UP</a>
+                {{/if}}
             </ul>
         </div>
     </div>

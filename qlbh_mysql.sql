@@ -74,7 +74,11 @@ CREATE TABLE `orders` (
   DROP TABLE IF EXISTS `products`;
   CREATE TABLE `products` (
     `ProID` INT (11) UNSIGNED NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
     `OwnerID` int (11) UNSIGNED NULL ,
+=======
+    `OwnerID` int (11) UNSIGNED NOT NULL,
+>>>>>>> master
     `UserID` int (11) UNSIGNED NOT NULL,
     `ProName` VARCHAR (50) CHARACTER 
 		SET utf8 COLLATE utf8_unicode_ci NOT NULL,

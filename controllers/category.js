@@ -12,7 +12,7 @@ module.exports = {
             for (let cat of cats) {
                 cat.isActive = false;
             }
-            const ps = await mPro.allByCatId('1');
+            const ps = await mPro.allByCatId("1");
             cats[0].isActive = true;
             console.log(cats);
             res.render("categories", {
@@ -28,19 +28,27 @@ module.exports = {
     getTop: async(req, res) => {
         try {
             // Top 5 sản phẩm gần kết thúc
-            const psByTimeout = await mPro.getTop5ProductsReadyFinish()
-                // Top 5 sản phẩm có nhiều lượt ra giá nhất
-            const psByBID = await mPro.getTop5ProductsbyBID()
-                // Top 5 sản phẩm có giá cao nhất
-            const psByPrice = await mPro.getTop5ProductsbyPrice()
+            const psByTimeout = await mPro.getTop5ProductsReadyFinish();
+            // Top 5 sản phẩm có nhiều lượt ra giá nhất
+            const psByBID = await mPro.getTop5ProductsbyBID();
+            // Top 5 sản phẩm có giá cao nhất
+            const psByPrice = await mPro.getTop5ProductsbyPrice();
 
+            //Check session user
+            console.log(req.session.authUser);
+            if (req.session.authUser) {
+                isShowProfile = true;
+            } else {
+                isShowProfile = false;
+            }
 
             res.render("home", {
                 title: "Online Auction",
                 showList: true,
                 psByTimeout: psByTimeout,
                 psByBID: psByBID,
-                psByPrice: psByPrice
+                psByPrice: psByPrice,
+                showProfile: false
             });
         } catch (error) {
             console.log("Error Controller Category getByCatId", error);
