@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 var morgan = require("morgan");
 var passport = require("passport");
 var flash = require("connect-flash");
-
 const FacebookStrategy = require("passport-facebook").Strategy;
 
 const PORT = process.env.PORT || 3000;
@@ -60,13 +59,13 @@ app.get("/", (req, res) => {
 
 //báo lôi
 app.use((req, res, next) => {
-    // res.render('vwError/404');
-    res.send("You're lost");
+    res.render('vwError/404');
+	
 });
 app.use((err, req, res, next) => {
     // res.render('vwError/index');
+	 res.render('vwError/500');
     console.error(err.stack);
-    res.status(500).send("View error on console.");
 });
 
 app.listen(PORT, () => {
