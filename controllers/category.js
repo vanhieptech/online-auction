@@ -70,7 +70,7 @@ module.exports = {
                     isCurrentPage: i === +page
                 });
             }
-            console.log(page_numbers);
+            // console.log(page_numbers);
             const navs = {};
 
             if (page > 1) {

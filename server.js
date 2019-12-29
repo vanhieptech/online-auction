@@ -50,8 +50,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(flash());
 //điều hướng về controller
 
-app.use("/", require("./routers/index"));
-
 require("./middlewares/locals.mdw")(app);
 require("./middlewares/routes.mdw")(app);
 
