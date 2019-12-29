@@ -34,6 +34,18 @@ router.post("/register", async(req, res) => {
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.redirect("/account/register");
     }
+	
+	//check user name và email
+	    const user = await userModel.singleByUsername(req.body.f_Username);
+    if (user != null) {
+        console.log("Username Exists");
+        return res.redirect("/account/register");
+    }
+		const email = await userModel.singleByEmail(req.body.f_Email);
+	if (email != null) {
+        console.log("Email Exists");
+        return res.redirect("/account/register");
+    }
     //console.log(`++++++++account route add entity`, entity['g-recaptcha-response']);
     delete entity.dob;
     delete entity['g-recaptcha-response'];
@@ -62,7 +74,7 @@ router.post("/login", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
     if (user === null) {
         console.log("Invalid username or password.");
-        res.redirect("/account/login");
+        return res.redirect("/account/login");
     }
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.redirect("/account/login");
