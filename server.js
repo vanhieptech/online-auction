@@ -1,29 +1,15 @@
 const express = require("express"),
     app = express(),
-<<<<<<< HEAD
-    exphbs = require('express-handlebars');
-const dotEnv = require('dotenv');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-var morgan = require('morgan');
-var passport = require('passport');
-var flash = require('connect-flash');
-var config = require('./config/config')
-const FacebookStrategy = require('passport-facebook').Strategy
-require('./config/passport')(passport);
-
-const PORT = process.env.PORT || 3000
-=======
     exphbs = require("express-handlebars");
 const dotEnv = require("dotenv");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
-// var morgan = require("morgan");
-// var passport = require("passport");
+const bodyParser = require("body-parser");
+var morgan = require("morgan");
+var passport = require("passport");
 var flash = require("connect-flash");
->>>>>>> master
+
+const FacebookStrategy = require("passport-facebook").Strategy;
 
 const PORT = process.env.PORT || 3000;
 
