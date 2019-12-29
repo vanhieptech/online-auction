@@ -1,9 +1,8 @@
-<script type="text/javascript" src="../../assets/js/ckeditor/ckeditor.js"></script>
 <header>
     <!-- Navbar -->
     {{>home/header}}
 </header>
-<body>
+<main>
     <div class="swiper-slide swiper-lazy swiper-lazy-loaded swiper-slide-active"
                         style="height:800px;
                         background-image: url(&quot;../../images/2-1p313104h0534.jpg&quot);
@@ -11,7 +10,7 @@
                         background-attachment: fixed;
                         display: flex; justify-content: center;">
         <div style="width: 50%;">
-            <form action="/sale-register-upload", method="POST", enctype = "multipart/form-data">
+            <form action="/seller/sale-register-upload", method="POST", enctype = "multipart/form-data">
                 <div class="card">
                     <!--Header-->
                     <div class="header pt-3 peach-gradient">
@@ -47,7 +46,33 @@
             </form>
         </div>
     </div>
-    <script>
-        CKEDITOR.replace('editor');
-	</script>
-</body>
+</main>
+<footer>
+    <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
+    <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
+        style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
+        {{>home/bottom}}
+    </div>
+    <!-- /footer -->
+    <script type="text/javascript">
+        var qq_left = "3",
+            qq_topbottom = 50;
+        $(".kefu_q3 .default").on("click", function () {
+            $(this).animate({
+                "right": -120 + '%'
+            }, 100);
+            $(".default-hide").animate({
+                "margin-right": 0
+            }, 300);
+        })
+        $(".colse").on("click", function () {
+            $(".default-hide").animate({
+                "margin-right": -120 + '%'
+            }, 100);
+            $(".kefu_q3 .default").animate({
+                "right": qq_left + 'px',
+                "bottom": qq_topbottom + 'px'
+            }, 300);
+        })
+    </script>   
+</footer>

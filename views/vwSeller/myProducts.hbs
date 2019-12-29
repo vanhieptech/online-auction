@@ -1,0 +1,79 @@
+<header>
+    <!-- Navbar -->
+    {{>home/header}}
+</header>
+<main>
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Step</th>
+            <th class="text-center">Price To Buy</th>
+            <th class="text-center">Time Start</th>
+            <th class="text-center">Time Finish</th>
+            <th class="text-center">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
+            <td class="pt-3-half" contenteditable="true">30</td>
+            <td class="pt-3-half" contenteditable="true">Deepends</td>
+            <td class="pt-3-half" contenteditable="true">Spain</td>
+            <td class="pt-3-half" contenteditable="true">Madrid</td>
+            <td class="pt-3-half">
+              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                    aria-hidden="true"></i></a></span>
+              <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                    aria-hidden="true"></i></a></span>
+            </td>
+            <td>
+              <span class="table-edit"><button type="button"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Edit</button></span>
+            </td>
+          </tr>
+          <!-- This is our clonable table line -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Editable table -->
+</main>
+<footer>
+    <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
+    <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
+        style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
+        {{>home/bottom}}
+    </div>
+    <!-- /footer -->
+    <script type="text/javascript">
+        var qq_left = "3",
+            qq_topbottom = 50;
+        $(".kefu_q3 .default").on("click", function () {
+            $(this).animate({
+                "right": -120 + '%'
+            }, 100);
+            $(".default-hide").animate({
+                "margin-right": 0
+            }, 300);
+        })
+        $(".colse").on("click", function () {
+            $(".default-hide").animate({
+                "margin-right": -120 + '%'
+            }, 100);
+            $(".kefu_q3 .default").animate({
+                "right": qq_left + 'px',
+                "bottom": qq_topbottom + 'px'
+            }, 300);
+        })
+    </script>   
+</footer>
