@@ -15,6 +15,18 @@ module.exports = {
         }
         return rows;
     },
+    allWithDetails: async() => {
+        const sql = `SELECT c.CatID, c.CatName, count(p.ProID) as num_of_products
+        from ${tbName} c left join products p on c.CatID = p.CatID
+        group by c.CatID, c.CatName`;
+        const [rows, err] = await run(db.load(sql));
+
+        if (err) {
+            console.log("Error Model: Category: allWithDetails", err);
+            throw err;
+        }
+        return rows;
+    },
     del: async id => {
         const [nr, err] = await run(db.del(tbName, idField, id));
         if (err) {

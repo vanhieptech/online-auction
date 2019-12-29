@@ -53,37 +53,29 @@
                         </li>
                     </ul>
                 </li>
-                {{#if showProfile}}
+                {{#if isAuthenticated}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i> Profile </a>
+                            <i class="fas fa-user"></i>Hi, <b>{{authUser.f_Name}}! </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-info"
                             aria-labelledby="navbarDropdownMenuLink-4">
-                            <a class="dropdown-item" href="#">My account</a>
-                            <a class="dropdown-item" href="/logout">Log out</a>
+                            <a class="dropdown-item" href="/account/profile">My account</a>
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Log out</a>
                         </div>
                     </li>
                 {{else}}
                     <!-- Login / register -->
-                    <a id="navbar-static-signin" href='account/login' alt="Sign In"
+                    <a id="navbar-static-signin" href='account/login' alt="Login"
                         class="text-info align-self-center ml-2 auth-modal-toggle waves-effect waves-light"
-                        data-auth-modal-tab="sign-up">Sign In</a>
-                    <a id="navbar-static-login" href='account/register' alt="Sign Up"
-                        class="btn peach-gradient btn-rounded btn-sm waves-effect waves-light auth-modal-toggle">SIGN
-                        UP</a>
+                        data-auth-modal-tab="sign-up">Login</a>
+                    <a id="navbar-static-login" href='account/register' alt="Register"
+                        class="btn peach-gradient btn-rounded btn-sm waves-effect waves-light auth-modal-toggle">Register</a>
                 {{/if}}
             </ul>
         </div>
     </div>
 </nav>
 <script>
-    function getCategories() {
-        window.location = `cat/`
-        return false;
-    }
-    function getCatByTech() {
-        window.location = `cat/2/products`
-        return false;
-    }
+
 </script>

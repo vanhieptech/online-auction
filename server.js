@@ -20,8 +20,8 @@ const dotEnv = require("dotenv");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
-var morgan = require("morgan");
-var passport = require("passport");
+// var morgan = require("morgan");
+// var passport = require("passport");
 var flash = require("connect-flash");
 >>>>>>> master
 
@@ -37,6 +37,15 @@ app.use(
 );
 app.use(bodyParser.json());
 
+//Config session to setting login
+app.use(
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: true
+    })
+);
+
 const hbs = exphbs.create({
     defaultLayout: "main",
     extname: "hbs"
@@ -47,19 +56,14 @@ app.set("view engine", "hbs");
 //Config dir to using multi css, js
 app.use(express.static(__dirname + "/public"));
 
-//Config session to setting login
-app.use(
-    session({
-        secret: "qweasdzxc",
-        resave: false,
-        saveUninitialized: true
-    })
-);
-
 app.use(flash());
 //điều hướng về controller
+
 app.use("/", require("./routers/index"));
-app.use("/account", require("./controllers/account.route"));
+
+require("./middlewares/locals.mdw")(app);
+require("./middlewares/routes.mdw")(app);
+
 //báo lôi
 app.use((req, res, next) => {
     // res.render('vwError/404');
@@ -70,6 +74,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send("View error on console.");
 });
+
 app.listen(PORT, () => {
     console.log(`Server listening at PORT: ${PORT}`);
 });

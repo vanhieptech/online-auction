@@ -1,4 +1,6 @@
 const db = require("../database/mysql");
+const config = require("../config/default.json");
+
 const tbName = `Products`;
 
 module.exports = {
@@ -43,6 +45,23 @@ module.exports = {
             console.log("Error Model: Product: all Pro Id", error);
         }
     },
+    countByCat: async catId => {
+        const rows = await db.load(
+            `select count(*) as total from products where CatID = ${catId}`
+        );
+        return rows[0].total;
+    },
+    pageByCat: (catId, offset) =>
+        db.load(
+            `select * from products where CatID = ${catId} limit ${config.paginate.limit} offset ${offset}`
+        ),
+    add: entity => db.add("products", entity),
+    del: id => db.del("products", { ProID: id }),
+    patch: entity => {
+        const condition = { ProID: entity.ProID };
+        delete entity.ProID;
+        return db.patch("products", entity, condition);
+    },
     //Chú ý Tìm cách truy vấn về time thực
     getTop5ProductsReadyFinish: async() => {
         try {
@@ -75,5 +94,5 @@ module.exports = {
         } catch (error) {
             console.log("Error Model: Product: all", error);
         }
-    },
+    }
 };

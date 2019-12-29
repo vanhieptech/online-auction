@@ -20,23 +20,13 @@ module.exports = {
         }
     },
     getByProId: async(req, res) => {
-        const id = parseInt(req.params.id);
+        const proId = parseInt(req.params.id);
         try {
-            const cats = await mCat.all();
-            const products = await mPro.getDetailById(id);
+            const product = await mPro.getDetailById(proId);
 
-            for (let cat of cats) {
-                cat.isActive = false;
-                if (cat.CatID === id) {
-                    cat.isActive = true;
-                }
-            }
-
-            res.render("categories", {
+            res.render("vwProducts/detail", {
                 title: "Product Detail",
-                cats: cats,
-                showList: false,
-                ps: products
+                product: product
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);

@@ -7,15 +7,16 @@ const restrict = require("../middlewares/auth.mdw");
 const router = express.Router();
 
 router.get("/register", async(req, res) => {
-    res.render("signup");
+    res.render("vwAccount/register");
 });
 
 router.post("/register", async(req, res) => {
     const N = 10;
     const hash = bcrypt.hashSync(req.body.raw_password, N);
 
-    const dob = req.body.dob;
-    var entity = req.body;
+    // const dob = req.body.dob;
+    const dob = moment(req.body.dob, "DD/MM/YYYY").format("YYYY-MM-DD");
+    const entity = req.body;
 
     entity.f_Password = hash;
     entity.f_Permission = 0;
@@ -35,11 +36,11 @@ router.post("/register", async(req, res) => {
         return res.redirect("/account/register");
     }
     const result = await userModel.add(entity);
-    res.render("signup");
+    res.render("vwAccount/register");
 });
 
 router.get("/login", (req, res) => {
-    res.render("signin");
+    res.render("vwAccount/login");
 });
 
 router.post("/login", async(req, res) => {
@@ -59,13 +60,17 @@ router.post("/login", async(req, res) => {
     req.session.authUser = user;
 
     const url = req.query.retUrl || "/";
-    res.redirect("/");
+    res.redirect(url);
 });
 
 router.post("/logout", (req, res) => {
     req.session.isAuthenticated = false;
     req.session.authUser = null;
     res.redirect(req.headers.referer);
+});
+
+router.get("/profile", restrict, (req, res) => {
+    res.render("vwAccount/profile");
 });
 
 module.exports = router;

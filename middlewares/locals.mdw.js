@@ -1,18 +1,18 @@
-const categoryModel = require('../models/category.model');
+const categoryModel = require("../models/category");
 
-module.exports = function (app) {
-  app.use(async (req, res, next) => {
-    const rows = await categoryModel.allWithDetails();
-    res.locals.lcCategories = rows;
+module.exports = function(app) {
+    app.use(async(req, res, next) => {
+        const rows = await categoryModel.allWithDetails();
+        res.locals.lcCategories = rows;
 
-    if (typeof (req.session.isAuthenticated) === 'undefined') {
-      req.session.isAuthenticated = false;
-    }
-    res.locals.isAuthenticated = req.session.isAuthenticated;
-    res.locals.authUser = req.session.authUser;
+        if (typeof req.session.isAuthenticated === "undefined") {
+            req.session.isAuthenticated = false;
+        }
+        res.locals.isAuthenticated = req.session.isAuthenticated;
+        res.locals.authUser = req.session.authUser;
 
-    next();
-  })
+        next();
+    });
 };
 
 // module.exports = async (req, res, next) => {
@@ -20,4 +20,3 @@ module.exports = function (app) {
 //   res.locals.lcCategories = rows;
 //   next();
 // }
-

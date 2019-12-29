@@ -1,12 +1,8 @@
 const mysql = require("mysql");
+const config = require("../config/default.json");
 
 function createConnection() {
-    return mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "12345678",
-        database: "qlbh"
-    });
+    return mysql.createConnection(config.mysql);
 }
 
 exports.load = sql => {
@@ -40,7 +36,7 @@ exports.add = (tbName, entity) => {
             if (error) {
                 reject(error);
             }
-            console.log(`results: ----`, results)
+            console.log(`results: ----`, results);
             resole(results.insertId);
         });
         con.end();
