@@ -4,11 +4,12 @@
 </header>
 <main>
 <!-- Editable table -->
+
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+    <div class="card-header text-center font-weight-bold text-uppercase py-4">My Products</div>
+    
   <div class="card-body">
-    <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+      <span class="table-add float-right mb-3 mr-2"><a href="/seller/sale-register" class="text-success"><i
             class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
@@ -23,28 +24,26 @@
           </tr>
         </thead>
         <tbody>
+            {{#each Table}}
           <tr>
-            <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
-            <td class="pt-3-half" contenteditable="true">30</td>
-            <td class="pt-3-half" contenteditable="true">Deepends</td>
-            <td class="pt-3-half" contenteditable="true">Spain</td>
-            <td class="pt-3-half" contenteditable="true">Madrid</td>
-            <td class="pt-3-half">
-              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
-                    aria-hidden="true"></i></a></span>
-              <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
-                    aria-hidden="true"></i></a></span>
-            </td>
+            <td class="pt-3-half" contenteditable="true">{{ProName}}</td>
+            <td class="pt-3-half" contenteditable="true">{{Price}}</td>
+            <td class="pt-3-half" contenteditable="true">{{Step}}</td>
+            <td class="pt-3-half" contenteditable="true">{{PriceToBuy}}</td>
+            <td class="pt-3-half" contenteditable="true">{{TimeStart}}</td>
+            <td class="pt-3-half" contenteditable="true">{{TimeFinish}}</td>
             <td>
               <span class="table-edit"><button type="button"
                   class="btn btn-danger btn-rounded btn-sm my-0">Edit</button></span>
             </td>
           </tr>
+            {{/each}}
           <!-- This is our clonable table line -->
         </tbody>
       </table>
     </div>
   </div>
+
 </div>
 <!-- Editable table -->
 </main>

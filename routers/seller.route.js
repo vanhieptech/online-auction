@@ -10,9 +10,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get("/sale-register", function(req, res){
     res.render("./vwSeller/sale_register.hbs");
 });
-router.get("/myProducts", function(req, res){
-    res.render("./vwSeller/myProducts.hbs");
-});
+router.get("/myProducts", Seller.LoadPro);
 router.post("/sale-register", async function(req, res) {
     Seller.AddPro(req, res);
     const sql = `SELECT max(ProID) as'ID' FROM products`;
