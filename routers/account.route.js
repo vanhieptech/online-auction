@@ -31,6 +31,8 @@ router.post("/register", async(req, res) => {
     entity.f_DOB = dob;
 
     delete entity.raw_password;
+	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+		return res.redirect("/account/register");}
     delete entity.dob;
     if (
         entity.f_Username === "" ||
@@ -53,6 +55,8 @@ router.post("/login", async(req, res) => {
         console.log("Invalid username or password.");
         res.redirect("/account/login");
     }
+	if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+		return res.redirect("/account/login");}
     const rs = bcrypt.compareSync(req.body.f_Password, user.f_Password);
     if (rs === false)
         return res.render("signin", {
