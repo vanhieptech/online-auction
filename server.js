@@ -2,6 +2,7 @@ const express = require("express"),
     app = express(),
     exphbs = require("express-handlebars");
 const dotEnv = require("dotenv");
+const hbs_sections = require("express-handlebars-sections");
 var session = require("express-session");
 var cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -34,7 +35,11 @@ app.use(
 
 const hbs = exphbs.create({
     defaultLayout: "main",
-    extname: "hbs"
+    extname: "hbs",
+    helpers: {
+        section: hbs_sections(),
+        format: val => numeral(val).format("0,0")
+    }
 });
 // config view engine using handlebars
 app.engine("hbs", hbs.engine);
@@ -49,6 +54,11 @@ app.use("/", require("./routers/index"));
 
 require("./middlewares/locals.mdw")(app);
 require("./middlewares/routes.mdw")(app);
+
+app.get("/", (req, res) => {
+    // res.end('hello from expressjs');
+    res.render("home");
+});
 
 //báo lôi
 app.use((req, res, next) => {

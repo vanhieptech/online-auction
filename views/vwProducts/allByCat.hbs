@@ -152,11 +152,19 @@
               <div class="col-sm-12">
                 <nav>
                   <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="?page={{prev_value}}">
-                        <i class="fa fa-backward" aria-hidden="true"></i>
-                      </a>
-                    </li>
+                    {{#if navs.prev}}
+                      <li class="page-item">
+                        <a class="page-link" href="/cat/{{catId}}/products?page={{prev_value}}">
+                          <i class="fa fa-backward" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {{else}}
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                          <i class="fa fa-backward" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {{/if}}
                     {{#each this.page_numbers}}
                       {{#if isCurrentPage}}
                         <li class="page-item active" aria-current="page">
@@ -164,15 +172,23 @@
                         </li>
                       {{else}}
                         <li class="page-item">
-                          <a class="page-link" href="?page={{value}}">{{value}}</a>
+                          <a class="page-link" href="/cat/{{catId}}/products?page={{value}}">{{value}}</a>
                         </li>
                       {{/if}}
                     {{/each}}
-                    <li class="page-item">
-                      <a class="page-link" href="?page={{next_value}}">
-                        <i class="fa fa-forward" aria-hidden="true"></i>
-                      </a>
-                    </li>
+                    {{#if navs.next}}
+                      <li class="page-item">
+                        <a class="page-link" href="/cat/{{catId}}/products?page={{navs.next}}">
+                          <i class="fa fa-forward" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {{else}}
+                      <li class="page-item disabled">
+                        <a class="page-link" href="/cat/{{catId}}/products" tabindex="-1" aria-disabled="true">
+                          <i class="fa fa-forward" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                    {{/if}}
                   </ul>
                 </nav>
               </div>

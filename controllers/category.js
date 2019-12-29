@@ -13,11 +13,8 @@ module.exports = {
             const ps = await mPro.allByCatId("1");
             cats[0].isActive = true;
             console.log(cats);
-            res.render("categories", {
-                title: "Online Auction",
-                cats: cats,
-                showList: true,
-                ps: ps
+            res.render("vwProducts/allByCat", {
+                title: "Online Auction"
             });
         } catch (error) {
             console.log("Error Controller Category getAll: ", error);
@@ -50,12 +47,11 @@ module.exports = {
                     c.isActive = true;
                 }
             }
-            const cats = await mCat.all();
+
             const catId = parseInt(req.params.id);
             const limit = config.paginate.limit;
 
             const page = req.query.page || 1;
-            if (page < 1) page = 1;
             const offset = (page - 1) * config.paginate.limit;
 
             const [total, rows] = await Promise.all([
@@ -66,20 +62,31 @@ module.exports = {
             let nPages = Math.floor(total / limit);
             if (total % limit > 0) nPages++;
             const page_numbers = [];
+
             for (i = 1; i <= nPages; i++) {
                 page_numbers.push({
+                    catId: catId,
                     value: i,
                     isCurrentPage: i === +page
                 });
+            }
+            console.log(page_numbers);
+            const navs = {};
+
+            if (page > 1) {
+                navs.prev = page - 1;
+            }
+            if (page < nPages) {
+                navs.next = page + 1;
             }
 
             res.render("vwProducts/allByCat", {
                 title: "Online Auction",
                 products: rows,
+                catId: catId,
                 empty: rows.length === 0,
                 page_numbers,
-                prev_value: +page - 1,
-                next_value: +page + 1
+                navs: navs
             });
 
             // const cats = await mCat.all();

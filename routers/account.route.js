@@ -10,6 +10,14 @@ router.get("/register", async(req, res) => {
     res.render("vwAccount/register");
 });
 
+router.get("/login", (req, res) => {
+    res.render("vwAccount/login");
+});
+
+router.get("/profile", restrict, (req, res) => {
+    res.render("vwAccount/profile");
+});
+
 router.post("/register", async(req, res) => {
     const N = 10;
     const hash = bcrypt.hashSync(req.body.raw_password, N);
@@ -39,10 +47,6 @@ router.post("/register", async(req, res) => {
     res.render("vwAccount/register");
 });
 
-router.get("/login", (req, res) => {
-    res.render("vwAccount/login");
-});
-
 router.post("/login", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
     if (user === null) {
@@ -67,10 +71,6 @@ router.post("/logout", (req, res) => {
     req.session.isAuthenticated = false;
     req.session.authUser = null;
     res.redirect(req.headers.referer);
-});
-
-router.get("/profile", restrict, (req, res) => {
-    res.render("vwAccount/profile");
 });
 
 module.exports = router;
