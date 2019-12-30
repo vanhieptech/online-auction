@@ -17,6 +17,71 @@ router.get("/login", (req, res) => {
 router.get("/profile", restrict, (req, res) => {
     res.render("vwAccount/profile");
 });
+router.get("/update", restrict, (req, res) => {
+    res.render("vwAccount/update");
+});
+router.get("/changePassword", restrict, (req, res) => {
+    res.render("vwAccount/changePassword");
+});
+router.post("/update", async(req, res) => {
+
+    const dob = req.body.dob;
+    // const dob = moment(req.body.dob, "DD/MM/YYYY").format("YYYY-MM-DD");
+    const entity = req.body;
+    entity.f_DOB = dob;
+    delete entity.raw_password;
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.redirect("/account/update");
+    }
+    if (
+        entity.f_Name === "" ||
+        entity.f_DOB === "" ||
+        entity.f_phone === "" ||
+        entity.f_address === ""
+    ) {
+        return res.redirect("/account/update");
+    }
+    entity.f_Username = req.session.authUser.f_Username;
+    delete entity.dob;
+    delete entity['g-recaptcha-response'];
+    const result = await userModel.UpdateInformationUser(entity);
+    if (result) {
+        req.session.authUser.f_Name = entity.f_Name;
+        req.session.authUser.f_DOB = entity.f_DOB;
+        req.session.authUser.f_address = entity.f_address;
+        req.session.authUser.f_phone = entity.f_phone;
+        res.redirect("/account/profile")
+    } else {
+        res.render("vwAccount/update");
+    }
+});
+router.post("/changePassword", async(req, res) => {
+    const user = await userModel.singleByUsername(req.session.authUser.f_Username);
+    const rs = bcrypt.compareSync(req.body.Old_password, user.f_Password);
+    if (rs === false)
+        return res.render("vwAccount/changePassword", {
+            err_message: "Change failed"
+        });
+    const N = 10;
+    const New_hash = bcrypt.hashSync(req.body.raw_Password, N);
+    const entity = req.body;
+    entity.f_Password = New_hash;
+    entity.f_Username = req.session.authUser.f_Username;
+    delete entity.raw_password;
+
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.redirect("/account/changePassword");
+    }
+    delete entity['g-recaptcha-response'];
+
+
+    const result = await userModel.changePassword(entity);
+    if (result) {
+        res.redirect("/")
+    } else {
+        res.render("vwAccount/changePassword");
+    }
+});
 
 router.post("/register", async(req, res) => {
     const N = 10;
@@ -34,15 +99,16 @@ router.post("/register", async(req, res) => {
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.redirect("/account/register");
     }
-	
-	//check user name và email
-	    const user = await userModel.singleByUsername(req.body.f_Username);
+
+
+    //check user name và email
+    const user = await userModel.singleByUsername(req.body.f_Username);
     if (user != null) {
         console.log("Username Exists");
         return res.redirect("/account/register");
     }
-		const email = await userModel.singleByEmail(req.body.f_Email);
-	if (email != null) {
+    const email = await userModel.singleByEmail(req.body.f_Email);
+    if (email != null) {
         console.log("Email Exists");
         return res.redirect("/account/register");
     }
@@ -63,6 +129,7 @@ router.post("/register", async(req, res) => {
     }
     const result = await userModel.add(entity);
     if (result) {
+
         res.redirect("/account/login")
     } else {
         res.render("vwAccount/register");
