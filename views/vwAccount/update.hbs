@@ -87,11 +87,7 @@
 
   #capcha {
     position: relative;
-    left: -10%;
-  }
-
-  #resize-username {
-    font-size: 20px;
+    left: -15%;
   }
 </style>
 <!--  body -->
@@ -117,42 +113,51 @@
             <!-- Material form register -->
             <div class="card">
               <h5 class="card-header info-color white-text text-center py-4">
-                <strong>Profile</strong>
+                <strong>Update Information</strong>
               </h5>
               <!--Card content-->
               <div class="card-body px-lg-5 pt-0">
                 <!-- Form -->
-                <form class="text-center" style="color: #757575;" onsubmit="return validate();" novalidate
+                <form class="text-center" style="color: #757575;" method="POST" onsubmit="return validate();" novalidate
                   id="frmRegister" name="frmRegister">
+							<div class="md-form">
+
+                        <label>Email: <b>{{authUser.f_Email}}</b></label>
+                        <br>
+                      </div>
+                  <!-- E-mail -->
                   <div class="form-row">
                     <div class="col">
-                      <!-- Username -->
+                      <!-- password -->
                       <div class="md-form">
-                        <p id="resize-username">Username: <b>{{authUser.f_Username}}</b></p>
-
+                        <input type="text" class="form-control" name="f_Name" value="{{authUser.f_Name}}">
+                        <label>Fullname</label>
                       </div>
                     </div>
+                    
                   </div>
-                  <!-- password -->
+                  <!-- Password -->
                   <div class="md-form">
-                    <p>Name: <b>{{authUser.f_Name}}</b></p>
-                  </div>
-                  <div class="md-form">
-                    <p>Email: <b>{{authUser.f_Email}}</b></p>
-                  </div>
-                  <div class="md-form">
-                    <p>Address: <b>{{authUser.f_address}}</b></p>
+                    <input type="text" class="form-control" name="f_address" value="{{authUser.f_address}}">
+                    <label>Address</label>
                   </div>
                   <div class="md-form">
-                    <p>Birthday: <b>{{authUser.f_DOB}}</b></p>
+                    <input type="date" class="form-control" name="dob" value="{{authUser.f_DOB}}">
+                    <label></label>
                   </div>
                   <!-- Phone number -->
                   <div class="md-form">
-                    <p>Phone: <b>{{authUser.f_phone}}</b></p>
+                    <input type="number" class="form-control" name="f_phone" value="{{authUser.f_phone}}">
+                    <label>Phone number</label>
+                  
+                  <div class="form-group">
+                    <div class="g-recaptcha mx-auto col-md-8 my-4"
+                      data-sitekey="6LffYTQUAAAAALMWZgHBUBIFoM4dELcVVoqiCItE" id="capcha" name="capcha"></div>
                   </div>
-                  <a href="account/update" class="bnt">Update information</a>
+                  <!-- Sign up button -->
+                  <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+                    type="submit">Update</button>
                 </form>
-
                 <!-- Form -->
               </div>
             </div>
