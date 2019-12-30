@@ -52,21 +52,15 @@ app.use(flash());
 require("./middlewares/locals.mdw")(app);
 require("./middlewares/routes.mdw")(app);
 
-app.get("/", (req, res) => {
-    // res.end('hello from expressjs');
-    res.render("home");
-});
-
 //báo lôi
-app.use((req, res, next) => {
-    res.render('vwError/404');
-	
-});
-app.use((err, req, res, next) => {
-    // res.render('vwError/index');
-	 res.render('vwError/500');
-    console.error(err.stack);
-});
+// app.use((req, res, next) => {
+//     res.render("vwError/404");
+// });
+// app.use((err, req, res, next) => {
+//     // res.render('vwError/index');
+//     res.render("vwError/500");
+//     console.error(err.stack);
+// });
 
 app.listen(PORT, () => {
     console.log(`Server listening at PORT: ${PORT}`);

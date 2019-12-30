@@ -89,22 +89,6 @@ module.exports = {
                 navs: navs
             });
 
-            // const cats = await mCat.all();
-            // const ps = await mPro.allByCatId(id);
-            // //console.log(ps)
-            // for (let cat of cats) {
-            //     cat.isActive = false;
-            //     if (cat.CatID === id) {
-            //         cat.isActive = true;
-            //     }
-            // }
-
-            // res.render("categories", {
-            //     title: "Online Auction",
-            //     cats: cats,
-            //     showList: true,
-            //     ps: ps
-            // });
         } catch (error) {
             console.log("Error Controller Category getByCatId", error);
         }

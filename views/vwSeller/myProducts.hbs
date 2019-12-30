@@ -1,6 +1,6 @@
 <header>
-    <!-- Navbar -->
-    {{>home/header}}
+  <!-- Navbar -->
+  {{>home/header}}
 </header>
 <main>
 <!-- Editable table -->
@@ -48,31 +48,31 @@
 <!-- Editable table -->
 </main>
 <footer>
-    <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
-    <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
-        style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
-        {{>home/bottom}}
-    </div>
-    <!-- /footer -->
-    <script type="text/javascript">
-        var qq_left = "3",
-            qq_topbottom = 50;
-        $(".kefu_q3 .default").on("click", function () {
-            $(this).animate({
-                "right": -120 + '%'
-            }, 100);
-            $(".default-hide").animate({
-                "margin-right": 0
-            }, 300);
-        })
-        $(".colse").on("click", function () {
-            $(".default-hide").animate({
-                "margin-right": -120 + '%'
-            }, 100);
-            $(".kefu_q3 .default").animate({
-                "right": qq_left + 'px',
-                "bottom": qq_topbottom + 'px'
-            }, 300);
-        })
-    </script>   
+  <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
+  <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
+    style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
+    {{>home/bottom}}
+  </div>
+  <!-- /footer -->
+  <script type="text/javascript">
+    var qq_left = "3",
+      qq_topbottom = 50;
+    $(".kefu_q3 .default").on("click", function () {
+      $(this).animate({
+        "right": -120 + '%'
+      }, 100);
+      $(".default-hide").animate({
+        "margin-right": 0
+      }, 300);
+    })
+    $(".colse").on("click", function () {
+      $(".default-hide").animate({
+        "margin-right": -120 + '%'
+      }, 100);
+      $(".kefu_q3 .default").animate({
+        "right": qq_left + 'px',
+        "bottom": qq_topbottom + 'px'
+      }, 300);
+    })
+  </script>
 </footer>

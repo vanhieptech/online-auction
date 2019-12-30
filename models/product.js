@@ -1,8 +1,17 @@
 const db = require("../database/mysql");
 const config = require("../config/default.json");
 
-const tbName = `Products`;
+const mysql = require("mysql");
 
+
+function createConnection() {
+    return mysql.createConnection(config.mysql);
+}
+
+
+
+const tbName = `Products`;
+const idField = `ProID`;
 module.exports = {
     all: async() => {
         try {
@@ -56,7 +65,13 @@ module.exports = {
             `select * from products where CatID = ${catId} limit ${config.paginate.limit} offset ${offset}`
         ),
     add: entity => db.add("products", entity),
-    del: id => db.del("products", { ProID: id }),
+
+
+
+
+    del: id => db.del(tbName, idField, id),
+
+
     patch: entity => {
         const condition = { ProID: entity.ProID };
         delete entity.ProID;
@@ -94,5 +109,20 @@ module.exports = {
         } catch (error) {
             console.log("Error Model: Product: all", error);
         }
+    },
+
+
+    //Working with client
+
+    deleteOne: async(id, cb) => {
+        try {
+            const rows = await db.del(tbName, idField, id);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: all", error);
+        }
+
     }
+
 };

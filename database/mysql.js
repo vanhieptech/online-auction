@@ -49,7 +49,7 @@ exports.mysql = (sql, params) => {
 };
 
 exports.del = (tbName, idField, id) => {
-    return new Promis((resole, reject) => {
+    return new Promise((resole, reject) => {
         const con = createConnection();
         con.connect(err => {
             if (err) {
@@ -85,7 +85,7 @@ exports.update = (tbName, idField, entity) => {
             if (error) {
                 reject(error);
             } else {
-                resole(resultes.changedRows);
+                resole(results.changedRows);
             }
         });
         con.end();

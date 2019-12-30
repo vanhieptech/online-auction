@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../../assets/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/mdb.min.css">
+    <!-- Custom CSS -->
+    <link href="../../assets/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- Graph CSS -->
+    <link href="../../assets/css/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="../../assets/css/icon-font.min.css" type='text/css' />
+    <!-- //lined-icons -->
+    <!--//end-animate-->
+    <!--webfonts--->
+    <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic'
+        rel='stylesheet' type='text/css'>
+    <!---//webfonts--->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Meters graphs -->
+    <script src="../../assets/js/jquery-3.4.1.min.js"></script>
+    <!-- Placed js at the end of the document so the pages load faster -->
+</head>
+
+<body class="sticky-header left-side-collapsed">
+    <section>
+        <!-- left side start-->
+        <div class="left-side sticky-left-side">
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <h1><a href="/admin"><span>Admin</span></a></h1>
+            </div>
+            <div class="logo-icon text-center">
+                <a href="/admin"><i class="lnr lnr-home"></i> </a>
+            </div>
+            <!--logo and iconic logo end-->
+            <div class="left-side-inner">
+                <!--sidebar nav start-->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li class="active"><a href="/admin"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#"><i class="lnr lnr-cog"></i>
+                            <span>Manager</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="/admin/categories">Categories</a> </li>
+                            <li><a href="/admin/products">Products</a></li>
+                            <li><a href="/admin/users">Users</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--sidebar nav end-->
+            </div>
+        </div>
+        <!-- left side end-->
+        <!-- main content start-->
+        <div class="main-content">
+            <!-- header-starts -->
+            <div class="header-section">
+                <!--toggle button start-->
+                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
+                <!--toggle button end-->
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <div class="user-panel-top">
+                        <div class="profile_details">
+                            <ul class="navbar-nav ml-auto nav-flex-icons">
+                                <li class="nav-item avatar dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
+                                            class="rounded-circle z-depth-0" alt="avatar image" style="height: 40px">
+                                    </a>
+                                    <form id="frmLogout" method="post" action="/account/logout"></form>
+                                    <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                                        aria-labelledby="navbarDropdownMenuLink-55">
+                                        <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Sign
+                                            out</a>
+                                    </div>
+                                </li>
+                                <div class="clearfix"> </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--notification menu end -->
+            </div>
+            <!-- //header-ends -->
+            {{{body}}}
+            <!--body wrapper end-->
+        </div>
+        <!-- main content end-->
+    </section>
+    <script src="../../assets/js/jquery.nicescroll.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../../assets/js/popper.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/admin.js"></script>
+</body>
+
+</html>

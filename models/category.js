@@ -2,7 +2,7 @@ const db = require("../database/mysql"),
     run = db.errorHandle;
 
 const tbName = "Categories",
-    idFields = "CatID";
+    idField = "CatID";
 
 module.exports = {
     all: async() => {
@@ -27,6 +27,7 @@ module.exports = {
         }
         return rows;
     },
+
     del: async id => {
         const [nr, err] = await run(db.del(tbName, idField, id));
         if (err) {
@@ -50,5 +51,9 @@ module.exports = {
             throw err;
         }
         return id;
-    }
+    },
+    single: id => db.load(`select * from categories where CatID = ${id}`)
+
+
+
 };

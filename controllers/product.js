@@ -7,16 +7,24 @@ module.exports = {
     getAll: async(req, res) => {
         try {
             const cats = await mCat.all();
-            for (let cat of cats) {
-                cat.isActive = false;
+
+            const products = await mPro.all();
+
+            var CatIDofProduct = 1;
+            for (let product of products) {
+                CatIDofProduct = product.CatID;
+                product.CatName = cats[CatIDofProduct - 1].CatName;
             }
-            cats[0].isActive = true;
-            res.render("home", {
-                title: "cat test",
-                cats: catsz
+
+
+            console.log(`cat`, cats[3]);
+            // console.log("+++", products)
+            res.render("vwAdmin/products", {
+                layout: "admin",
+                products: products
             });
         } catch (error) {
-            console.log("Error Controller Category getAll: ", error);
+            console.log("Error Controller Products getAll: ", error);
         }
     },
     getByProId: async(req, res) => {
@@ -31,5 +39,19 @@ module.exports = {
         } catch (error) {
             console.log("Error Controller Product getByProId", error);
         }
+    },
+    delete: async(req, res) => {
+        const ProID = parseInt(req.params.id);
+        mPro.deleteOne(ProID, (err, result) => {
+            if (err) {
+                return res.status(501).json({
+                    message: 'Not able to delete burger'
+                });
+            }
+
+            return res.json({
+                ProID
+            });
+        });
     }
 };
