@@ -12,7 +12,10 @@ router.get("/", userController.getAll);
 
 // router.get("/:id", userController.getByUserId);
 
-// router.put("/:id", userController.setPermission);
+
+
+router.put("/:id/:value", userController.setPermission);
+
 
 // router.delete('/delete/:id', userController.delete);
 

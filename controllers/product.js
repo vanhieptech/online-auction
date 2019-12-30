@@ -45,7 +45,7 @@ module.exports = {
         mPro.deleteOne(ProID, (err, result) => {
             if (err) {
                 return res.status(501).json({
-                    message: 'Not able to delete burger'
+                    message: 'Not able to delete product'
                 });
             }
 

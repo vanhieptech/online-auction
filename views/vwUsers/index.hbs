@@ -47,17 +47,20 @@
               </thead>
               <!--Table head-->
               <!--Table body-->
-              <tbody>
+              <tbody class="sellers">
                 {{#each this.sellers}}
-                  <tr>
+                  <tr id={{id}}>
                     <td>{{id}}</td>
                     <td>{{f_Username}}</td>
                     <td>{{f_Name}}</td>
                     <td>{{f_Email}}</td>
                     <td>{{f_phone}}</td>
                     <td class="text-center p-0">
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 aqua-gradient">
-                        <i class="fas fa-arrow-down fa-lg"></i>
+                      <button type="button"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 aqua-gradient permission" data-id="{{id}}"
+                        data-state="{{f_Permission}}">
+                        {{#if f_Permission}}<i class="fas fa-arrow-down fa-lg"></i>{{else}}<i
+                            class="fas fa-arrow-up fa-lg"></i>{{/if}}
                       </button>
                     </td>
                     <td class="text-center p-0">
@@ -128,17 +131,20 @@
               </thead>
               <!--Table head-->
               <!--Table body-->
-              <tbody>
+              <tbody class="users">
                 {{#each this.users}}
-                  <tr>
+                  <tr id={{id}}>
                     <td>{{id}}</td>
                     <td>{{f_Username}}</td>
                     <td>{{f_Name}}</td>
                     <td>{{f_Email}}</td>
                     <td>{{f_phone}}</td>
                     <td class="text-center p-0">
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 peach-gradient">
-                        <i class="fas fa-arrow-up fa-lg"></i>
+                      <button type="button"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 peach-gradient permission" data-id="{{id}}"
+                        data-state="{{f_Permission}}">
+                        {{#if f_Permission}}<i class="fas fa-arrow-down fa-lg"></i>{{else}}<i
+                            class="fas fa-arrow-up fa-lg"></i>{{/if}}
                       </button>
                     </td>
                     <td class="text-center p-0">

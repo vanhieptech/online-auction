@@ -1,6 +1,7 @@
 const db = require('../database/mysql');
 
 const tbName = `users`;
+const idField = `id`;
 module.exports = {
 
     all: async() => {
@@ -10,7 +11,7 @@ module.exports = {
 
             return rows;
         } catch (error) {
-            console.log("Error Model: Product: all", error);
+            console.log("Error Model: User: all", error);
         }
     },
     allByPermission: async permission => {
@@ -19,7 +20,7 @@ module.exports = {
             const rows = await db.load(sql);
             return rows;
         } catch (error) {
-            console.log("Error Model: Product: all Cat Id", error);
+            console.log("Error Model: User: allByPermission", error);
         }
     },
     single: id => db.load(`select * from users where f_ID = ${id}`),
@@ -33,6 +34,18 @@ module.exports = {
     add: entity => db.add('users', entity),
     del: id => db.del('users', { f_ID: id }),
 
+    updateOne: async(entity, cb) => {
+        try {
+            const rows = await db.update(tbName, idField, entity);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: User: updateOne", error);
+        }
+
+
+
+    },
 
 
 

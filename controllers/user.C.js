@@ -43,12 +43,32 @@ module.exports = {
         mPro.deleteOne(ProID, (err, result) => {
             if (err) {
                 return res.status(501).json({
-                    message: 'Not able to delete burger'
+                    message: 'Not able to delete user'
                 });
             }
 
             return res.json({
                 ProID
+            });
+        });
+    },
+
+    setPermission: async(req, res) => {
+        const id = req.params.id;
+        const value = JSON.parse(req.params.value);
+        const entity = {
+            f_Permission: value,
+            id: id
+        }
+        mUser.updateOne(entity, function(error, burger) {
+            if (error) {
+                return res.status(501).json({
+                    message: 'Not able to change Permission of User'
+                });
+            }
+            return res.json({
+                id: id,
+                permission: value
             });
         });
     }
