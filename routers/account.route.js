@@ -127,6 +127,8 @@ router.post("/register", async(req, res) => {
     ) {
         return res.redirect("/account/register");
     }
+
+    console.log(`entity---`, entity)
     const result = await userModel.add(entity);
     if (result) {
 

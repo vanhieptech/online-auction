@@ -10,4 +10,8 @@ module.exports = function(app) {
     app.use("/admin/categories", require("../routers/admin/category.route"));
     app.use("/admin/products", require("../routers/admin/product.route"));
     app.use("/admin/users", require("../routers/admin/user.route"));
+    // app.use("/admin", restrict, require("../routers/admin/home.route"));
+    // app.use("/admin/categories", restrict, require("../routers/admin/category.route"));
+    // app.use("/admin/products", restrict, require("../routers/admin/product.route"));
+    // app.use("/admin/users", restrict, require("../routers/admin/user.route"));
 };

@@ -2,11 +2,25 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.render("vwAdmin/home", {
-        layout: "admin"
-    });
-});
+const userController = require("../../controllers/user.C");
+
+
+
+
+
+router.get("/", userController.getAll);
+
+// router.get("/:id", userController.getByUserId);
+
+// router.put("/:id", userController.setPermission);
+
+// router.delete('/delete/:id', userController.delete);
+
+
+
+
+
+
 
 
 module.exports = router;

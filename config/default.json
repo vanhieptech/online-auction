@@ -9,5 +9,10 @@
     },
     "paginate": {
         "limit": 4
+    },
+    "permission": {
+        "admin": 2,
+        "seller": 1,
+        "user": 0
     }
 }
