@@ -10,8 +10,34 @@ var morgan = require("morgan");
 var passport = require("passport");
 var flash = require("connect-flash");
 const FacebookStrategy = require("passport-facebook").Strategy;
-
+const config = require('./config/keyloginFB');
 const PORT = process.env.PORT || 3000;
+
+//passport cấu hình
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+});
+
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+        clientID: config.facebook_api_key,
+        clientSecret: config.facebook_api_secret,
+        callbackURL: config.callback_url
+    },
+    function(accessToken, refreshToken, profile, done) {
+        process.nextTick(function() {
+            console.log(accessToken, refreshToken, profile, done);
+            return done(null, profile);
+        });
+    }
+));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //config cho express handlebars
 //app.use(morgan('dev'));
