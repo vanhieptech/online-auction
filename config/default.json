@@ -13,6 +13,6 @@
     "permission": {
         "admin": 2,
         "seller": 1,
-        "user": 0
+        "bidder": 0
     }
 }

@@ -1,7 +1,6 @@
-const express = require("express");
-const handlebars = require("handlebars");
 const mCat = require("../models/category");
 const mPro = require("../models/product");
+const mUser = require("../models/user.model");
 
 module.exports = {
     getAll: async(req, res) => {
@@ -16,8 +15,7 @@ module.exports = {
                 product.CatName = cats[CatIDofProduct - 1].CatName;
             }
 
-
-            console.log(`cat`, cats[3]);
+            // console.log(`cat`, cats[3]);
             // console.log("+++", products)
             res.render("vwAdmin/products", {
                 layout: "admin",
@@ -31,6 +29,23 @@ module.exports = {
         const proId = parseInt(req.params.id);
         try {
             const product = await mPro.getDetailById(proId);
+            const catId = product[0].CatID;
+            const ownerId = product[0].OwnerID;
+            const userId = product[0].UserID;
+            // console.log(product)
+            // console.log(product[0].OwnerID)
+            // console.log("ownerId", ownerId)
+            const psRelative = 0;
+            const ownerInfo = await mUser.getDetailById(ownerId);
+            const userInfo = await mUser.getDetailById(userId);
+
+            // productDetail = {
+            //     product: product,
+            //     user: userInfo,
+            //     owner: ownerInfo
+            // };
+            product[0].user = userInfo;
+            product[0].onwer = ownerInfo;
 
             res.render("vwProducts/detail", {
                 title: "Product Detail",
@@ -45,13 +60,13 @@ module.exports = {
         mPro.deleteOne(ProID, (err, result) => {
             if (err) {
                 return res.status(501).json({
-                    message: 'Not able to delete product'
+                    message: "Not able to delete product"
                 });
             }
 
             return res.json({
                 id: ProID,
-                name: 'product'
+                name: "product"
             });
         });
     }

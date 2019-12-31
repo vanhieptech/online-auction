@@ -13,10 +13,7 @@ module.exports = function(app) {
 
         next();
     });
-};
+    //Các tính năng của bidder
 
-// module.exports = async (req, res, next) => {
-//   const rows = await categoryModel.allWithDetails();
-//   res.locals.lcCategories = rows;
-//   next();
-// }
+    //Các tính năng của seller
+};

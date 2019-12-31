@@ -27,10 +27,13 @@ module.exports = {
     getDetailById: async id => {
         try {
             const sql = `SELECT * FROM ${tbName} WHERE ${idField} = ${id}`;
+
+            // console.log(`====`, sql)
+
             const rows = await db.load(sql);
             return rows;
         } catch (error) {
-            console.log("Error Model: Product: Detail Pro Id", error);
+            console.log("Error Model: User: Detail Pro Id", error);
         }
     },
     singleByUsername: async username => {

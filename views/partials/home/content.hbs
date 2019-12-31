@@ -37,13 +37,13 @@
             <div class="container-fluid text-black-50  ">
                 <div id="products" class="row text-dark">
                     {{#each psByTimeout}}
-                        <div onclick="getDetailProduct('{{ProID}}')"
-                            class="product-card text-white col-md mb-4 pt-3 d-flex justify-content-center wow slideInUp"
+                        <div class="product-card text-white col-md mb-4 pt-3 d-flex justify-content-center wow slideInUp"
                             data-wow-delay=".4s">
                             <div id={{ProID}}
                                 class="well text-center d-flex flex-wrap flex-column justify-content-center ">
                                 <!--Card view-->
-                                <div class="view overlay zoom d-flex justify-content-center">
+                                <div onclick="getDetailProduct('{{ProID}}')"
+                                    class="view overlay zoom d-flex justify-content-center">
                                     <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
                                     <div class="mask flex-center waves-effect waves-light ">
                                         <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
@@ -56,7 +56,7 @@
                                         <li class="list-inline-item pr-2 white-text"><i
                                                 class="far fa-clock pr-1"></i>05/10/2015</li>
                                         <li class="list-inline-item pr-2 white-text"><i
-                                                class="fas fa-hourglass-half"></i>3:02:01s</li>
+                                                class="fas fa-hourglass-half pr-1"></i>3:02:01s</li>
                                     </ul>
                                 </div>
                                 <!--Card content-->
@@ -66,7 +66,7 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd"></i>50000</li>
+                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-user-clock pr-1"></i>UserName
                                                 </li>
@@ -76,9 +76,17 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-hammer pr-2"></i>15
+                                                </li>
+                                                <li>
+                                                    <form action="/bidder/add/{{ProID}}">
+                                                        <button type="submit"
+                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
+                                                            <i class="fas fa-heart fa-lg "></i>
+                                                        </button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </li>
@@ -115,7 +123,7 @@
                                         <li class="list-inline-item pr-2 white-text"><i
                                                 class="far fa-clock pr-1"></i>05/10/2015</li>
                                         <li class="list-inline-item pr-2 white-text"><i
-                                                class="fas fa-hourglass-half"></i>3:02:01s</li>
+                                                class="fas fa-hourglass-half pr-1"></i>3:02:01s</li>
                                     </ul>
                                 </div>
                                 <!--Card content-->
@@ -125,7 +133,7 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd"></i>50000</li>
+                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-user-clock pr-1"></i>UserName
                                                 </li>
@@ -135,9 +143,17 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-hammer pr-2"></i>15
+                                                </li>
+                                                <li>
+                                                    <form action="/bidder/add/{{ProID}}">
+                                                        <button type="submit"
+                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
+                                                            <i class="fas fa-heart fa-lg "></i>
+                                                        </button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </li>
@@ -174,7 +190,7 @@
                                         <li class="list-inline-item pr-2 white-text"><i
                                                 class="far fa-clock pr-1"></i>05/10/2015</li>
                                         <li class="list-inline-item pr-2 white-text"><i
-                                                class="fas fa-hourglass-half"></i>3:02:01s</li>
+                                                class="fas fa-hourglass-half pr-1"></i>3:02:01s</li>
                                     </ul>
                                 </div>
                                 <!--Card content-->
@@ -184,7 +200,7 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd"></i>50000</li>
+                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-user-clock pr-1"></i>UserName
                                                 </li>
@@ -194,9 +210,17 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
                                                 <li class="list-inline-item pr-2 white-text"><i
                                                         class="fas fa-hammer pr-2"></i>15
+                                                </li>
+                                                <li>
+                                                    <form action="/bidder/add/{{ProID}}">
+                                                        <button type="submit"
+                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
+                                                            <i class="fas fa-heart fa-lg "></i>
+                                                        </button>
+                                                    </form>
                                                 </li>
                                             </ul>
                                         </li>

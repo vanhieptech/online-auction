@@ -30,7 +30,7 @@ module.exports = {
         try {
             const user = await mUser.getDetailById(userId);
 
-            console.log(user)
+            // console.log(user)
             res.render("vwUsers/detail", {
                 layout: 'admin',
                 user: user
