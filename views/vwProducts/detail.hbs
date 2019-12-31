@@ -1,194 +1,28 @@
 <style>
-  .slide-img img {
-    width: auto;
-    height: 100%;
-  }
-
-  .slide-img {
+  .products img {
     width: 100%;
-    height: 450px;
   }
 
-  .owl-carousel .owl-item img {
-    display: block;
-    width: auto;
-    height: 450px;
-  }
+  @media(min-width: 960px) {
+    .products .col-md-2 .product-card {
+      width: auto;
+      height: 150px;
+    }
 
-  #property-single-carousel {
-    height: 450px;
-  }
+    .products .col-md-2 .well {
+      height: 350px;
+    }
 
-  /*------/ Property Single /-----*/
+    .products .col-md-2 .view {
+      width: 100%;
+      height: 150px;
+    }
 
-  .gallery-property {
-    margin-bottom: 3rem;
-  }
+    .products .col-md-2 img {
+      width: auto;
+      height: 100%;
 
-  .property-price {
-    margin: 0 auto;
-  }
-
-  .property-price .card-header-c {
-    padding: 0;
-  }
-
-  .summary-list {
-    padding-right: 1rem;
-    color: #000000;
-  }
-
-  .summary-list .list {
-    padding: 0;
-    line-height: 2;
-  }
-
-  .summary-list .list span {
-    color: #555555;
-  }
-
-  .property-agent .title-agent {
-    font-weight: 600;
-  }
-
-  .property-agent ul {
-    line-height: 2;
-    color: #000000;
-  }
-
-  .property-agent .socials-a {
-    text-align: center;
-  }
-
-  /*------/ Owl carousel /------*/
-
-  .owl-theme .owl-dots {
-    text-align: center;
-    margin-top: 18px;
-  }
-
-  .owl-theme .owl-dots .owl-dot {
-    display: inline-block;
-  }
-
-  .owl-theme .owl-dots .owl-dot span {
-    width: 16px;
-    height: 9px;
-    margin: 5px 5px;
-    background: #000000;
-    border: 0px solid #000000;
-    display: block;
-    transition: all 0.6s ease-in-out;
-    cursor: pointer;
-    border-radius: 0px;
-  }
-
-  .owl-theme .owl-dots .owl-dot:hover span {
-    background-color: #2eca6a;
-  }
-
-  .owl-theme .owl-dots .owl-dot.active span {
-    background-color: #2eca6a;
-    width: 35px;
-  }
-
-  .owl-arrow .owl-nav {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 1.8rem;
-  }
-
-  .owl-arrow .owl-nav .owl-prev,
-  .owl-arrow .owl-nav .owl-next {
-    display: inline-block;
-    transition: all 0.6s ease-in-out;
-    color: #000000;
-  }
-
-  .owl-arrow .owl-nav .owl-prev.disabled,
-  .owl-arrow .owl-nav .owl-next.disabled {
-    transition: all 0.6s ease-in-out;
-    color: #adadad;
-  }
-
-  .owl-arrow .owl-nav .owl-next {
-    margin-left: 15px;
-  }
-
-  .nav-arrow-a .owl-arrow .owl-nav {
-    font-size: 1.8rem;
-    margin-top: -110px;
-  }
-
-  .nav-arrow-a .owl-arrow .owl-nav .owl-next {
-    margin-left: 15px;
-  }
-
-  .nav-arrow-b .owl-arrow .owl-nav {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 1.2rem;
-  }
-
-  .nav-arrow-b .owl-arrow .owl-nav .owl-prev,
-  .nav-arrow-b .owl-arrow .owl-nav .owl-next {
-    padding: .7rem 1.5rem !important;
-    display: inline-block;
-    transition: all 0.6s ease-in-out;
-    color: #ffffff;
-    background-color: #2eca6a;
-    opacity: .9;
-  }
-
-  .nav-arrow-b .owl-arrow .owl-nav .owl-prev.disabled,
-  .nav-arrow-b .owl-arrow .owl-nav .owl-next.disabled {
-    transition: all 0.6s ease-in-out;
-    color: #ffffff;
-  }
-
-  .nav-arrow-b .owl-arrow .owl-nav .owl-prev:hover,
-  .nav-arrow-b .owl-arrow .owl-nav .owl-next:hover {
-    background-color: #26a356;
-  }
-
-  .nav-arrow-b .owl-arrow .owl-nav .owl-next {
-    margin-left: 0px;
-  }
-
-  /*------/ Intro Single /------*/
-
-  .intro-single {
-    padding: 0rem 0 3rem;
-  }
-
-  .intro-single .title-single-box {
-    padding: 1rem 0 1rem 2rem;
-  }
-
-  .intro-single .title-single-box {
-    border-left: 3px solid #2eca6a;
-  }
-
-  .intro-single .title-single-box .title-single {
-    font-weight: 600;
-    font-size: 2.2rem;
-  }
-
-  .intro-single .breadcrumb-box {
-    padding: 1rem 0 0 .5rem;
-  }
-
-  .intro-single .breadcrumb {
-    background-color: transparent;
-    padding-right: 0;
-    padding-left: 0;
-  }
-
-  .slide-img {
-    height: 300px;
-    width: auto;
+    }
   }
 </style>
 <!--header -->
@@ -211,176 +45,306 @@
         </div>
       </div>
       <div class="col-md-9">
-        <div class="card h-100 shadow">
-          {{#each this.product}}
-            <!--/ Intro Single star /-->
-            <section class="intro-single">
-              <div class="container">
+        <div class="container  py-5 z-depth-1">
+          <div class="row">
+            <!--Section: Content-->
+            <section class="text-center">
+              <!-- Section heading -->
+              <h3 class="font-weight-bold mb-5">{{title}}</h3>
+              {{#each this.product}}
                 <div class="row">
-                  <div class="col-md-12 col-lg-8">
-                    <div class="title-single-box">
-                      <h1 class="title-single">{{ProName}}</h1>
-                      <span class="color-text-a">{{TinyDes}}</span>
+                  <div class="col-lg-6">
+                    <!--Carousel Wrapper-->
+                    <div id="carousel-thumb1" class="carousel slide carousel-fade carousel-thumbnails mb-5 pb-4"
+                      data-ride="carousel">
+                      <!--Slides-->
+                      <div class="carousel-inner text-center text-md-left" role="listbox">
+                        <div class="carousel-item active">
+                          <img src="../../../sp/{{ProID}}/1_1.jpg" alt="First slide" class="img-fluid">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="../../../sp/{{ProID}}/1_2.jpg" alt="Second slide" class="img-fluid">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="../../../sp/{{ProID}}/1_3.jpg" alt="Third slide" class="img-fluid">
+                        </div>
+                      </div>
+                      <!--/.Slides-->
+                      <!--Thumbnails-->
+                      <a class="carousel-control-prev" href="#carousel-thumb1" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carousel-thumb1" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                      <!--/.Thumbnails-->
+                    </div>
+                    <!--/.Carousel Wrapper-->
+                    <div class="row mb-4">
+                      <div class="col-md-12">
+                        <div id="mdb-lightbox-ui"></div>
+                        <div class="mdb-lightbox no-margin">
+                          <figure class="col-md-4">
+                            <a href="../../../sp/{{ProID}}/1_1.jpg" data-size="1600x1067">
+                              <img src="../../../sp/{{ProID}}/1_1.jpg" class="img-fluid">
+                            </a>
+                          </figure>
+                          <figure class="col-md-4">
+                            <a href="../../../sp/{{ProID}}/1_2.jpg" data-size="1600x1067">
+                              <img src="../../../sp/{{ProID}}/1_2.jpg" class="img-fluid">
+                            </a>
+                          </figure>
+                          <figure class="col-md-4">
+                            <a href="../../../sp/{{ProID}}/1_3.jpg" data-size="1600x1067">
+                              <img src="../../../sp/{{ProID}}/1_3.jpg" class="img-fluid">
+                            </a>
+                          </figure>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-12 col-lg-4">
-                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-                      <ol class="breadcrumb">
-                        {{TimeFinish}}
-                      </ol>
-                    </nav>
+                  <div class="col-lg-5 text-center text-md-left">
+                    <h2
+                      class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+                      {{ProName}}</h2>
+                    <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">Sắp hết thời gian</span>
+                    <span class="badge badge-success product mb-4 ml-2">SALE</span>
+                    <h3 class="h3-responsive text-center text-md-left mb-3 ml-xl-0 ml-4">
+                      <span class="red-text font-weight-bold"><i class="fas fa-dollar-sign"></i>
+                        <strong>{{Price}}</strong>
+                      </span>
+                      <span class="grey-text">
+                        <small>
+                          <i class="fas fa-dollar-sign"></i>
+                          <s>{{PriceToBuy}}</s>
+                        </small>
+                      </span>
+                      <div class="card-data">
+                        <ul class="list-unstyled mb-1">
+                          <li class="comment-date font-small grey-text">
+                            <i class="far fa-clock pr-2"></i> {{TimeStart}}</li>
+                        </ul>
+                      </div>
+                    </h3>
+                    <div class="font-weight-normal">
+                      {{{FullDes}}}
+                      <div class="mt-5">
+                        <p class="grey-text">Choose your color</p>
+                        <div class="row text-center text-md-left">
+                          <div class="col-md-4 col-12 ">
+                            <div class="form-group">
+                              <input class="form-check-input" name="group100" type="radio" id="radio100"
+                                checked="checked">
+                              <label for="radio100" class="form-check-label dark-grey-text">White</label>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <input class="form-check-input" name="group100" type="radio" id="radio101">
+                              <label for="radio101" class="form-check-label dark-grey-text">Silver</label>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <input class="form-check-input" name="group100" type="radio" id="radio102">
+                              <label for="radio102" class="form-check-label dark-grey-text">Gold</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mt-3 mb-4">
+                          <div class="col-md-12 text-center text-md-left text-md-right">
+                            <button class="btn btn-danger btn-rounded">
+                              <i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>Đấu giá</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              {{/each}}
             </section>
-            <!--/ Intro Single End /-->
-            <!--/ Property Single Star /-->
-            <div class="container">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property slide-img d-flex">
-                    <div class="carousel-item-b d-flex justify-content-center">
-                      <img src="../../../sp/{{ProID}}/1_1.jpg" alt="">
+            <!--Section: Content-->
+          </div>
+          <div class="row py-2">
+            <div class="col-md-5 pl-5 pr-5">
+              <!--Section: Content-->
+              <section class="team-section text-center dark-grey-text">
+                <!-- Section heading -->
+                <h3 class="font-weight-bold mb-4 pb-2">Người bán</h3>
+                <!-- Section description -->
+                <p class="text-center w-responsive mx-auto mb-5"></p>
+                <!--Grid row-->
+                {{#each owner}}
+                  <div class="row text-center">
+                    <!--Grid column-->
+                    <div class="col-md mb-4">
+                      <div class="testimonial">
+                        <!--Avatar-->
+                        <div class="avatar mx-auto">
+                          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(8).jpg"
+                            class="rounded-circle z-depth-1 img-fluid">
+                        </div>
+                        <!--Content-->
+                        <h4 class="font-weight-bold dark-grey-text mt-4">{{this.f_Name}}</h4>
+                        <h6 class="font-weight-bold blue-text my-3"><i
+                            class="fas fa-mobile-alt pr-1"></i>+(84){{this.f_phone}}</h6>
+                        <!--Review-->
+                        <div class="orange-text">
+                          <i class="fas fa-star"> </i>
+                          <i class="fas fa-star"> </i>
+                          <i class="fas fa-star"> </i>
+                          <i class="fas fa-star"> </i>
+                          <i class="fas fa-star"> </i>
+                        </div>
+                      </div>
                     </div>
-                    <div class="carousel-item-b d-flex justify-content-center">
-                      <img src="../../../sp/{{ProID}}/1_2.jpg" alt="">
-                    </div>
-                    <div class="carousel-item-b d-flex justify-content-center">
-                      <img src="../../../sp/{{ProID}}/1_3.jpg" alt="">
+                    <!--Grid column-->
+                  </div>
+                {{/each}}
+                <!--Grid row-->
+              </section>
+              <!--Section: Content-->
+            </div>
+            <div class="col-md-6 ml-5">
+              <!--Section: Block Content-->
+              <section class="dark-grey-text mb-5">
+                <!-- Section heading -->
+                <h3 class="font-weight-bold text-center mb-5">Top Bidder</h3>
+                {{#each user}}
+                  <div class="media mb-3">
+                    <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3"
+                      src="https://mdbootstrap.com/img/Photos/Avatars/img (28).jpg" alt="Generic placeholder image">
+                    <div class="media-body">
+                      <a>
+                        <h5 class="user-name font-weight-bold">{{this.f_Name}}</h5>
+                      </a>
+                      <!-- Rating -->
+                      <ul class="rating mb-2">
+                        <li>
+                          <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                          <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                          <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                          <i class="fas fa-star blue-text"></i>
+                        </li>
+                        <li>
+                          <i class="fas fa-star grey-text"></i>
+                        </li>
+                      </ul>
+                      <div class="card-data">
+                        <ul class="list-unstyled mb-1">
+                          <li class="comment-date font-small grey-text">
+                            <i class="far fa-clock"></i> 05/10/2015</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div class="row justify-content-between">
-                    <div class="col-md-5 col-lg-4">
-                      <div class="property-price d-flex justify-content-center foo">
-                        <div class="card-header-c d-flex">
-                          <div class="card-box-ico">
-                            <span class="ion-money">$</span>
-                          </div>
-                          <div class="card-title-c align-self-center">
-                            <h3 class="title-c">{{Price}}</h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="property-summary">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="title-box-d section-t4">
-                              <h3 class="title-d">Thông tin người bán</h3>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="container">
-                          <!-- Card -->
-                          <div class="card testimonial-card">
-                            <!-- Background color -->
-                            <div class="card-up winter-neva-gradient lighten-1"></div>
-                            <!-- Avatar -->
-                            <div class="avatar mx-auto white">
-                              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg"
-                                class="rounded-circle" alt="woman avatar">
-                            </div>
-                            <!-- Content -->
-                            <div class="card-body">
-                              {{#each this.user}}
-                                <!-- Name -->
-                                <h4 class="card-title">{{this.f_Name}}</h4>
-                                <hr>
-                                <!-- Quotation -->
-                                <div class="d-flex flex-column align-items-start">
-                                  <p><i class="fas fa-envelope mr-2"></i> {{this.f_Email}}</p>
-                                  <p><i class="fas fa-mobile-alt mr-2"></i>+{{this.f_phone}}</p>
-                                  <p><i class="fas fa-map-marked-alt mr-2"></i>{{this.f_address}}</p>
-                                </div>
-                              {{/each}}
-                            </div>
-                          </div>
-                          <!-- Card -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-7 col-lg-7 section-md-t3">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="title-box-d">
-                            <h3 class="title-d">Thông tin mô tả</h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="property-description">
-                        {{{FullDes}}}
-                      </div>
-                      <div class="row section-t3">
-                        <div class="col-sm-12">
-                          <div class="title-box-d">
-                            <h3 class="title-d">Người ra giá cao nhất</h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="">
-                        <!-- Rotating card -->
-                        <div class="card-wrapper">
-                          <div id="card-1" class="card card-rotating text-center">
-                            <!-- Front Side -->
-                            <div class="face front">
-                              <!-- Image-->
-                              <div class="card-up">
-                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo7.jpg"
-                                  alt="Image with a photo of clouds.">
-                              </div>
-                              <!-- Avatar -->
-                              <div class="avatar mx-auto white"><img
-                                  src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" class="rounded-circle"
-                                  alt="Sample avatar image.">
-                              </div>
-                              <!-- Content -->
-                              <div class="card-body">
-                                <h4 class="font-weight-bold mb-3">Marie Johnson</h4>
-                                <p class="font-weight-bold blue-text">Web developer</p>
-                                <!-- Triggering button -->
-                                <a class="rotate-btn" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to
-                                  rotate</a>
-                              </div>
-                            </div>
-                            <!-- Front Side -->
-                            <!-- Back Side -->
-                            <div class="face back">
-                              <div class="card-body">
-                                <!-- Content -->
-                                <h4 class="font-weight-bold mb-0">About me</h4>
-                                <hr>
-                                <p>
-                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat tenetur odio suscipit
-                                  non commodi vel
-                                  eius veniam maxime?
-                                  <hr>
-                                  <!-- Social Icons -->
-                                  <ul class="list-inline py-2">
-                                    <li class="list-inline-item"><a class="p-2 fa-lg fb-ic"><i
-                                          class="fab fa-facebook-f"></i></a></li>
-                                    <li class="list-inline-item"><a class="p-2 fa-lg tw-ic"><i
-                                          class="fab fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a class="p-2 fa-lg gplus-ic"><i
-                                          class="fab fa-google-plus-g"></i></a></li>
-                                    <li class="list-inline-item"><a class="p-2 fa-lg li-ic"><i
-                                          class="fab fa-linkedin-in"></i></a></li>
-                                  </ul>
-                                  <!-- Triggering button -->
-                                  <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to
-                                    rotate back</a>
-                              </div>
-                            </div>
-                            <!-- Back Side -->
-                          </div>
-                        </div>
-                        <!-- Rotating card -->
-                      </div>
+                {{/each}}
+                <div class="media">
+                  <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3"
+                    src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <a>
+                      <h5 class="user-name font-weight-bold">Lily Brown</h5>
+                    </a>
+                    <!-- Rating -->
+                    <ul class="rating mb-2">
+                      <li>
+                        <i class="fas fa-star blue-text"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-star blue-text"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-star blue-text"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-star blue-text"></i>
+                      </li>
+                      <li>
+                        <i class="fas fa-star blue-text"></i>
+                      </li>
+                    </ul>
+                    <div class="card-data">
+                      <ul class="list-unstyled mb-1">
+                        <li class="comment-date font-small grey-text">
+                          <i class="far fa-clock"></i> 05/10/2015</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
+              <!--Section: Block Content-->
             </div>
-            <!--/ Property Single End /-->
-          {{/each}}
+          </div>
+          <h3 class="font-weight-bold text-center dark-grey-text mb-5">Sản phẩm liên quan</h3>
+          <!-- Grid row -->
+          <div class="products px-4 row d-flex justify-content-between">
+            {{#each psRelative}}
+              <!-- Grid column -->
+              <div onclick="getDetailProduct('{{ProID}}')"
+                class="product-card text-white col-md-2 mb-4 pt-3 d-flex justify-content-center">
+                <div id={{ProID}} class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                  <!--Card view-->
+                  <div class="view overlay zoom d-flex justify-content-center">
+                    <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
+                    <div class="mask flex-center waves-effect waves-light ">
+                      <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
+                        {{ProName}}</p>
+                    </div>
+                  </div>
+                  <span class="badge badge-danger product ml-xl-0">Sắp hết thời gian</span>
+                  <!-- Card time -->
+                  <div class="rounded-top mdb-color lighten-3 text-center mt-3">
+                    <ul class="list-unstyled list-inline font-small p-1 m-0">
+                      <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015
+                      </li>
+                      <li class="timer-countdown list-inline-item pr-2 white-text"><i class="fas fa-hourglass-half pr-1"
+                          data-countdown="01/01/2020"></i>
+                      </li>
+                    </ul>
+                  </div>
+                  <!--Card content-->
+                  <div class="orange text-white rounded-bottom m-0">
+                    <ul class="list-unstyled list-inline font-small p-1 m-0">
+                      <li>
+                        <ul class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                          <li class="list-inline-item pr-2 white-text"><i class="fas fa-hand-holding-usd pr-1"></i>50000
+                          </li>
+                          <li class="list-inline-item pr-2 white-text"><i class="fas fa-user-clock pr-1"></i>UserName
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                          <li class="list-inline-item pr-2 white-text"><i class="fas fa-dollar-sign pr-1"></i>{{Price}}
+                          </li>
+                          <li class="list-inline-item pr-2 white-text"><i class="fas fa-hammer pr-2"></i>15
+                          </li>
+                          <li>
+                            <form action="/bidder/add/{{ProID}}">
+                              <button type="submit"
+                                class="btn btn-rounded text-white btn-sm px-2  red accent-4 accent-3 m-0">
+                                <i class="fas fa-heart fa-lg "></i>
+                              </button>
+                            </form>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+          <!-- Grid row -->
         </div>
       </div>
     </div>
@@ -401,54 +365,11 @@
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="../../assets/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+<script type="text/javascript" src="../../assets/js/mdb.js"></script>
 <script>
-  var nav = $('nav');
-  var navHeight = nav.outerHeight();
-  /*--/ ScrollReveal /Easy scroll animations for web and mobile browsers /--*/
-  window.sr = ScrollReveal();
-  sr.reveal('.foo', { duration: 1000, delay: 15 });
-  /*--/ Carousel owl /--*/
-  $('#carousel').owlCarousel({
-    loop: true,
-    margin: -1,
-    items: 1,
-    nav: true,
-    navText: [`<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true" ></i > `],
-    autoplay: true,
-    autoplayTimeout: 3000,
-    autoplayHoverPause: true
-  });
-  /*--/ Animate Carousel /--*/
-  $('.intro-carousel').on('translate.owl.carousel', function () {
-    $('.intro-content .intro-title').removeClass('zoomIn animated').hide();
-    $('.intro-content .intro-price').removeClass('fadeInUp animated').hide();
-    $('.intro-content .intro-title-top, .intro-content .spacial').removeClass('fadeIn animated').hide();
-  });
-  $('.intro-carousel').on('translated.owl.carousel', function () {
-    $('.intro-content .intro-title').addClass('zoomIn animated').show();
-    $('.intro-content .intro-price').addClass('fadeInUp animated').show();
-    $('.intro-content .intro-title-top, .intro-content .spacial').addClass('fadeIn animated').show();
-  });
-  /*--/ Navbar Collapse /--*/
-  $('.navbar-toggle-box-collapse').on('click', function () {
-    $('body').removeClass('box-collapse-closed').addClass('box-collapse-open');
-  });
-  $('.close-box-collapse, .click-closed').on('click', function () {
-    $('body').removeClass('box-collapse-open').addClass('box-collapse-closed');
-    $('.menu-list ul').slideUp(700);
-  });
-  /*--/ Property owl owl /--*/
-  $('#property-single-carousel').owlCarousel({
-    loop: true,
-    margin: 0,
-    nav: true,
-    navText: ['<i class="ion-ios-arrow-back" aria-hidden="true"></i>', '<i class="ion-ios-arrow-forward" aria-hidden="true"></i>'],
-    responsive: {
-      0: {
-        items: 1,
-      }
-    }
+  // MDB Lightbox Init
+  $(function () {
+    $("#mdb-lightbox-ui").load("../../assets/mdb-addons/mdb-lightbox-ui.html");
   });
 
 </script>

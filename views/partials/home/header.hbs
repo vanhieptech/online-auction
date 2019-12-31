@@ -55,10 +55,13 @@
                 </li>
                 <form id="frmLogout" method="post" action="/account/logout"></form>
                 {{#if isAuthenticated}}
-                    <li>
+                    <li class="nav-item">
                         <form action="#">
-                            <button type="submit" class="btn btn-rounded btn-sm px-2 white accent-4">
-                                <i class="fas fa-heart red-text fa-lg "></i>
+                            <span class="badge badge-pill red accent-4"
+                                style="float:right;margin-bottom:-5px; margin-left:-4px;">1</span>
+                            <!-- your badge -->
+                            <button type="submit" class="btn btn-rounded btn-sm px-2 white accent-4 mr-0 ">
+                                <i class="fas fa-heart red-text fa-lg "></i><span class="sr-only">(current)</span>
                             </button>
                         </form>
                     </li>

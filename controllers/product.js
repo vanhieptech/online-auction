@@ -35,7 +35,7 @@ module.exports = {
             // console.log(product)
             // console.log(product[0].OwnerID)
             // console.log("ownerId", ownerId)
-            const psRelative = 0;
+            const psRelative = await mPro.allByCatId(catId);
             const ownerInfo = await mUser.getDetailById(ownerId);
             const userInfo = await mUser.getDetailById(userId);
 
@@ -44,12 +44,13 @@ module.exports = {
             //     user: userInfo,
             //     owner: ownerInfo
             // };
-            product[0].user = userInfo;
-            product[0].onwer = ownerInfo;
 
             res.render("vwProducts/detail", {
-                title: "Product Detail",
-                product: product
+                title: "Chi tiết sản phẩm",
+                product: product,
+                owner: ownerInfo,
+                user: userInfo,
+                psRelative: psRelative
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);

@@ -3,12 +3,9 @@ const config = require("../config/default.json");
 
 const mysql = require("mysql");
 
-
 function createConnection() {
     return mysql.createConnection(config.mysql);
 }
-
-
 
 const tbName = `Products`;
 const idField = `ProID`;
@@ -25,7 +22,7 @@ module.exports = {
     },
     allByCatId: async id => {
         try {
-            const sql = `SELECT * FROM ${tbName} WHERE CatID = ${id}`;
+            const sql = `SELECT * FROM ${tbName} WHERE CatID = ${id} LIMIT 5`;
             const rows = await db.load(sql);
             return rows;
         } catch (error) {
@@ -66,11 +63,7 @@ module.exports = {
         ),
     add: entity => db.add("products", entity),
 
-
-
-
     del: id => db.del(tbName, idField, id),
-
 
     patch: entity => {
         const condition = { ProID: entity.ProID };
@@ -111,7 +104,6 @@ module.exports = {
         }
     },
 
-
     //Working with client
 
     deleteOne: async(id, cb) => {
@@ -122,7 +114,5 @@ module.exports = {
             cb(error, null);
             console.log("Error Model: Product: all", error);
         }
-
     }
-
 };
