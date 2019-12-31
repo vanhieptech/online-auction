@@ -5,7 +5,7 @@ const userModel = require("../models/account.M");
 const restrict = require("../middlewares/auth.mdw");
 const VerifiEmail = require("../models/EmailVerification");
 const router = express.Router();
-
+const passport = require('passport')
 router.get("/register", async(req, res) => {
     res.render("vwAccount/register");
 });
@@ -31,6 +31,10 @@ router.get("/register/OTP", (req, res) => {
 router.get("/login/forgotPassword/OTP", (req, res) => {
     res.render("vwAccount/OTP");
 });
+router.get("/login/infoFB", (req, res) => {
+    res.render("vwAccount/infoFB");
+});
+
 //Quên mật khẩu
 router.post("/login/forgotPassword", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
@@ -97,6 +101,7 @@ router.post("/update", async(req, res) => {
         return res.redirect("/account/update");
     }
     entity.f_Username = req.session.authUser.f_Username;
+    console.log(req.session.authUser.id);
     delete entity.dob;
     delete entity['g-recaptcha-response'];
     const result = await userModel.UpdateInformationUser(entity);
@@ -247,5 +252,9 @@ router.post("/logout", (req, res) => {
     req.session.authUser = null;
     res.redirect(req.headers.referer);
 });
+//Đăng nhập FB
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+
 
 module.exports = router;
