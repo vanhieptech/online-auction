@@ -49,7 +49,7 @@
               <!--Table body-->
               <tbody class="sellers">
                 {{#each this.sellers}}
-                  <tr id={{id}}>
+                  <tr id={{id}} class="user" data-id="{{id}}">
                     <td>{{id}}</td>
                     <td>{{f_Username}}</td>
                     <td>{{f_Name}}</td>
@@ -63,11 +63,14 @@
                             class="fas fa-arrow-up fa-lg"></i>{{/if}}
                       </button>
                     </td>
-                    <td class="text-center p-0">
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
-                        <i class="fas fa-info-circle fa-lg"></i>
-                      </button>
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4">
+                    <td class="text-center p-0 d-flex justify-content-center">
+                      <form action="/admin/users/{{id}}">
+                        <button type="submit" class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
+                          <i class="fas fa-info-circle fa-lg"></i>
+                        </button>
+                      </form>
+                      <button name="users" data-id="{{id}}"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4 delete">
                         <i class="far fa-trash-alt fa-lg"></i>
                       </button>
                     </td>
@@ -133,7 +136,7 @@
               <!--Table body-->
               <tbody class="users">
                 {{#each this.users}}
-                  <tr id={{id}}>
+                  <tr id={{id}} class="user" data-id="{{id}}">
                     <td>{{id}}</td>
                     <td>{{f_Username}}</td>
                     <td>{{f_Name}}</td>
@@ -147,11 +150,14 @@
                             class="fas fa-arrow-up fa-lg"></i>{{/if}}
                       </button>
                     </td>
-                    <td class="text-center p-0">
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
-                        <i class="fas fa-info-circle fa-lg"></i>
-                      </button>
-                      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4">
+                    <td class="text-center p-0 d-flex justify-content-center">
+                      <form action="/admin/users/{{id}}">
+                        <button type="submit" class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
+                          <i class="fas fa-info-circle fa-lg"></i>
+                        </button>
+                      </form>
+                      <button name="users" data-id="{{id}}"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4 delete">
                         <i class="far fa-trash-alt fa-lg"></i>
                       </button>
                     </td>

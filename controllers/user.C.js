@@ -9,12 +9,12 @@ module.exports = {
     getAll: async(req, res) => {
         try {
 
-            console.log(permission.seller)
+            // console.log(permission.seller)
             const sellers = await mUser.allByPermission(permission.seller);
 
             const users = await mUser.allByPermission(permission.user);
 
-            console.log(sellers)
+            // console.log(sellers)
 
             res.render("vwUsers/index", {
                 layout: "admin",
@@ -26,21 +26,22 @@ module.exports = {
         }
     },
     getByUserId: async(req, res) => {
-        const proId = parseInt(req.params.id);
+        const userId = parseInt(req.params.id);
         try {
-            const product = await mPro.getDetailById(proId);
+            const user = await mUser.getDetailById(userId);
 
-            res.render("vwProducts/detail", {
-                title: "Product Detail",
-                product: product
+            console.log(user)
+            res.render("vwUsers/detail", {
+                layout: 'admin',
+                user: user
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);
         }
     },
     delete: async(req, res) => {
-        const ProID = parseInt(req.params.id);
-        mPro.deleteOne(ProID, (err, result) => {
+        const id = parseInt(req.params.id);
+        mUser.deleteOne(id, (err, result) => {
             if (err) {
                 return res.status(501).json({
                     message: 'Not able to delete user'
@@ -48,7 +49,8 @@ module.exports = {
             }
 
             return res.json({
-                ProID
+                id: id,
+                name: 'user'
             });
         });
     },

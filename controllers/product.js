@@ -50,7 +50,8 @@ module.exports = {
             }
 
             return res.json({
-                ProID
+                id: ProID,
+                name: 'product'
             });
         });
     }

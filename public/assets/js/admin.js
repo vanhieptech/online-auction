@@ -1,26 +1,32 @@
 //Delete product in Admin
 
-const removeBurgerOnDelete = (product) => {
-    const ProID = product.ProID;
+const removeObjSuccess = (obj) => {
+    const id = obj.id;
+    const nameObj = obj.name;
+    // console.log(`table tbody .${nameObj}[data-id=${id}]`)
+    $(`table tbody .${nameObj}[data-id=${id}]`).remove();
 
-    $(`table tbody .product[data-id=${ProID}]`).remove();
+
 };
 
 
-const removeBurgerFailed = () => {
-    alert('FAIL DELETING PRODUCT');
+const removeObjFailed = () => {
+    alert('FAIL DELETING');
 };
 
-$('table tbody a.btn-danger').on('click', function() {
-    const ProID = $(this).attr('data-id');
-    console.log("GetGET", ProID);
+$('table tbody button.delete').on('click', function() {
+    const id = $(this).attr('data-id');
+
+    const obj = $(this).attr('name');
+
+    // console.log("GetGET", ProID);
 
     $.ajax({
-            url: `products/delete/${ProID}`,
+            url: `${obj}/delete/${id}`,
             method: 'DELETE'
         })
-        .then(removeBurgerOnDelete)
-        .catch(removeBurgerFailed);
+        .then(removeObjSuccess)
+        .catch(removeObjFailed);
 });
 
 

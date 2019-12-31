@@ -23,7 +23,16 @@ module.exports = {
             console.log("Error Model: User: allByPermission", error);
         }
     },
-    single: id => db.load(`select * from users where f_ID = ${id}`),
+
+    getDetailById: async id => {
+        try {
+            const sql = `SELECT * FROM ${tbName} WHERE ${idField} = ${id}`;
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: Detail Pro Id", error);
+        }
+    },
     singleByUsername: async username => {
         const rows = await db.load(`select * from users where f_Username = '${username}'`);
         if (rows.length === 0)
@@ -42,14 +51,17 @@ module.exports = {
             cb(error, null);
             console.log("Error Model: User: updateOne", error);
         }
-
-
-
     },
+    deleteOne: async(id, cb) => {
+        try {
+            const rows = await db.del(tbName, idField, id);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: all", error);
+        }
 
-
-
-
+    }
 
 
 };
