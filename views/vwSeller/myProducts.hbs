@@ -1,3 +1,4 @@
+<script type="text/javascript" src="../../assets/js/ckeditor/ckeditor.js"></script>
 <header>
   <!-- Navbar -->
   {{>home/header}}
@@ -6,8 +7,7 @@
 <!-- Editable table -->
 
 <div class="card">
-    <div class="card-header text-center font-weight-bold text-uppercase py-4">My Products</div>
-    
+  <div class="card-header text-center font-weight-bold text-uppercase py-4">My Products/div>
   <div class="card-body">
       <span class="table-add float-right mb-3 mr-2"><a href="/seller/sale-register" class="text-success"><i
             class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
@@ -23,8 +23,8 @@
             <th class="text-center">Description</th>
           </tr>
         </thead>
+        {{#each Table}}
         <tbody>
-            {{#each Table}}
           <tr>
             <td class="pt-3-half" contenteditable="true">{{ProName}}</td>
             <td class="pt-3-half" contenteditable="true">{{Price}}</td>
@@ -33,13 +33,34 @@
             <td class="pt-3-half" contenteditable="true">{{TimeStart}}</td>
             <td class="pt-3-half" contenteditable="true">{{TimeFinish}}</td>
             <td>
-              <span class="table-edit"><button type="button"
-                  class="btn btn-danger btn-rounded btn-sm my-0">Edit</button></span>
+              <span class="table-edit">
+                <button type="button" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" onclick="EditDes({{ProID}})">Edit</button>
+              </span>
+              <div class="modal fade" id="modalCart{{ProID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                  <!--Header-->
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="myModalLabel">{{ProName}}</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                      <textarea class="form-control md-textarea" id="editor{{ProID}}" name="product_description" rows="5">{{FullDes}}</textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" onclick="">Commit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </td>
           </tr>
-            {{/each}}
           <!-- This is our clonable table line -->
         </tbody>
+        {{/each}}
       </table>
     </div>
   </div>
@@ -76,3 +97,10 @@
     })
   </script>
 </footer>
+<script>
+  function EditDes(ProID)
+  {
+    CKEDITOR.replace(`editor${ProID}`);
+  }
+  
+</script>
