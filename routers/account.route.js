@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const userModel = require("../models/account.M");
 const restrict = require("../middlewares/auth.mdw");
-
+const VerifiEmail = require("../models/EmailVerification");
 const router = express.Router();
 
 router.get("/register", async(req, res) => {
@@ -13,7 +13,9 @@ router.get("/register", async(req, res) => {
 router.get("/login", (req, res) => {
     res.render("vwAccount/login");
 });
-
+router.get("/login/forgotPassword", (req, res) => {
+    res.render("vwAccount/forgotPassword");
+});
 router.get("/profile", restrict, (req, res) => {
     res.render("vwAccount/profile");
 });
@@ -23,6 +25,58 @@ router.get("/update", restrict, (req, res) => {
 router.get("/changePassword", restrict, (req, res) => {
     res.render("vwAccount/changePassword");
 });
+router.get("/register/OTP", (req, res) => {
+    res.render("vwAccount/OTP");
+});
+router.get("/login/forgotPassword/OTP", (req, res) => {
+    res.render("vwAccount/OTP");
+});
+//Quên mật khẩu
+router.post("/login/forgotPassword", async(req, res) => {
+    const user = await userModel.singleByUsername(req.body.f_Username);
+    if (user == null) {
+        console.log('Tài khoản không tồn tại.');
+        return res.redirect("/account/login");
+    }
+    var OTP = Math.floor(Math.random() * 10000) + 1;
+    req.session.OTP = OTP;
+    req.session.f_Username = req.body.f_Username;
+    req.session.f_Password = req.body.f_Password;
+
+    const send_Email = await VerifiEmail.EmailVerification(user.f_Email, OTP);
+    if (send_Email) {
+        console.log("Can't send OTP to Email(forgot password)");
+        return res.redirect("/account/login/forgotPassword");
+    } else {
+        console.log("Sent OTP(forgot password)");
+        return res.redirect("/account/login/forgotPassword/OTP");
+    }
+
+
+});
+//OTP xác nhận email quên MK
+router.post("/login/forgotPassword/OTP", async(req, res) => {
+    if (req.body.f_OTP == req.session.OTP) {
+
+
+        const entity = req.session;
+        var N = 10;
+        entity.f_Password = bcrypt.hashSync(entity.f_Password, N);
+
+        const result = await userModel.changePassword(entity);
+        if (result) {
+            console.log('Lấy lại tài khoản  thành công');
+            return res.redirect("/account/login")
+        } else {
+            console.log('lấy lại toàn khoản thất lại');
+            return res.render("vwAccount/forgotPassword");
+        }
+    } else {
+        console.log('OTP sai.!!!!');
+        return res.redirect("/account/login/forgotPassword/OTP");
+    }
+});
+// update thông tin user
 router.post("/update", async(req, res) => {
 
     const dob = req.body.dob;
@@ -55,6 +109,7 @@ router.post("/update", async(req, res) => {
         res.render("vwAccount/update");
     }
 });
+//thay đổi mật khẩu
 router.post("/changePassword", async(req, res) => {
     const user = await userModel.singleByUsername(req.session.authUser.f_Username);
     const rs = bcrypt.compareSync(req.body.Old_password, user.f_Password);
@@ -82,7 +137,7 @@ router.post("/changePassword", async(req, res) => {
         res.render("vwAccount/changePassword");
     }
 });
-
+//đăng kí tài khoản
 router.post("/register", async(req, res) => {
     const N = 10;
     const hash = bcrypt.hashSync(req.body.raw_password, N);
@@ -127,18 +182,41 @@ router.post("/register", async(req, res) => {
     ) {
         return res.redirect("/account/register");
     }
-
-    console.log(`entity---`, entity)
-    const result = await userModel.add(entity);
-    if (result) {
-
-        res.redirect("/account/login")
+    req.session.User_register = entity;
+    var OTP = Math.floor(Math.random() * 10000) + 1;
+    req.session.OTP = OTP;
+    const send_Email = await VerifiEmail.EmailVerification(entity.f_Email, OTP);
+    if (send_Email) {
+        console.log("Can't send OTP to Email");
+        return res.redirect("/account/register");
     } else {
-        res.render("vwAccount/register");
+
+        console.log("Sent OTP");
+        return res.redirect("/account/register/OTP");
     }
 
-});
 
+    //----------------------
+
+
+});
+//OTP xác nhận email
+router.post("/register/OTP", async(req, res) => {
+    if (req.body.f_OTP == req.session.OTP) {
+        const result = await userModel.add(req.session.User_register);
+        if (result) {
+            console.log('Đăng kí thành công');
+            return res.redirect("/account/login")
+        } else {
+            console.log('Đăng kí thất bại do add data');
+            return res.render("vwAccount/register");
+        }
+    } else {
+        console.log('OTP sai.!!!!');
+        return res.render("vwAccount/register");
+    }
+});
+//Đăng nhập
 router.post("/login", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
     if (user === null) {
