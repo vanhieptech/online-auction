@@ -6,17 +6,17 @@ var passport = require("passport");
 router.get("/", CategoryController.getTop);
 
 router.get("/error", (req, res) => {
-    res.render("error.hbs");
-});
+    res.render("vwAccount/OTP");
 
+});
 router.get(
     "/auth/facebook/callback",
     passport.authenticate("facebook", {
-        successRedirect: "/",
+        successRedirect: "/account/login/infoFB",
         failureRedirect: "/login"
     }),
     function(req, res) {
-        res.redirect("/");
+        res.redirect("/account/login/infoFB");
     }
 );
 
