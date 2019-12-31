@@ -13,6 +13,7 @@
 
  Date: 03/08/2018 22:14:47
 */
+
 SET
   NAMES utf8;
 SET
@@ -623,6 +624,7 @@ CREATE TABLE `users` (
     `f_phone` int NOT NULL,
     `f_address` nvarchar(50) NOT NULL,
     `f_Permission` INT NOT NULL,
+    `f_Evaluate` NVARCHAR(50),
     PRIMARY KEY (`id`) USING BTREE
   ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER 
 		SET = utf8 COLLATE = utf8_unicode_ci;
