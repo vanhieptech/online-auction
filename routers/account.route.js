@@ -34,7 +34,9 @@ router.get("/login/forgotPassword/OTP", (req, res) => {
 router.get("/login/infoFB", (req, res) => {
     res.render("vwAccount/infoFB");
 });
-
+router.get("/login/infoGG", (req, res) => {
+    res.render("vwAccount/infoGG");
+});
 //Quên mật khẩu
 router.post("/login/forgotPassword", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
@@ -263,6 +265,30 @@ router.post("/login/infoFB", async(req, res) => {
     entity.f_Evaluate = "";
     entity.f_Permission = 0;
     req.session.authUser = entity;
+    const result = await userModel.add(entity);
+    if (result) {
+        req.session.isAuthenticated = true;
+        console.log('Đăng kí thành công');
+        return res.redirect("/")
+    } else {
+        console.log('Đăng kí thất bại do add data');
+        return res.render("vwAccount/register");
+    }
+    res.redirect("/");
+
+});
+//ĐĂNG NHẬP GOOGLE
+router.get('/auth/google', passport.authenticate('google', { scope: 'email' }));
+router.post("/login/infoGG", async(req, res) => {
+    const entity = req.body;
+    entity.f_Username = req.session.GG.id;
+    var N = Math.floor(Math.random() * 1000) + 1;
+    entity.f_Email = req.session.GG.emails[0].value;
+    entity.f_Password = bcrypt.hashSync('10' + N, 10);
+    entity.f_Evaluate = "";
+    entity.f_Permission = 0;
+    req.session.authUser = entity;
+    console.log(entity);
     const result = await userModel.add(entity);
     if (result) {
         req.session.isAuthenticated = true;

@@ -22,11 +22,32 @@ router.get(
             console.log("Đãng dùng FB này đăng kí rồi");
             req.session.isAuthenticated = true;
             req.session.authUser = user;
-            return res.redirect("/")
+            const url = req.query.retUrl || "/";
+            res.redirect(url);
         } else {
             res.redirect("/account/login/infoFB");
         }
     }
 );
+router.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+        failureRedirect: "/login"
+    }),
+    async function(req, res) {
 
+        req.session.GG = req.user;
+        const user = await userModel.singleByUsername(req.session.GG.id);
+        if (user != null) {
+            console.log("Đãng dùng GG này đăng kí rồi");
+            req.session.isAuthenticated = true;
+            req.session.authUser = user;
+            const url = req.query.retUrl || "/";
+            res.redirect(url);
+        } else {
+            res.redirect("/account/login/infoGG");
+        }
+
+    }
+);
 module.exports = router;

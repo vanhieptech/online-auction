@@ -11,6 +11,8 @@ var passport = require("passport");
 var flash = require("connect-flash");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const config = require('./config/keyloginFB');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('./config/keyloginGG');
 const PORT = process.env.PORT || 3000;
 
 //passport cấu hình
@@ -36,6 +38,20 @@ passport.use(new FacebookStrategy({
         });
     }
 ));
+// passport gg
+passport.use(
+    new GoogleStrategy({
+        // options for google strategy
+        clientID: keys.google.clientID,
+        clientSecret: keys.google.clientSecret,
+        callbackURL: '/auth/google/callback'
+    }, (accessToken, refreshToken, profile, done) => {
+        process.nextTick(function() {
+            console.log(accessToken, refreshToken, profile, done);
+            return done(null, profile);
+        });
+    })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -87,7 +103,7 @@ require("./middlewares/routes.mdw")(app);
 //     res.render("vwError/500");
 //     console.error(err.stack);
 // });
-
+//a
 app.listen(PORT, () => {
     console.log(`Server listening at PORT: ${PORT}`);
 });
