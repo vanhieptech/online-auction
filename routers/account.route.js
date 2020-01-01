@@ -156,7 +156,6 @@ router.post("/register", async(req, res) => {
     entity.f_Permission = 0;
     entity.f_DOB = dob;
     entity.f_Evaluate = "";
-
     delete entity.raw_password;
     if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
         return res.redirect("/account/register");
@@ -177,6 +176,7 @@ router.post("/register", async(req, res) => {
     //console.log(`++++++++account route add entity`, entity['g-recaptcha-response']);
     delete entity.dob;
     delete entity['g-recaptcha-response'];
+    console.log(entity);
 
     if (
         entity.f_Username === "" ||
@@ -255,6 +255,24 @@ router.post("/logout", (req, res) => {
 //Đăng nhập FB
 
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+router.post("/login/infoFB", async(req, res) => {
+    const entity = req.body;
+    entity.f_Username = req.session.FB.id;
+    var N = Math.floor(Math.random() * 1000) + 1;
+    entity.f_Password = bcrypt.hashSync('10' + N, 10);
+    entity.f_Evaluate = "";
+    entity.f_Permission = 0;
+    req.session.authUser = entity;
+    const result = await userModel.add(entity);
+    if (result) {
+        req.session.isAuthenticated = true;
+        console.log('Đăng kí thành công');
+        return res.redirect("/")
+    } else {
+        console.log('Đăng kí thất bại do add data');
+        return res.render("vwAccount/register");
+    }
+    res.redirect("/");
 
-
+});
 module.exports = router;
