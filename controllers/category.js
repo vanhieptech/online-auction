@@ -1,5 +1,6 @@
 const mCat = require("../models/category");
 const mPro = require("../models/product");
+const mUser = require("../models/user.model");
 const config = require("../config/default.json");
 
 module.exports = {
@@ -28,6 +29,22 @@ module.exports = {
             const psByBID = await mPro.getTop5ProductsbyBID();
             // Top 5 sản phẩm có giá cao nhất
             const psByPrice = await mPro.getTop5ProductsbyPrice();
+
+            for (var i = 0; i <= 4; i++) {
+                const user = await mUser.getDetailById(psByTimeout[i].UserID);
+                // console.log(user[0]);
+                psByTimeout[i].UserName = user[0].f_Username;
+            }
+            for (var i = 0; i <= 4; i++) {
+                const user = await mUser.getDetailById(psByBID[i].UserID);
+
+                psByBID[i].UserName = user[0].f_Username;
+            }
+            for (var i = 0; i <= 4; i++) {
+                const user = await mUser.getDetailById(psByPrice[i].UserID);
+
+                psByPrice[i].UserName = user[0].f_Username;
+            }
 
             res.render("home", {
                 title: "Online Auction",
@@ -59,6 +76,12 @@ module.exports = {
                 mPro.pageByCat(catId, offset)
             ]);
 
+            for (var i = 0; i < rows.length; i++) {
+                const user = await mUser.getDetailById(rows[i].UserID);
+                // console.log(user[0]);
+                rows[i].UserName = user[0].f_Username;
+            }
+
             let nPages = Math.floor(total / limit);
             if (total % limit > 0) nPages++;
             const page_numbers = [];
@@ -88,7 +111,6 @@ module.exports = {
                 page_numbers,
                 navs: navs
             });
-
         } catch (error) {
             console.log("Error Controller Category getByCatId", error);
         }

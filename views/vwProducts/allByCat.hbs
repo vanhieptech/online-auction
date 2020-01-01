@@ -4,21 +4,21 @@
   }
 
   @media(min-width: 960px) {
-    #products .col-md-3 .product-card {
+    #products .col-md-4 .product-card {
       width: auto;
-      height: 150px;
+      height: 250px;
     }
 
-    #products .col-md-3 .well {
+    #products .col-md-4 .well {
       height: 350px;
     }
 
-    #products .col-md-3 .view {
+    #products .col-md-4 .view {
       width: 100%;
-      height: 150px;
+
     }
 
-    #products .col-md-3 img {
+    #products .col-md-4 img {
       width: auto;
       height: 100%;
 
@@ -106,13 +106,14 @@
           <div class="card-body">
             <div class="row">
               <div class="container text-black-50">
-                <div id="products" class="row text-dark">
+                <div id="products" class="row text-dark d-flex justify-content-center">
                   {{#each products}}
-                    <div onclick="getDetailProduct('{{ProID}}')"
-                      class="product-card text-white col-md-3 mb-4 pt-3 d-flex justify-content-center">
-                      <div id={{ProID}} class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                    <div
+                      class="product-card text-white col-md-4 m-2 pt-3 px-1 d-flex justify-content-center wow slideInUp card card-ecommerce">
+                      <div id={{ProID}} class="well text-center d-flex flex-column justify-content-center ">
                         <!--Card view-->
-                        <div class="view overlay zoom d-flex justify-content-center">
+                        <div onclick="getDetailProduct('{{ProID}}')"
+                          class="view overlay zoom d-flex justify-content-center">
                           <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
                           <div class="mask flex-center waves-effect waves-light ">
                             <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
@@ -134,28 +135,25 @@
                           <ul class="list-unstyled list-inline font-small p-1 m-0">
                             <li>
                               <ul class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
-                                <li class="list-inline-item pr-2 white-text"><i
-                                    class="fas fa-hand-holding-usd pr-1"></i>50000
+                                <li class="list-inline-item pr-2 red-text font-weight-bold"><i
+                                    class="fas fa-hand-holding-usd pr-1"></i><strong>{{Price}}</strong>
                                 </li>
                                 <li class="list-inline-item pr-2 white-text"><i
-                                    class="fas fa-user-clock pr-1"></i>UserName
+                                    class="fas fa-user-clock pr-1"></i>{{UserName}}
                                 </li>
                               </ul>
                             </li>
                             <li>
                               <ul class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                 <li class="list-inline-item pr-2 white-text"><i
-                                    class="fas fa-dollar-sign pr-1"></i>{{Price}}
+                                    class="fas fa-dollar-sign pr-1"></i>{{PriceToBuy}}
                                 </li>
-                                <li class="list-inline-item pr-2 white-text"><i class="fas fa-hammer pr-2"></i>15
+                                <li class="list-inline-item pr-2 white-text"><i class="fas fa-hammer pr-2"></i>{{Voted}}
                                 </li>
                                 <li>
-                                  <form action="/bidder/add/{{ProID}}">
-                                    <button type="submit"
-                                      class="btn btn-rounded text-white btn-sm px-2  red accent-4 accent-3 m-0">
-                                      <i class="fas fa-heart fa-lg "></i>
-                                    </button>
-                                  </form>
+                                  <span class="card-footer float-right text-white p-0 mr-2"><a class=""
+                                      data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><i
+                                        class="fas fa-heart "></i></a></span>
                                 </li>
                               </ul>
                             </li>
@@ -167,10 +165,10 @@
                 </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row ">
               <div class="col-sm-12">
                 <nav>
-                  <ul class="pagination">
+                  <ul class="pagination wow slideInUp d-flex justify-content-center">
                     {{#if navs.prev}}
                       <li class="page-item">
                         <a class="page-link" href="/cat/{{catId}}/products?page={{prev_value}}">

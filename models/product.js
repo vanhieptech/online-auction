@@ -22,7 +22,16 @@ module.exports = {
     },
     allByCatId: async id => {
         try {
-            const sql = `SELECT * FROM ${tbName} WHERE CatID = ${id} LIMIT 5`;
+            const sql = `SELECT * FROM ${tbName} WHERE UserID = ${id}`;
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: all User Id", error);
+        }
+    },
+    allByUserId: async id => {
+        try {
+            const sql = `SELECT * FROM wishlist WHERE UserID = ${id} LIMIT 5`;
             const rows = await db.load(sql);
             return rows;
         } catch (error) {

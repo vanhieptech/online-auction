@@ -1,0 +1,158 @@
+<style>
+    html,
+    body,
+    header,
+    .view {
+        height: 100vh;
+    }
+
+    @media (max-width: 740px) {
+
+        html,
+        body,
+        header,
+        .view {
+            height: 100px;
+        }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+        html,
+        body,
+        header,
+        .view {
+            height: 100px;
+        }
+    }
+
+    .intro-2 {
+        background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img%20(11).jpg")no-repeat center center;
+        background-size: cover;
+    }
+
+    .top-nav-collapse {
+        background-color: #3f51b5 !important;
+    }
+
+    .navbar:not(.top-nav-collapse) {
+        background: transparent !important;
+    }
+
+    @media (max-width: 768px) {
+        .navbar:not(.top-nav-collapse) {
+            background: #3f51b5 !important;
+        }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+            background: #3f51b5 !important;
+        }
+    }
+
+    .card {
+        background-color: rgba(229, 228, 255, 0.2);
+    }
+
+    .md-form label {
+        color: #ffffff;
+    }
+
+    h6 {
+        line-height: 1.7;
+    }
+
+    .card {
+        margin-top: 30px;
+        /*margin-bottom: -45px;*/
+    }
+</style>
+<!--  body -->
+<!--Main Navigation-->
+<header>
+    <!-- Navbar -->
+    {{>home/header}}
+    <!-- Navbar -->
+    <!--Intro Section-->
+    <section class="view intro-2">
+        <div class="mask rgba-stylish-strong h-100 d-flex justify-content-center align-items-center">
+            <!-- Table with panel -->
+            <div class="card card-cascade narrower">
+                <!--Card image-->
+                <div
+                    class="view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+                    <a href="" class="white-text mx-3">SẢN PHẨM ĐÃ LƯU</a>
+                </div>
+                <!--/Card image-->
+                <div class="px-4">
+                    {{#if this.empty}}
+                        <div class="card-body">
+                            <p class="card-text">
+                                Không có dữ liệu.
+                            </p>
+                        </div>
+                    {{else}}
+                        <div class="table-wrapper">
+                            <!--Table-->
+                            <table class="table table-hover mb-0">
+                                <!--Table head-->
+                                <thead>
+                                    <tr>
+                                        <th class="th-lg">
+                                            <a>ID</a>
+                                        </th>
+                                        <th class="th-lg">
+                                            <a href="">Tên sản phẩm</a>
+                                        </th>
+                                        <th class="th-lg">
+                                            <a href="">Giá </a>
+                                        </th>
+                                        <th class="th-lg text-center">
+                                            <a href=""></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <!--Table head-->
+                                <!--Table body-->
+                                <tbody class="wishlists">
+                                    {{#each list}}
+                                        <tr id={{WishID}} class="wishlist" data-id="{{WishID}}">
+                                            <td>{{ProID}}</td>
+                                            <td><strong>{{ProName}}</strong></td>
+                                            <td>{{Price}}</td>
+                                            <td class="text-center p-0 d-flex justify-content-center">
+                                                <form action="/products/{{ProID}}">
+                                                    <button type="submit"
+                                                        class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
+                                                        <i class="fas fa-info-circle fa-lg"></i>
+                                                    </button>
+                                                </form>
+                                                <button name="wishlist" data-id="{{id}}"
+                                                    class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4 delete">
+                                                    <i class="far fa-heart fa-lg"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                                <!--Table body-->
+                            </table>
+                            <!--Table-->
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <!-- Table with panel -->
+        </div>
+    </section>
+    <!--Intro Section-->
+</header>
+<!--Main Navigation-->
+<!--  /body -->
+<!-- reCaptcha Google-->
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="../../assets/js/mdb.min.js"></script>
+<script>
+    new WOW().init();
+</script>

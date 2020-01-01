@@ -18,8 +18,23 @@ module.exports = {
             // console.log(`cat`, cats[3]);
             // console.log("+++", products)
             res.render("vwAdmin/products", {
+                title: "Danh sách sản phẩm",
                 layout: "admin",
                 products: products
+            });
+        } catch (error) {
+            console.log("Error Controller Products getAll: ", error);
+        }
+    },
+    getAllWishListByUserID: async(req, res) => {
+        try {
+            const userID = req.session.authUser.id;
+
+            const list = await mPro.allByUserId(userID);
+
+            res.render("vwBidder/wishlist", {
+                layout: "main",
+                list: list
             });
         } catch (error) {
             console.log("Error Controller Products getAll: ", error);
