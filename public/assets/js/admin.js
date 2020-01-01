@@ -50,9 +50,14 @@ const updatePermisson = user => {
             `<tr id=${id}>` + rowUser.replace(buttonUp, buttonDown) + `</tr>`;
         $(`tbody.sellers`).append(rowToAdd);
     }
-    console.log(rowToAdd);
+    //Xoá request
 
-    console.log("update success");
+    $.ajax({
+            url: `users/delete/request/${id}`,
+            method: "DELETE"
+        })
+        .then(removeObjSuccess)
+        .catch(removeObjFailed);
 };
 
 const updatePermissonFail = () => {

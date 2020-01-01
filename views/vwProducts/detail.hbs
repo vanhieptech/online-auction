@@ -46,7 +46,7 @@
       </div>
       <div class="col-md-9">
         <div class="container  py-5 z-depth-1">
-          <div class="row">
+          <div class="row px-2">
             <!--Section: Content-->
             <section class="text-center">
               <!-- Section heading -->
@@ -105,7 +105,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-5 text-center text-md-left">
+                  <div class="col-lg-6 text-center text-md-left">
                     <h2
                       class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
                       {{ProName}}</h2>
@@ -115,10 +115,9 @@
                       <span class="red-text font-weight-bold"><i class="fas fa-dollar-sign"></i>
                         <strong>{{Price}}</strong>
                       </span>
-                      <span class="grey-text">
+                      <span class="pl-2 grey-text">
                         <small>
-                          <i class="fas fa-dollar-sign"></i>
-                          <s>{{PriceToBuy}}</s>
+                          <s><i class="fas fa-dollar-sign"></i>{{PriceToBuy}}</s>
                         </small>
                       </span>
                       <div class="card-data">
@@ -154,7 +153,7 @@
                           </div>
                         </div>
                         <div class="row mt-3 mb-4">
-                          <div class="col-md-12 text-center text-md-left text-md-right">
+                          <div class="col-md-12 text-center text-md-left text-md-right d-flex justify-content-center">
                             <button class="btn btn-danger btn-rounded">
                               <i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>Đấu giá</button>
                           </div>
@@ -289,11 +288,11 @@
           <div class="products px-4 row d-flex justify-content-between">
             {{#each psRelative}}
               <!-- Grid column -->
-              <div onclick="getDetailProduct('{{ProID}}')"
-                class="product-card text-white col-md-2 mb-4 pt-3 d-flex justify-content-center">
+              <div
+                class="product-card text-white col-md-2 m-2 pt-3 px-1 d-flex justify-content-center wow slideInUp card card-ecommerce">
                 <div id={{ProID}} class="well text-center d-flex flex-wrap flex-column justify-content-center ">
                   <!--Card view-->
-                  <div class="view overlay zoom d-flex justify-content-center">
+                  <div onclick="getDetailProduct('{{ProID}}')" class="view overlay zoom d-flex justify-content-center">
                     <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
                     <div class="mask flex-center waves-effect waves-light ">
                       <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
@@ -329,12 +328,9 @@
                           <li class="list-inline-item pr-2 white-text"><i class="fas fa-hammer pr-2"></i>15
                           </li>
                           <li>
-                            <form action="/bidder/add/{{ProID}}">
-                              <button type="submit"
-                                class="btn btn-rounded text-white btn-sm px-2  red accent-4 accent-3 m-0">
-                                <i class="fas fa-heart fa-lg "></i>
-                              </button>
-                            </form>
+                            <span class="card-footer float-right text-white p-0 mr-2"><a class="heart-icon"
+                                data-toggle="tooltip" data-placement="top" title="Added to Wishlist" data-id={{ProID}}
+                                data-name={{ProName}} data-price={{Price}}><i class="fas fa-heart"></i></a></span>
                           </li>
                         </ul>
                       </li>

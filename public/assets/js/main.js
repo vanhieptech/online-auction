@@ -1,6 +1,4 @@
 (function($) {
-    "use strict";
-
     // Preloader
     $(window).on("load", function() {
         if ($("#preloader").length) {
@@ -10,7 +8,6 @@
                     $(this).remove();
                 });
         }
-        console.log("ppppppp");
     });
 
     // Back to top button
@@ -39,5 +36,59 @@
                 items: 1
             }
         }
+    });
+
+    //Thêm sản phẩm vào danh sách ưa thích
+
+    const burgerTemplate = (burgerName, id, is_favorite) => {
+        const burgerContainer = $("<div>").attr({
+            class: "content-burger__list",
+            id: id
+        });
+        const img = $("<img>").attr(
+            "src",
+            "./images/lefteris-kallergis-581884-unsplash.jpg"
+        );
+        const name = $("<p>");
+        const button = $("<button>").attr({
+            "data-id": id,
+            class: "btn btn-default favorites",
+            "data-state": is_favorite
+        });
+
+        name.html(burgerName);
+        button.html("add to favorite");
+
+        burgerContainer.append(img, name, button);
+        return burgerContainer;
+    };
+
+    const displayAddedToWishlist = Pro => {
+        const ProID = Pro.ProID;
+
+        $(`.heart-icon[data-id=${ProID}]`).addClass("active");
+    };
+
+    const addToWishListFail = response => {
+        alert("Add to wishlist just for BIDDER!!!");
+    };
+
+    $(document).on("click", ".heart-icon", function() {
+        const ProID = $(this).attr("data-id");
+        const ProName = $(this).attr("data-name");
+        const Price = $(this).attr("data-price");
+
+        console.log("clicked!!");
+        $.ajax({
+                url: "bd/wishlist/add",
+                method: "POST",
+                data: {
+                    ProID: ProID,
+                    ProName: ProName,
+                    Price: Price
+                }
+            })
+            .then(displayAddedToWishlist)
+            .catch(addToWishListFail);
     });
 })(jQuery);

@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.use("/account", require("../routers/account.route"));
     app.use("/cat", require("../routers/category.route"));
     app.use("/products", require("../routers/product.route"));
-    app.use("/bidder", restrict, isBidder, require("../routers/bidder.route"));
+    app.use("/bd", restrict, isBidder, require("../routers/bidder.route"));
     app.use("/seller", restrict, isSeller, require("../routers/seller.route"));
     app.use("/admin", restrict, isAdmin, require("../routers/admin/home.route"));
     app.use(

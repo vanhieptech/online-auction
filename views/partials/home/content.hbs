@@ -15,7 +15,7 @@
 
         #products .col-md .view {
             width: 100%;
-            height: 150px;
+
         }
 
         #products .col-md img {
@@ -34,13 +34,12 @@
             <div class="index_title text-center pb30 wow slideInUp">
                 <h3 class="f30">Top 5 sản phẩm gần kết thúc</h3> <span class="i-back"></span>
             </div>
-            <div class="container-fluid text-black-50  ">
+            <div class="container  text-black-50  ">
                 <div id="products" class="row text-dark">
                     {{#each psByTimeout}}
-                        <div class="product-card text-white col-md mb-4 pt-3 d-flex justify-content-center wow slideInUp"
+                        <div class="product-card text-white col-md mx-2 pt-3 px-1 d-flex justify-content-center wow slideInUp card card-ecommerce"
                             data-wow-delay=".4s">
-                            <div id={{ProID}}
-                                class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                            <div id={{ProID}} class="well text-center d-flex flex-column justify-content-center">
                                 <!--Card view-->
                                 <div onclick="getDetailProduct('{{ProID}}')"
                                     class="view overlay zoom d-flex justify-content-center">
@@ -65,10 +64,11 @@
                                         <li>
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                                                <li class="list-inline-item pr-2 red-text font-weight-bold"><i
+                                                        class="fas fa-hand-holding-usd pr-1"></i><strong>{{Price}}</strong>
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
-                                                <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-user-clock pr-1"></i>UserName
+                                                        class="fas fa-user-clock pr-1"></i>{{UserName}}
                                                 </li>
                                             </ul>
                                         </li>
@@ -76,17 +76,18 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{PriceToBuy}}
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hammer pr-2"></i>15
+                                                        class="fas fa-hammer pr-2"></i>{{Voted}}
                                                 </li>
                                                 <li>
-                                                    <form action="/bidder/add/{{ProID}}">
-                                                        <button type="submit"
-                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
-                                                            <i class="fas fa-heart fa-lg "></i>
-                                                        </button>
-                                                    </form>
+                                                    <span class="card-footer float-right text-white p-0 mr-2">
+                                                        <a class="heart-icon" data-toggle="tooltip" data-placement="top"
+                                                            title="Added to Wishlist" data-id={{ProID}}
+                                                            data-name={{ProName}} data-price={{Price}}><i
+                                                                class="fas fa-heart"></i></a>
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </li>
@@ -98,19 +99,18 @@
                 </div>
             </div>
             {{!-- Top 5 sản phẩm có nhiều lượt ra giá nhất --}}
-            <div class="index_title text-center pb30 wow slideInUp">
+            <div class="index_title text-center pb30 wow slideInUp pt-5">
                 <h3 class="f30">Top 5 sản phẩm có nhiều lượt ra giá nhất</h3> <span class="i-back"></span>
             </div>
-            <div class="container-fluid text-black-50">
+            <div class="container text-black-50">
                 <div id="products" class="row text-dark">
                     {{#each psByBID}}
-                        <div onclick="getDetailProduct('{{ProID}}')"
-                            class="product-card text-white col-md mb-4 pt-3 d-flex justify-content-center wow slideInUp"
+                        <div class="product-card text-white col-md mx-2 pt-3 px-1 d-flex justify-content-center wow slideInUp card card-ecommerce"
                             data-wow-delay=".4s">
-                            <div id={{ProID}}
-                                class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                            <div id={{ProID}} class="well text-center d-flex flex-column justify-content-center">
                                 <!--Card view-->
-                                <div class="view overlay zoom d-flex justify-content-center">
+                                <div onclick="getDetailProduct('{{ProID}}')"
+                                    class="view overlay zoom d-flex justify-content-center">
                                     <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
                                     <div class="mask flex-center waves-effect waves-light ">
                                         <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
@@ -132,10 +132,11 @@
                                         <li>
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                                                <li class="list-inline-item pr-2 red-text font-weight-bold"><i
+                                                        class="fas fa-hand-holding-usd pr-1"></i><strong>{{Price}}</strong>
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
-                                                <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-user-clock pr-1"></i>UserName
+                                                        class="fas fa-user-clock pr-1"></i>{{UserName}}
                                                 </li>
                                             </ul>
                                         </li>
@@ -143,17 +144,18 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{PriceToBuy}}
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hammer pr-2"></i>15
+                                                        class="fas fa-hammer pr-2"></i>{{Voted}}
                                                 </li>
                                                 <li>
-                                                    <form action="/bidder/add/{{ProID}}">
-                                                        <button type="submit"
-                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
-                                                            <i class="fas fa-heart fa-lg "></i>
-                                                        </button>
-                                                    </form>
+                                                    <span class="card-footer float-right text-white p-0 mr-2">
+                                                        <a class="heart-icon" data-toggle="tooltip" data-placement="top"
+                                                            title="Added to Wishlist" data-id={{ProID}}
+                                                            data-name={{ProName}} data-price={{Price}}><i
+                                                                class="fas fa-heart"></i></a>
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </li>
@@ -165,19 +167,18 @@
                 </div>
             </div>
             {{!-- Top 5 sản phẩm có giá cao nhất --}}
-            <div class="index_title text-center pb30 wow slideInUp">
+            <div class="index_title text-center pb30 wow slideInUp pt-5">
                 <h3 class="f30">Top 5 sản phẩm có giá cao nhất</h3> <span class="i-back"></span>
             </div>
-            <div class="container-fluid text-black-50">
+            <div class="container text-black-50 pb-5">
                 <div id="products" class="row text-dark">
                     {{#each psByPrice}}
-                        <div onclick="getDetailProduct('{{ProID}}')"
-                            class="product-card text-white col-md mb-4 pt-3 d-flex justify-content-center wow slideInUp"
+                        <div class="product-card text-white col-md mx-2 pt-3 px-1 d-flex justify-content-center wow slideInUp card card-ecommerce"
                             data-wow-delay=".4s">
-                            <div id={{ProID}}
-                                class="well text-center d-flex flex-wrap flex-column justify-content-center ">
+                            <div id={{ProID}} class="well text-center d-flex flex-column justify-content-center">
                                 <!--Card view-->
-                                <div class="view overlay zoom d-flex justify-content-center">
+                                <div onclick="getDetailProduct('{{ProID}}')"
+                                    class="view overlay zoom d-flex justify-content-center">
                                     <img src="../../../sp/{{ProID}}/1.jpg" class="img-fluid" alt="zoom">
                                     <div class="mask flex-center waves-effect waves-light ">
                                         <p class="card-body text-white  rgba-black-strong p-2 align-self-end">
@@ -199,10 +200,11 @@
                                         <li>
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
+                                                <li class="list-inline-item pr-2 red-text font-weight-bold"><i
+                                                        class="fas fa-hand-holding-usd pr-1"></i><strong>{{Price}}</strong>
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hand-holding-usd pr-1"></i>50000</li>
-                                                <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-user-clock pr-1"></i>UserName
+                                                        class="fas fa-user-clock pr-1"></i>{{UserName}}
                                                 </li>
                                             </ul>
                                         </li>
@@ -210,17 +212,18 @@
                                             <ul
                                                 class="list-unstyled list-inline font-small p-1 m-0 d-flex justify-content-between">
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-dollar-sign pr-1"></i>{{Price}}</li>
+                                                        class="fas fa-dollar-sign pr-1"></i>{{PriceToBuy}}
+                                                </li>
                                                 <li class="list-inline-item pr-2 white-text"><i
-                                                        class="fas fa-hammer pr-2"></i>15
+                                                        class="fas fa-hammer pr-2"></i>{{Voted}}
                                                 </li>
                                                 <li>
-                                                    <form action="/bidder/add/{{ProID}}">
-                                                        <button type="submit"
-                                                            class="btn btn-rounded text-white btn-sm px-2  red accent-2 m-0">
-                                                            <i class="fas fa-heart fa-lg "></i>
-                                                        </button>
-                                                    </form>
+                                                    <span class="card-footer float-right text-white p-0 mr-2">
+                                                        <a class="heart-icon" data-toggle="tooltip" data-placement="top"
+                                                            title="Added to Wishlist" data-id={{ProID}}
+                                                            data-name={{ProName}} data-price={{Price}}><i
+                                                                class="fas fa-heart"></i></a>
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </li>
@@ -233,8 +236,4 @@
             </div>
         </div>
     </div>
-    <!-- 作品、案例、产品 -->
-    <script type="text/javascript">
-        $("a[rel=example_group]").fancybox();
-    </script>
 </div>

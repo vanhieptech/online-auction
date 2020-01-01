@@ -18,8 +18,23 @@ module.exports = {
             // console.log(`cat`, cats[3]);
             // console.log("+++", products)
             res.render("vwAdmin/products", {
+                title: "Danh sách sản phẩm",
                 layout: "admin",
                 products: products
+            });
+        } catch (error) {
+            console.log("Error Controller Products getAll: ", error);
+        }
+    },
+    getAllWishListByUserID: async(req, res) => {
+        try {
+            const userID = req.session.authUser.id;
+
+            const list = await mPro.allByUserId(userID);
+
+            res.render("vwBidder/wishlist", {
+                layout: "main",
+                list: list
             });
         } catch (error) {
             console.log("Error Controller Products getAll: ", error);
@@ -39,11 +54,8 @@ module.exports = {
             const ownerInfo = await mUser.getDetailById(ownerId);
             const userInfo = await mUser.getDetailById(userId);
 
-            // productDetail = {
-            //     product: product,
-            //     user: userInfo,
-            //     owner: ownerInfo
-            // };
+            // console.log(`++++++++++`, catId);
+            // console.log(`++++++++++`, psRelative);
 
             res.render("vwProducts/detail", {
                 title: "Chi tiết sản phẩm",
@@ -56,6 +68,27 @@ module.exports = {
             console.log("Error Controller Product getByProId", error);
         }
     },
+
+    addToWishList: async(req, res) => {
+        //Thêm user ID current
+        const entity = req.body;
+        entity.UserID = req.session.authUser.id;
+
+        console.log(entity);
+
+        mPro.insertOneToWishList(entity, (error, product) => {
+            if (error) {
+                return res.status(401).json({
+                    message: "Not able to add favorite!"
+                });
+            }
+
+            return res.json({
+                ProID: entity.ProID
+            });
+        });
+    },
+
     delete: async(req, res) => {
         const ProID = parseInt(req.params.id);
         mPro.deleteOne(ProID, (err, result) => {

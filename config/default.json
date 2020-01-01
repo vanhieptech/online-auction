@@ -14,5 +14,9 @@
         "admin": 2,
         "seller": 1,
         "bidder": 0
+    },
+    "status": {
+        "win": 1,
+        "running": 0
     }
 }

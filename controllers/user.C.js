@@ -3,18 +3,22 @@ const permission = config.permission;
 
 const mUser = require("../models/user.model");
 
-
-
 module.exports = {
     getAll: async(req, res) => {
         try {
-
             // console.log(permission.seller)
             const sellers = await mUser.allByPermission(permission.seller);
 
-            const users = await mUser.allByPermission(permission.user);
+            const requests = await mUser.allByRequest();
 
-            // console.log(sellers)
+            const users = [];
+
+            for (let rq of requests) {
+                const user = await mUser.getDetailById(rq.UserID);
+                users.push(user[0]);
+            }
+
+            console.log(users);
 
             res.render("vwUsers/index", {
                 layout: "admin",
@@ -32,25 +36,41 @@ module.exports = {
 
             // console.log(user)
             res.render("vwUsers/detail", {
-                layout: 'admin',
+                layout: "admin",
                 user: user
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);
         }
     },
+
     delete: async(req, res) => {
         const id = parseInt(req.params.id);
         mUser.deleteOne(id, (err, result) => {
             if (err) {
                 return res.status(501).json({
-                    message: 'Not able to delete user'
+                    message: "Not able to delete user"
                 });
             }
 
             return res.json({
                 id: id,
-                name: 'user'
+                name: "user"
+            });
+        });
+    },
+    deleteRequest: async(req, res) => {
+        const id = parseInt(req.params.id);
+        mUser.deleteOneRequest(id, (err, result) => {
+            if (err) {
+                return res.status(501).json({
+                    message: "Not able to delete user"
+                });
+            }
+
+            return res.json({
+                id: id,
+                name: "user"
             });
         });
     },
@@ -61,11 +81,11 @@ module.exports = {
         const entity = {
             f_Permission: value,
             id: id
-        }
+        };
         mUser.updateOne(entity, function(error, burger) {
             if (error) {
                 return res.status(501).json({
-                    message: 'Not able to change Permission of User'
+                    message: "Not able to change Permission of User"
                 });
             }
             return res.json({
