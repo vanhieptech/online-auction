@@ -1,7 +1,7 @@
-id,f_Username,f_Password,f_Name,f_Email,f_DOB,f_phone,f_address,f_Permission
-1,admin,$2a$10$V/tk8E89Z0U3ydPfNPD8Mu2ZMYpXMeppUuajikwcAqUnnCUkRhkve,admin,levanhiep.95.95@gmail.com,"2019-12-13 00:00:00",123456789,"Hoa Kỳ",2
-2,admin1,$2a$10$b23p25jlucuf1ltwOndf3OFnxKAtAQevDJJcqg4jM3wVbBcyRkU/e,admin1,admin1@gmail.com,"2019-12-26 00:00:00",1111111111,"Hoa Kỳ",1
-4,admin3,$2a$10$8d4ZPdApmWPiVo15dO0Vl.NrhZ/h/SVRur0P1TPz8fGdAOwSIwrZa,admin3,admin3@gmail.com,"2019-12-10 00:00:00",333333333,"Hoa Kỳ",1
-5,admin4,$2a$10$SffkKZlN5Vm5zmA0xiEyEePs/Cv6UWW5/qIcc7KnI8K5ii1qxbXiq,admin4,admin4@gmail.com,"2019-12-27 00:00:00",444444444,"Hoa Kỳ",0
-7,admin6,$2a$10$iuXCRHBymzhYAkfBb1H7cepRSZfwCG8//.MpYNQEtNakLNBUK2kVS,admin6,admin6@gmail.com,"2019-12-27 00:00:00",666666666,"Hoa Kỳ",0
-8,admin7,$2a$10$qTaXNXmTalD2vmLHiUXjfO22mxXkukv3P8QeCqL84FFb3tioAEKeC,admin7,admin7@gmail.com,"2019-12-27 00:00:00",77777777,"Hoa Kỳ",0
+id,f_Username,f_Password,f_Name,f_Email,f_DOB,f_phone,f_address,f_Permission,f_Evaluate
+1,admin,$2a$10$V/tk8E89Z0U3ydPfNPD8Mu2ZMYpXMeppUuajikwcAqUnnCUkRhkve,admin,levanhiep.95.95@gmail.com,12/13/2019 0:00,123456789,Hoa Kỳ,2,0
+2,admin1,$2a$10$b23p25jlucuf1ltwOndf3OFnxKAtAQevDJJcqg4jM3wVbBcyRkU/e,admin1,admin1@gmail.com,12/26/2019 0:00,1111111111,Hoa Kỳ,1,0
+4,admin3,$2a$10$8d4ZPdApmWPiVo15dO0Vl.NrhZ/h/SVRur0P1TPz8fGdAOwSIwrZa,admin3,admin3@gmail.com,12/10/2019 0:00,333333333,Hoa Kỳ,1,0
+5,admin4,$2a$10$SffkKZlN5Vm5zmA0xiEyEePs/Cv6UWW5/qIcc7KnI8K5ii1qxbXiq,admin4,admin4@gmail.com,12/27/2019 0:00,444444444,Hoa Kỳ,0,0
+7,admin6,$2a$10$iuXCRHBymzhYAkfBb1H7cepRSZfwCG8//.MpYNQEtNakLNBUK2kVS,admin6,admin6@gmail.com,12/27/2019 0:00,666666666,Hoa Kỳ,0,0
+8,admin7,$2a$10$qTaXNXmTalD2vmLHiUXjfO22mxXkukv3P8QeCqL84FFb3tioAEKeC,admin7,admin7@gmail.com,12/27/2019 0:00,77777777,Hoa Kỳ,0,0

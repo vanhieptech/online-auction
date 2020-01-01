@@ -5,7 +5,7 @@ module.exports = {
             var exten;
             if(Extension=='on') exten=1;
             else exten=0;
-            const sql = `INSERT INTO \`products\` VALUES(NULL, ${OwnerID}, NULL, '${ProName}', '${TinyDes}', '${FullDes}', ${StartPrice}, ${Step}, ${PriceToBuy}, ${CatID}, NULL, NULL, now(), addtime(now(),'12:0:0)', ${exten})`;
+            const sql = `INSERT INTO \`products\` VALUES(NULL, ${OwnerID}, NULL, '${ProName}', '${TinyDes}', '${FullDes}', ${StartPrice}, ${Step}, ${PriceToBuy}, ${CatID}, NULL, NULL, now(), addtime(now(),'12:0:0'), ${exten})`;
             await db.load(sql);
         }
         catch (error) {
