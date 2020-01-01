@@ -11,7 +11,11 @@ router.get("/register", async(req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    res.render("vwAccount/login");
+    if (req.session.isAuthenticated == true) {
+        res.redirect("/account/profile");
+    } else {
+        res.render("vwAccount/login");
+    }
 });
 router.get("/login/forgotPassword", (req, res) => {
     res.render("vwAccount/forgotPassword");
@@ -307,13 +311,13 @@ router.post("/request", async(req, res) => {
     });
 });
 //ĐĂNG NHẬP GOOGLE
-router.get('/auth/google', passport.authenticate('google', { scope: 'email' }));
+router.get("/auth/google", passport.authenticate("google", { scope: "email" }));
 router.post("/login/infoGG", async(req, res) => {
     const entity = req.body;
     entity.f_Username = req.session.GG.id;
     var N = Math.floor(Math.random() * 1000) + 1;
     entity.f_Email = req.session.GG.emails[0].value;
-    entity.f_Password = bcrypt.hashSync('10' + N, 10);
+    entity.f_Password = bcrypt.hashSync("10" + N, 10);
     entity.f_Evaluate = "";
     entity.f_Permission = 0;
     req.session.authUser = entity;
@@ -321,13 +325,12 @@ router.post("/login/infoGG", async(req, res) => {
     const result = await userModel.add(entity);
     if (result) {
         req.session.isAuthenticated = true;
-        console.log('Đăng kí thành công');
-        return res.redirect("/")
+        console.log("Đăng kí thành công");
+        return res.redirect("/");
     } else {
-        console.log('Đăng kí thất bại do add data');
+        console.log("Đăng kí thất bại do add data");
         return res.render("vwAccount/register");
     }
     res.redirect("/");
-
 });
 module.exports = router;
