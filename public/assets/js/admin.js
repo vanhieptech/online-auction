@@ -43,7 +43,7 @@ const updatePermisson = user => {
         rowUser = rowUser.replace("aqua-gradient", "peach-gradient");
         rowToAdd =
             `<tr id=${id}>` + rowUser.replace(buttonDown, buttonUp) + `</tr>`;
-        $(`tbody.users`).append(rowToAdd);
+        $(`tbody.bidders`).append(rowToAdd);
     } else {
         rowUser = rowUser.replace("peach-gradient", "aqua-gradient");
         rowToAdd =

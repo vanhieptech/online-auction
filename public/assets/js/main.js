@@ -67,6 +67,7 @@
         const ProID = Pro.ProID;
 
         $(`.heart-icon[data-id=${ProID}]`).addClass("active");
+        $(`.heart-icon[data-id=${ProID}]`).attr("disabled", "disabled");
     };
 
     const addToWishListFail = response => {
@@ -78,17 +79,23 @@
         const ProName = $(this).attr("data-name");
         const Price = $(this).attr("data-price");
 
-        console.log("clicked!!");
-        $.ajax({
-                url: "bd/wishlist/add",
-                method: "POST",
-                data: {
-                    ProID: ProID,
-                    ProName: ProName,
-                    Price: Price
-                }
-            })
-            .then(displayAddedToWishlist)
-            .catch(addToWishListFail);
+        // console.log($(this).attr("disabled"));
+
+        if ($(this).attr("disabled") === "disabled") {
+            console.log("just tesing");
+        } else {
+            console.log("clicked!!");
+            $.ajax({
+                    url: "bd/wishlist/add",
+                    method: "POST",
+                    data: {
+                        ProID: ProID,
+                        ProName: ProName,
+                        Price: Price
+                    }
+                })
+                .then(displayAddedToWishlist)
+                .catch(addToWishListFail);
+        }
     });
 })(jQuery);
