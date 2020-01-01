@@ -1,12 +1,6 @@
 const db = require("../database/mysql");
 const config = require("../config/default.json");
 
-const mysql = require("mysql");
-
-function createConnection() {
-    return mysql.createConnection(config.mysql);
-}
-
 const tbName = `Products`;
 const idField = `ProID`;
 module.exports = {
@@ -22,7 +16,7 @@ module.exports = {
     },
     allByCatId: async id => {
         try {
-            const sql = `SELECT * FROM ${tbName} WHERE UserID = ${id}`;
+            const sql = `SELECT * FROM ${tbName} WHERE CatID = ${id} LIMIT 5`;
             const rows = await db.load(sql);
             return rows;
         } catch (error) {
@@ -31,7 +25,7 @@ module.exports = {
     },
     allByUserId: async id => {
         try {
-            const sql = `SELECT * FROM wishlist WHERE UserID = ${id} LIMIT 5`;
+            const sql = `SELECT * FROM wishlist WHERE UserID = ${id}`;
             const rows = await db.load(sql);
             return rows;
         } catch (error) {
@@ -122,6 +116,17 @@ module.exports = {
         } catch (error) {
             cb(error, null);
             console.log("Error Model: Product: all", error);
+        }
+    },
+
+    insertOneToWishList: async(entity, cb) => {
+        try {
+            const rows = await db.add(`wishlist`, entity);
+            console.log(rows);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: insertOneToWishList", error);
         }
     }
 };
