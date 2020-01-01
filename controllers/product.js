@@ -58,12 +58,14 @@ module.exports = {
             // console.log(`++++++++++`, catId);
             // console.log(`++++++++++`, psRelative);
 
-            res.render("vwProducts/detail", {
+            const chectRatedPoint = res.render("vwProducts/detail", {
                 title: "Chi tiết sản phẩm",
                 product: product,
                 owner: ownerInfo,
                 user: userInfo,
-                psRelative: psRelative
+                psRelative: psRelative,
+                // check: checkRatedPoint > 0.8
+                checkPoint: false
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);
