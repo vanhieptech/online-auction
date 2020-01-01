@@ -1,16 +1,28 @@
 const config = require("../config/default.json");
+const mUser = require("../models/user.model");
 
-module.exports = (req, res, next) => {
+module.exports = async(req, res, next) => {
     if (req.session.isAuthenticated === true) {
         //Các tính năng của bidder
         if (res.locals.authUser.f_Permission === config.permission.bidder) {
             const id = res.locals.authUser.id;
 
             res.locals.isSeller = false;
-            //Cần check yêu cầu ở đây
 
             res.locals.isRequested = true;
+
             res.locals.viewBidder = true;
+
+            //Cần check yêu cầu ở đây
+            try {
+                const user = await mUser.getRequestById(id);
+
+                if (user.length === 0) {
+                    res.locals.isRequested = false;
+                }
+            } catch (error) {
+                console.log("Error Middlewares data getByUserId", error);
+            }
 
             //Cần check danh sách ưa thích
         }

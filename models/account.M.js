@@ -34,14 +34,41 @@ module.exports = {
         return null;
     },
     UpdateInformationUser: async entity => {
-        const sql = 'UPDATE users SET f_phone="' + entity.f_phone + '",f_address="' + entity.f_address + '",f_DOB="' + entity.f_DOB + '",f_Name="' + entity.f_Name + '" where f_Username ="' + entity.f_Username + '"';
+        const sql =
+            'UPDATE users SET f_phone="' +
+            entity.f_phone +
+            '",f_address="' +
+            entity.f_address +
+            '",f_DOB="' +
+            entity.f_DOB +
+            '",f_Name="' +
+            entity.f_Name +
+            '" where f_Username ="' +
+            entity.f_Username +
+            '"';
         const rows = await db.load(sql);
         return rows;
     },
     changePassword: async entity => {
-        const sql = 'UPDATE users SET f_Password="' + entity.f_Password + '" where f_Username ="' + entity.f_Username + '"';
+        const sql =
+            'UPDATE users SET f_Password="' +
+            entity.f_Password +
+            '" where f_Username ="' +
+            entity.f_Username +
+            '"';
 
         const rows = await db.load(sql);
         return rows;
     },
+
+    addOneRequest: async(entity, cb) => {
+        try {
+            const rows = await db.add(`requests`, entity);
+            // console.log(rows);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: insertOneToWishList", error);
+        }
+    }
 };

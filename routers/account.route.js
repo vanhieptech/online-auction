@@ -5,7 +5,7 @@ const userModel = require("../models/account.M");
 const restrict = require("../middlewares/auth.mdw");
 const VerifiEmail = require("../models/EmailVerification");
 const router = express.Router();
-const passport = require('passport')
+const passport = require("passport");
 router.get("/register", async(req, res) => {
     res.render("vwAccount/register");
 });
@@ -41,7 +41,7 @@ router.get("/login/infoGG", (req, res) => {
 router.post("/login/forgotPassword", async(req, res) => {
     const user = await userModel.singleByUsername(req.body.f_Username);
     if (user == null) {
-        console.log('Tài khoản không tồn tại.');
+        console.log("Tài khoản không tồn tại.");
         return res.redirect("/account/login");
     }
     //Tạo OTP
@@ -58,40 +58,39 @@ router.post("/login/forgotPassword", async(req, res) => {
         console.log("Sent OTP(forgot password)");
         return res.redirect("/account/login/forgotPassword/OTP");
     }
-
-
 });
 //OTP xác nhận email quên MK
 router.post("/login/forgotPassword/OTP", async(req, res) => {
     if (req.body.f_OTP == req.session.OTP) {
-
-
         const entity = req.session;
         var N = 10;
         entity.f_Password = bcrypt.hashSync(entity.f_Password, N);
 
         const result = await userModel.changePassword(entity);
         if (result) {
-            console.log('Lấy lại tài khoản  thành công');
-            return res.redirect("/account/login")
+            console.log("Lấy lại tài khoản  thành công");
+            return res.redirect("/account/login");
         } else {
-            console.log('lấy lại toàn khoản thất lại');
+            console.log("lấy lại toàn khoản thất lại");
             return res.render("vwAccount/forgotPassword");
         }
     } else {
-        console.log('OTP sai.!!!!');
+        console.log("OTP sai.!!!!");
         return res.redirect("/account/login/forgotPassword/OTP");
     }
 });
 // update thông tin user
 router.post("/update", async(req, res) => {
-
     const dob = req.body.dob;
     // const dob = moment(req.body.dob, "DD/MM/YYYY").format("YYYY-MM-DD");
     const entity = req.body;
     entity.f_DOB = dob;
     delete entity.raw_password;
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    if (
+        req.body["g-recaptcha-response"] === undefined ||
+        req.body["g-recaptcha-response"] === "" ||
+        req.body["g-recaptcha-response"] === null
+    ) {
         return res.redirect("/account/update");
     }
     if (
@@ -105,21 +104,23 @@ router.post("/update", async(req, res) => {
     entity.f_Username = req.session.authUser.f_Username;
     console.log(req.session.authUser.id);
     delete entity.dob;
-    delete entity['g-recaptcha-response'];
+    delete entity["g-recaptcha-response"];
     const result = await userModel.UpdateInformationUser(entity);
     if (result) {
         req.session.authUser.f_Name = entity.f_Name;
         req.session.authUser.f_DOB = entity.f_DOB;
         req.session.authUser.f_address = entity.f_address;
         req.session.authUser.f_phone = entity.f_phone;
-        res.redirect("/account/profile")
+        res.redirect("/account/profile");
     } else {
         res.render("vwAccount/update");
     }
 });
 //thay đổi mật khẩu
 router.post("/changePassword", async(req, res) => {
-    const user = await userModel.singleByUsername(req.session.authUser.f_Username);
+    const user = await userModel.singleByUsername(
+        req.session.authUser.f_Username
+    );
     const rs = bcrypt.compareSync(req.body.Old_password, user.f_Password);
     if (rs === false)
         return res.render("vwAccount/changePassword", {
@@ -132,15 +133,18 @@ router.post("/changePassword", async(req, res) => {
     entity.f_Username = req.session.authUser.f_Username;
     delete entity.raw_password;
 
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    if (
+        req.body["g-recaptcha-response"] === undefined ||
+        req.body["g-recaptcha-response"] === "" ||
+        req.body["g-recaptcha-response"] === null
+    ) {
         return res.redirect("/account/changePassword");
     }
-    delete entity['g-recaptcha-response'];
-
+    delete entity["g-recaptcha-response"];
 
     const result = await userModel.changePassword(entity);
     if (result) {
-        res.redirect("/")
+        res.redirect("/");
     } else {
         res.render("vwAccount/changePassword");
     }
@@ -159,10 +163,13 @@ router.post("/register", async(req, res) => {
     entity.f_DOB = dob;
     entity.f_Evaluate = "";
     delete entity.raw_password;
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    if (
+        req.body["g-recaptcha-response"] === undefined ||
+        req.body["g-recaptcha-response"] === "" ||
+        req.body["g-recaptcha-response"] === null
+    ) {
         return res.redirect("/account/register");
     }
-
 
     //check user name và email
     const user = await userModel.singleByUsername(req.body.f_Username);
@@ -177,7 +184,7 @@ router.post("/register", async(req, res) => {
     }
     //console.log(`++++++++account route add entity`, entity['g-recaptcha-response']);
     delete entity.dob;
-    delete entity['g-recaptcha-response'];
+    delete entity["g-recaptcha-response"];
     console.log(entity);
 
     if (
@@ -199,29 +206,25 @@ router.post("/register", async(req, res) => {
         console.log("Can't send OTP to Email");
         return res.redirect("/account/register");
     } else {
-
         console.log("Sent OTP");
         return res.redirect("/account/register/OTP");
     }
 
-
     //----------------------
-
-
 });
 //OTP xác nhận email
 router.post("/register/OTP", async(req, res) => {
     if (req.body.f_OTP == req.session.OTP) {
         const result = await userModel.add(req.session.User_register);
         if (result) {
-            console.log('Đăng kí thành công');
-            return res.redirect("/account/login")
+            console.log("Đăng kí thành công");
+            return res.redirect("/account/login");
         } else {
-            console.log('Đăng kí thất bại do add data');
+            console.log("Đăng kí thất bại do add data");
             return res.render("vwAccount/register");
         }
     } else {
-        console.log('OTP sai.!!!!');
+        console.log("OTP sai.!!!!");
         return res.render("vwAccount/register");
     }
 });
@@ -232,7 +235,11 @@ router.post("/login", async(req, res) => {
         console.log("Invalid username or password.");
         return res.redirect("/account/login");
     }
-    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+    if (
+        req.body["g-recaptcha-response"] === undefined ||
+        req.body["g-recaptcha-response"] === "" ||
+        req.body["g-recaptcha-response"] === null
+    ) {
         return res.redirect("/account/login");
     }
     const rs = bcrypt.compareSync(req.body.f_Password, user.f_Password);
@@ -256,26 +263,48 @@ router.post("/logout", (req, res) => {
 });
 //Đăng nhập FB
 
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
+router.get(
+    "/auth/facebook",
+    passport.authenticate("facebook", { scope: "email" })
+);
 router.post("/login/infoFB", async(req, res) => {
     const entity = req.body;
     entity.f_Username = req.session.FB.id;
     var N = Math.floor(Math.random() * 1000) + 1;
-    entity.f_Password = bcrypt.hashSync('10' + N, 10);
+    entity.f_Password = bcrypt.hashSync("10" + N, 10);
     entity.f_Evaluate = "";
     entity.f_Permission = 0;
     req.session.authUser = entity;
     const result = await userModel.add(entity);
     if (result) {
         req.session.isAuthenticated = true;
-        console.log('Đăng kí thành công');
-        return res.redirect("/")
+        console.log("Đăng kí thành công");
+        return res.redirect("/");
     } else {
-        console.log('Đăng kí thất bại do add data');
+        console.log("Đăng kí thất bại do add data");
         return res.render("vwAccount/register");
     }
     res.redirect("/");
+});
 
+router.post("/request", async(req, res) => {
+    //Thêm user ID current
+    const entity = {};
+    entity.UserID = req.session.authUser.id;
+
+    console.log(entity);
+
+    userModel.addOneRequest(entity, (error, product) => {
+        if (error) {
+            return res.status(401).json({
+                message: "Not able to add favorite!"
+            });
+        }
+
+        return res.json({
+            isRequested: true
+        });
+    });
 });
 //ĐĂNG NHẬP GOOGLE
 router.get('/auth/google', passport.authenticate('google', { scope: 'email' }));

@@ -40,29 +40,6 @@
 
     //Thêm sản phẩm vào danh sách ưa thích
 
-    const burgerTemplate = (burgerName, id, is_favorite) => {
-        const burgerContainer = $("<div>").attr({
-            class: "content-burger__list",
-            id: id
-        });
-        const img = $("<img>").attr(
-            "src",
-            "./images/lefteris-kallergis-581884-unsplash.jpg"
-        );
-        const name = $("<p>");
-        const button = $("<button>").attr({
-            "data-id": id,
-            class: "btn btn-default favorites",
-            "data-state": is_favorite
-        });
-
-        name.html(burgerName);
-        button.html("add to favorite");
-
-        burgerContainer.append(img, name, button);
-        return burgerContainer;
-    };
-
     const displayAddedToWishlist = Pro => {
         const ProID = Pro.ProID;
 
@@ -96,6 +73,35 @@
                 })
                 .then(displayAddedToWishlist)
                 .catch(addToWishListFail);
+        }
+    });
+
+    //Gửi yêu cầu nâng cấp tài khoản
+
+    const displayRequested = check => {
+        $(`.request-upgrade`).text(`Đã yêu cầu`);
+        $(`.request-upgrade`).prepend(`<i
+        class="fas fa-wrench pr-2">`);
+        $(`.request-upgrade`).attr("disabled", "disabled");
+    };
+
+    const requestFail = response => {
+        alert("Can't Request Update!");
+    };
+
+    $(document).on("click", ".request-upgrade", function() {
+        // console.log($(this).attr("disabled"));
+
+        if ($(this).attr("disabled") === "disabled") {
+            console.log("just tesing");
+        } else {
+            console.log("clicked!!");
+            $.ajax({
+                    url: "account/request",
+                    method: "POST"
+                })
+                .then(displayRequested)
+                .catch(requestFail);
         }
     });
 })(jQuery);

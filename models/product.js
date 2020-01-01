@@ -122,7 +122,7 @@ module.exports = {
     insertOneToWishList: async(entity, cb) => {
         try {
             const rows = await db.add(`wishlist`, entity);
-            console.log(rows);
+            // console.log(rows);
             cb(null, rows);
         } catch (error) {
             cb(error, null);

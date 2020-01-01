@@ -44,6 +44,18 @@ module.exports = {
             console.log("Error Model: User: Detail Pro Id", error);
         }
     },
+    getRequestById: async id => {
+        try {
+            const sql = `SELECT * FROM requests WHERE UserID = ${id}`;
+
+            // console.log(`====`, sql)
+
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Model: User: Detail Pro Id", error);
+        }
+    },
     singleByUsername: async username => {
         const rows = await db.load(
             `select * from users where f_Username = '${username}'`
@@ -52,7 +64,7 @@ module.exports = {
 
         return rows[0];
     },
-    add: entity => db.add("users", entity),
+
     del: id => db.del("users", { f_ID: id }),
 
     updateOne: async(entity, cb) => {
