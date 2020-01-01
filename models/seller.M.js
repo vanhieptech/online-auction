@@ -5,18 +5,33 @@ module.exports = {
             var exten;
             if(Extension=='on') exten=1;
             else exten=0;
-            const sql = `INSERT INTO \`products\` VALUES(NULL, NULL, ${UserID}, '${ProName}', '${TinyDes}', '${FullDes}', ${StartPrice}, ${Step}, ${PriceToBuy}, ${CatID}, NULL, NULL, now(), now())`;
+            const sql = `INSERT INTO \`products\` VALUES(NULL, NULL, ${UserID}, '${ProName}', '${TinyDes}', '${FullDes}', ${StartPrice}, ${Step}, ${PriceToBuy}, ${CatID}, NULL, NULL, now(), now(), ${exten})`;
             await db.load(sql);
         }
         catch (error) {
             console.log('Error Add Product: ', error);
         }
     },
-    load: async function(UserID){
+    load: async function(OwnerID, option){
         try {
-            const sql = `SELECT * FROM products WHERE UserID=${UserID}`;
-            const table = await db.load(sql);
-            return table;
+            if(option==1)
+            {
+                const sql = `SELECT * FROM products WHERE OwnerID=${OwnerID}`; // tất cả sản phẩm
+                const table = await db.load(sql);
+                return table;
+            }
+            else if(option==2)
+            {
+                const sql = `SELECT * FROM products WHERE OwnerID=${OwnerID} AND (now()<TimeFinish)`; // còn hạn đấu giá
+                const table = await db.load(sql);
+                return table;
+            }
+            else if(option==3)
+            {
+                const sql = `SELECT * FROM products WHERE OwnerID=${OwnerID} AND (now()>TimeFinish) AND UserID IS NOT NULL`; //đã có chủ và hết hạn đấu giá
+                const table = await db.load(sql);
+                return table;
+            }
         }
         catch (error) {
             console.log('Error Load Product: ', error);
