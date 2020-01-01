@@ -4,6 +4,10 @@ const mUser = require("../models/user.model");
 module.exports = async(req, res, next) => {
     if (req.session.isAuthenticated === true) {
         //Các tính năng của bidder
+        // console.log("Im data++++++++++++++++++++");
+        // console.log("req", req.session.authUser);
+        // console.log("res", res.locals.authUser);
+
         if (res.locals.authUser.f_Permission === config.permission.bidder) {
             const id = res.locals.authUser.id;
 

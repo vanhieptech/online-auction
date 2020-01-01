@@ -34,7 +34,8 @@ module.exports = {
 
             res.render("vwBidder/wishlist", {
                 layout: "main",
-                list: list
+                list: list,
+                empty: list.length === 0
             });
         } catch (error) {
             console.log("Error Controller Products getAll: ", error);
