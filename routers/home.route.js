@@ -3,6 +3,27 @@ const router = express.Router();
 const CategoryController = require("../controllers/category");
 var passport = require("passport");
 const userModel = require("../models/account.M");
+const db = require("../database/mysql");
+var mysql = require("mysql");
+const config = require("../config/default.json");
+var connection = mysql.createConnection(config.mysql);
+
+connection.connect();
+
+router.get("/search", function(req, res) {
+    connection.query(
+        'SELECT ProName from products where ProName like "%' + req.query.key + '%"',
+        function(err, rows, fields) {
+            if (err) throw err;
+            var data = [];
+            for (i = 0; i < rows.length; i++) {
+                data.push(rows[i].ProName);
+            }
+            console.log(data);
+            res.end(JSON.stringify(data));
+        }
+    );
+});
 //Router to home
 router.get("/", CategoryController.getTop);
 
