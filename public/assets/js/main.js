@@ -63,12 +63,14 @@
         return burgerContainer;
     };
 
-    const displayAddedToWishlist = ProID => {
-        console.log("ADDED!!!!");
+    const displayAddedToWishlist = Pro => {
+        const ProID = Pro.ProID;
+
+        $(`.heart-icon[data-id=${ProID}]`).addClass("active");
     };
 
     const addToWishListFail = response => {
-        alert("Add to wishlist Failed");
+        alert("Add to wishlist just for BIDDER!!!");
     };
 
     $(document).on("click", ".heart-icon", function() {
