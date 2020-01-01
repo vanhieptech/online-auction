@@ -64,11 +64,15 @@ VALUES
   (7,8, 3,1,'Sản phẩm lỗi');
 COMMIT;
 
-DROP TABLE IF EXISTS `auctions`;
-CREATE TABLE `auctions` (
+DROP TABLE IF EXISTS `biddinglist`;
+CREATE TABLE `biddinglist` (
     `AuctionID` INT (11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `UserID` INT (11) UNSIGNED NOT NULL,
+    `UserName` VARCHAR (50) CHARACTER 
+			SET utf8 COLLATE utf8_unicode_ci NOT NULL,
     `ProID` INT (11) UNSIGNED NOT NULL,
+    `Price` INT(11) NOT NULL,
+    `Time` DATETIME NOT NULL,
     `Status`INT (11) UNSIGNED NOT NULL,
     PRIMARY KEY (`AuctionID`) USING BTREE
   ) ENGINE = MYISAM AUTO_INCREMENT = 8 CHARACTER 
@@ -77,15 +81,15 @@ SET = UTF8 COLLATE = UTF8_UNICODE_CI;
   -- Records of categories
   -- ----------------------------
   BEGIN;
-INSERT INTO `auctions`
+INSERT INTO `biddinglist`
 VALUES
-  (1,4, 23,1),
-  (2,4, 24,1),
-  (3,7, 25,0),
-  (4,7, 25,1), 
-  (5,7, 21,0), 
-  (6,8, 23,0),
-  (7,8, 21,1);
+  (1,4,'admin3', 23,8000000,'2019-06-16 09:34:21',1),
+  (2,4,'admin3', 24,6000000,'2019-06-20 09:34:21',1),
+  (3,7,'admin6', 25,8000000,'2019-06-15 02:54:21',0),
+  (4,7,'admin6', 25,10000000,'2019-06-17 09:36:21',1), 
+  (5,7,'admin6', 21,22000000,'2019-06-14 09:34:21',0), 
+  (6,8,'admin7', 23,6000000,'2019-06-12 09:34:21',0),
+  (7,8,'admin7', 21,24000000,'2019-06-15 09:34:21',1);
 COMMIT;
 
 

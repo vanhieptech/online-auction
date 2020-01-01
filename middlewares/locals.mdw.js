@@ -13,7 +13,4 @@ module.exports = function(app) {
 
         next();
     });
-    //Các tính năng của bidder
-
-    //Các tính năng của seller
 };

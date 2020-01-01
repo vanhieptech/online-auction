@@ -55,33 +55,54 @@
                 </li>
                 <form id="frmLogout" method="post" action="/account/logout"></form>
                 {{#if isAuthenticated}}
-                    <li class="nav-item">
-                        <form action="/bd/wishlist">
-                            <span class="badge badge-pill red accent-4"
-                                style="float:right;margin-bottom:-5px; margin-left:-4px;">1</span>
-                            <!-- your badge -->
-                            <button type="submit" class="btn btn-rounded btn-sm px-2 white accent-4 mr-0 ">
-                                <i class="fas fa-heart red-text fa-lg "></i><span class="sr-only">(current)</span>
-                            </button>
-                        </form>
-                    </li>
+                    {{#if viewBidder}}
+                        <li class="nav-item">
+                            <form action="/bd/wishlist">
+                                {{!-- <span class="badge badge-pill red accent-4"
+                                style="float:right;margin-bottom:-5px; margin-left:-4px;">1</span> --}}
+                                <!-- your badge -->
+                                <button type="submit" class="btn btn-rounded btn-sm px-2 white accent-4 mr-0 ">
+                                    <i class="fas fa-heart red-text fa-lg "></i><span class="sr-only">(current)</span>
+                                </button>
+                            </form>
+                        </li>
+                    {{/if}}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i>Hi, <b>{{authUser.f_Name}}! </a>
+                            <i class="fas fa-user"></i>Hi, <b>{{authUser.f_Name}} </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-info"
                             aria-labelledby="navbarDropdownMenuLink-4">
+<<<<<<< HEAD
                              <a class="dropdown-item" href="/seller/myProducts/All">Seller</a>
                             <a class="dropdown-item" href="/account/profile">My account</a>
                             <a class="dropdown-item" href="/account/changePassword">Change Password</a>
                             <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Log out</a>
+=======
+                            <a class="dropdown-item" href="/account/profile"><i class="fas fa-user-circle pr-2"></i>Tài
+                                khoản</a>
+                            {{#if viewBidder}}
+                                <a class="dropdown-item" {{#if isRequest}}disable{{/if}}><i
+                                        class="fas fa-wrench pr-2"></i>{{#if isRequest}}Đã yêu
+                                        cầu
+                                    {{else}}Nâng cấp tài khoản{{/if}}</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd pr-2"></i>Đang đấu
+                                    giá</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-crown pr-2"></i>Đấu
+                                    giá thành công</a>
+                            {{/if}}
+                            <a class="dropdown-item" href="/account/changePassword"><i class="fas fa-lock pr-2"></i>Đổi
+                                mật khẩu</a>
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"><i
+                                    class="fas fa-sign-out-alt pr-2"></i>Đăng xuất</a>
+>>>>>>> master
                         </div>
                     </li>
                 {{else}}
                     <!-- Login / register -->
                     <a id="navbar-static-signin" href='account/login' alt="Login"
                         class="text-info align-self-center ml-2 auth-modal-toggle waves-effect waves-light"
-                        data-auth-modal-tab="sign-up">Login</a>
+                        data-auth-modal-tab="sign-up"><strong><i class="fas fa-sign-in-alt pr-1"></i>Login</strong></a>
                     <a id="navbar-static-login" href='account/register' alt="Register"
                         class="btn peach-gradient btn-rounded btn-sm waves-effect waves-light auth-modal-toggle">Register</a>
                 {{/if}}

@@ -9,6 +9,8 @@ module.exports = {
             // console.log(permission.seller)
             const sellers = await mUser.allByPermission(permission.seller);
 
+            const bidders = await mUser.allByPermission(permission.bidder);
+
             const requests = await mUser.allByRequest();
 
             const users = [];
@@ -23,7 +25,11 @@ module.exports = {
             res.render("vwUsers/index", {
                 layout: "admin",
                 sellers: sellers,
-                users: users
+                users: users,
+                bidders: bidders,
+                emptyUser: users.length === 0,
+                emptySeller: sellers.length === 0,
+                emptyBidder: bidders.length === 0
             });
         } catch (error) {
             console.log("Error Controller Products getAll: ", error);

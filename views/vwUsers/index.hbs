@@ -9,7 +9,7 @@
       </div>
       <!--/Card image-->
       <div class="px-4">
-        {{#if this.empty}}
+        {{#if this.emptySeller}}
           <div class="card-body">
             <p class="card-text">
               Không có dữ liệu.
@@ -86,7 +86,7 @@
     </div>
     <!-- Table with panel -->
   </div>
-  <div class="row d-flex justify-content-center">
+  <div class="row pb-5 d-flex justify-content-center">
     <!-- Table with panel -->
     <div class="card card-cascade narrower">
       <!--Card image-->
@@ -96,10 +96,10 @@
       </div>
       <!--/Card image-->
       <div class="px-4">
-        {{#if this.empty}}
+        {{#if this.emptyUser}}
           <div class="card-body">
             <p class="card-text">
-              Không có dữ liệu.
+              Không có yêu cầu nào.
             </p>
           </div>
         {{else}}
@@ -137,6 +137,93 @@
               <tbody class="users">
                 {{#each this.users}}
                   <tr id={{id}} class="user" data-id="{{id}}">
+                    <td>{{id}}</td>
+                    <td>{{f_Username}}</td>
+                    <td>{{f_Name}}</td>
+                    <td>{{f_Email}}</td>
+                    <td>{{f_phone}}</td>
+                    <td class="text-center p-0">
+                      <button type="button"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 peach-gradient permission" data-id="{{id}}"
+                        data-state="{{f_Permission}}">
+                        {{#if f_Permission}}<i class="fas fa-arrow-down fa-lg"></i>{{else}}<i
+                            class="fas fa-arrow-up fa-lg"></i>{{/if}}
+                      </button>
+                    </td>
+                    <td class="text-center p-0 d-flex justify-content-center">
+                      <form action="/admin/users/{{id}}">
+                        <button type="submit" class="btn btn-outline-white btn-rounded btn-sm px-2 light-blue accent-3">
+                          <i class="fas fa-info-circle fa-lg"></i>
+                        </button>
+                      </form>
+                      <button name="users" data-id="{{id}}"
+                        class="btn btn-outline-white btn-rounded btn-sm px-2 deep-orange darken-4 delete">
+                        <i class="far fa-trash-alt fa-lg"></i>
+                      </button>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+              <!--Table body-->
+            </table>
+            <!--Table-->
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    <!-- Table with panel -->
+  </div>
+  <div class="row d-flex justify-content-center">
+    <!-- Table with panel -->
+    <div class="card card-cascade narrower">
+      <!--Card image-->
+      <div
+        class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+        <a href="" class="white-text mx-3">DANH SÁCH USER</a>
+      </div>
+      <!--/Card image-->
+      <div class="px-4">
+        {{#if this.emptyBidder}}
+          <div class="card-body">
+            <p class="card-text">
+              Không có dữ liệu.
+            </p>
+          </div>
+        {{else}}
+          <div class="table-wrapper">
+            <!--Table-->
+            <table class="table table-hover mb-0">
+              <!--Table head-->
+              <thead>
+                <tr>
+                  <th class="th-lg">
+                    <a>ID</a>
+                  </th>
+                  <th class="th-lg">
+                    <a href="">Username</a>
+                  </th>
+                  <th class="th-lg">
+                    <a href="">Họ tên </a>
+                  </th>
+                  <th class="th-lg">
+                    <a href="">Email </a>
+                  </th>
+                  <th class="th-lg">
+                    <a href="">Số điện thoại</a>
+                  </th>
+                  <th class="th-lg text-center">
+                    <a href="">Thăng cấp</a>
+                  </th>
+                  <th class="th-lg text-center">
+                    <a href="">Quản lý</a>
+                  </th>
+                </tr>
+              </thead>
+              <!--Table head-->
+              <!--Table body-->
+              <tbody class="bidders">
+                {{#each this.bidders}}
+                  <tr id={{id}} class="bidder" data-id="{{id}}">
                     <td>{{id}}</td>
                     <td>{{f_Username}}</td>
                     <td>{{f_Name}}</td>

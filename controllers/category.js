@@ -33,7 +33,9 @@ module.exports = {
             for (var i = 0; i <= 4; i++) {
                 const user = await mUser.getDetailById(psByTimeout[i].UserID);
                 // console.log(user[0]);
-                psByTimeout[i].UserName = user[0].f_Username;
+                if (user.length != 0) {
+                    psByTimeout[i].UserName = user[0].f_Username;
+                }
             }
             for (var i = 0; i <= 4; i++) {
                 const user = await mUser.getDetailById(psByBID[i].UserID);
