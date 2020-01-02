@@ -71,7 +71,6 @@ module.exports = {
     Accept: async function(req, res) 
     {
         var b = req.body;
-        console.log(b);
         Seller.deleteWait(b.WaitID);
         Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, 1);
         res.redirect("/seller/Waitlist")
@@ -79,7 +78,6 @@ module.exports = {
     Cancel: async function(req,res)
     {
         var b = req.body;
-        console.log(b);
         Seller.deleteWait(b.WaitID);
         Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, -1);
         res.redirect("/seller/Waitlist")
