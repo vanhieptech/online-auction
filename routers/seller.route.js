@@ -19,6 +19,15 @@ router.get("/myProducts/Selling", async function(req,res){
 router.get("/myProducts/Sold", async function(req,res){
     Seller.LoadSold(req,res);
 });
+router.get("/Waitlist", async function(req,res){
+    Seller.LoadWaitlist(req,res);
+});
+router.post("/Waitlist/accept", async function(req,res){
+    Seller.Accept(req,res);
+});
+router.post("/Waitlist/cancel", async function(req,res){
+    Seller.Cancel(req,res);
+});
 router.post("/myProducts/edit", async function(req,res){
     Seller.EditDes(req,res);
 });
@@ -28,13 +37,15 @@ router.post("/sale-register", async function(req, res) {
     var maxID = await db.load(sql);
     var ProID = maxID[0].ID + 1;
     const folderName = `./public/sp/${ProID}`;
+    var id=1;
     if (!fs.existsSync(folderName)) fs.mkdirSync(folderName);
     var storage2 = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, folderName);
         },
-        filename: function(req, file, cb) {
-            cb(null, file.originalname);
+        filename: function(req, files, cb) {
+            cb(null, `${ProID}-${id}.jpg`);
+            id=id+1;
         }
     });
     var upload = multer({ storage: storage2 });
@@ -42,7 +53,7 @@ router.post("/sale-register", async function(req, res) {
         "/sale-register-upload",
         upload.array("file_picture", 10),
         function(req, res) {
-            res.send("OK");
+            res.redirect("/seller/myProducts/All");
         }
     );
 });

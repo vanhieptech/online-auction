@@ -1,4 +1,3 @@
-<script type="text/javascript" src="../../assets/js/ckeditor/ckeditor.js"></script>
 <header>
   <!-- Navbar -->
   {{>home/header}}
@@ -21,57 +20,28 @@
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <thead>
           <tr>
+            <th class="text-center">User ID</th>
+            <th class="text-center">User Name</th>
             <th class="text-center">Product ID</th>
             <th class="text-center">Product Name</th>
             <th class="text-center">Price</th>
-            <th class="text-center">Step</th>
-            <th class="text-center">Price To Buy</th>
-            <th class="text-center">Time Start</th>
-            <th class="text-center">Time Finish</th>
-            <th class="text-center">Description</th>
+            <th class="text-center">Action</th>
           </tr>
         </thead>
         {{#each Table}}
         <tbody>
-          <tr>
+          <tr id="{{WaitID}}">
+            <td class="pt-3-half" >{{id}}</td>
+            <td class="pt-3-half" >{{f_Username}}</td>
             <td class="pt-3-half" >{{ProID}}</td>
             <td class="pt-3-half" >{{ProName}}</td>
             <td class="pt-3-half" >{{Price}}</td>
-            <td class="pt-3-half" >{{Step}}</td>
-            <td class="pt-3-half" >{{PriceToBuy}}</td>
-            <td class="pt-3-half" >{{TimeStart}}</td>
-            <td class="pt-3-half" >{{TimeFinish}}</td>
-      
             <td>
-              <span class="table-edit">
-                <button type="button" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" onclick="EditDes({{ProID}})">Edit</button>
-              </span>
-            </td>
+               <button type="button" class="btn btn-success btn-rounded btn-sm my-0" onclick="FAccept({{WaitID}},{{id}},'{{f_Username}}',{{ProID}},{{Price}})">Accept</button>
+              <button type="button" class="btn btn-danger btn-rounded btn-sm my-0" onclick="FCancel({{WaitID}},{{id}},'{{f_Username}}',{{ProID}},{{Price}})">Cancel</button>  
+            </td>    
           </tr>
-          <form action="/seller/myProducts/edit", method="POST">
-            <div class="modal fade" id="modalCart{{ProID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <!--Header-->
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">{{ProName}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <!--Body-->
-                  <div class="modal-body">
-                    <input type="hidden" name="ProID" value={{ProID}}>
-                    <textarea class="form-control md-textarea" id="editor{{ProID}}" name="product_description" rows="5">{{FullDes}}</textarea>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" >Commit</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <!-- This is our clonable table line -->
+
         </tbody>
         {{/each}}
       </table>
@@ -111,12 +81,14 @@
   </script>
 </footer>
 <script>
-  function EditDes(ProID)
-  {
-    CKEDITOR.replace(`editor${ProID}`);
-    var date = new Date().toString();
-    var Des = document.getElementById(`editor${ProID}`);
-    Des.value=Des.value + '<b>' + date + '<b><p></p>';
-  }
-  
+function FAccept(WaitID,UserID,UserName,ProID,Price)
+{
+  $.post( "/seller/Waitlist/accept", { WaitID: WaitID, UserID: UserID, UserName:UserName, ProID:ProID, Price: Price});
+  $(`#${WaitID}`).remove();
+}
+function FCancel(WaitID,UserID,UserName,ProID,Price)
+{
+  $.post( "/seller/Waitlist/cancel", { WaitID: WaitID, UserID: UserID, UserName:UserName, ProID:ProID, Price: Price});
+  $(`#${WaitID}`).remove();
+}
 </script>

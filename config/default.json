@@ -17,6 +17,7 @@
     },
     "status": {
         "win": 1,
-        "running": 0
+        "running": 0,
+        "ban": -1
     }
 }

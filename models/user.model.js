@@ -93,5 +93,24 @@ module.exports = {
             cb(error, null);
             console.log("Error Model: Product: all", error);
         }
-    }
+    },
+    deleteOneRequest: async(id, cb) => {
+        try {
+            const rows = await db.del(`requests`, `UserID`, id);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: all", error);
+        }
+    },
+    checkBanned: async(UserID, ProID) => {
+        try {
+            const sql = `SELECT Status FROM biddinglist WHERE UserID=${UserID} AND ProID=${ProID}`;
+            const rows = await db.load(sql);
+            const stt = rows[0].Status;
+            return stt;
+        } catch (error) {
+            console.log("Error Model Bidding: check", error);
+        }
+    },
 };

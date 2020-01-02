@@ -23,12 +23,10 @@
           <tr>
             <th class="text-center">Product ID</th>
             <th class="text-center">Product Name</th>
+            <th class="text-center">User Name</th>
             <th class="text-center">Price</th>
-            <th class="text-center">Step</th>
-            <th class="text-center">Price To Buy</th>
-            <th class="text-center">Time Start</th>
-            <th class="text-center">Time Finish</th>
-            <th class="text-center">Description</th>
+            <th class="text-center">React</th>
+            <th class="text-center">Review User</th>
           </tr>
         </thead>
         {{#each Table}}
@@ -36,41 +34,24 @@
           <tr>
             <td class="pt-3-half" >{{ProID}}</td>
             <td class="pt-3-half" >{{ProName}}</td>
-            <td class="pt-3-half" >{{Price}}</td>
-            <td class="pt-3-half" >{{Step}}</td>
-            <td class="pt-3-half" >{{PriceToBuy}}</td>
-            <td class="pt-3-half" >{{TimeStart}}</td>
-            <td class="pt-3-half" >{{TimeFinish}}</td>
-      
+            <td class="pt-3-half" >{{UserName}}</td>
+            <td class="pt-3-half" >{{Sold}}</td>
+            <td>
+              <form>
+                <input type="radio" name="react" value="123">123</input>
+                <input type="radio" name="react" value="1234">1345</input>
+              </form>
+              
+            </td>
+            <td>
+            <textarea class="form-control md-textarea" id="editor{{ProID}}" name="product_description" rows="5">{{FullDes}}</textarea>
+            </td>
             <td>
               <span class="table-edit">
                 <button type="button" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" onclick="EditDes({{ProID}})">Edit</button>
               </span>
             </td>
           </tr>
-          <form action="/seller/myProducts/edit", method="POST">
-            <div class="modal fade" id="modalCart{{ProID}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <!--Header-->
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">{{ProName}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <!--Body-->
-                  <div class="modal-body">
-                    <input type="hidden" name="ProID" value={{ProID}}>
-                    <textarea class="form-control md-textarea" id="editor{{ProID}}" name="product_description" rows="5">{{FullDes}}</textarea>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" >Commit</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
           <!-- This is our clonable table line -->
         </tbody>
         {{/each}}
