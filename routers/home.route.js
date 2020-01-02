@@ -3,12 +3,41 @@ const router = express.Router();
 const CategoryController = require("../controllers/category");
 var passport = require("passport");
 const userModel = require("../models/account.M");
+const db = require("../database/mysql");
+var mysql = require("mysql");
+const config = require("../config/default.json");
+var connection = mysql.createConnection(config.mysql);
+
+connection.connect();
+
+router.get("/search", function(req, res) {
+    connection.query(
+        `SELECT *,
+        MATCH(products.ProName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE) as tscore,
+        MATCH(categories.CatName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE) as ascore
+       FROM products 
+       LEFT JOIN categories ON products.CatID = categories.CatID 
+       WHERE 
+       MATCH(products.ProName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE)
+       OR MATCH(categories.CatName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE)
+       ORDER BY (tscore + ascore) DESC`,
+        function(err, rows, fields) {
+            if (err) throw err;
+            var data = [];
+            for (i = 0; i < rows.length; i++) {
+                data.push(rows[i].CatName);
+                data.push(rows[i].ProName);
+            }
+            console.log(data);
+            res.end(JSON.stringify(data));
+        }
+    );
+});
 //Router to home
 router.get("/", CategoryController.getTop);
 
 router.get("/error", (req, res) => {
     res.render("vwAccount/OTP");
-
 });
 router.get(
     "/auth/facebook/callback",
@@ -35,7 +64,6 @@ router.get(
         failureRedirect: "/login"
     }),
     async function(req, res) {
-
         req.session.GG = req.user;
         const user = await userModel.singleByUsername(req.session.GG.id);
         if (user != null) {
@@ -47,7 +75,6 @@ router.get(
         } else {
             res.redirect("/account/login/infoGG");
         }
-
     }
 );
 module.exports = router;

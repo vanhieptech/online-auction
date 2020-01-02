@@ -92,6 +92,10 @@ VALUES
   (7,8,'admin7', 21,24000000,'2019-06-15 09:34:21',1);
 COMMIT;
 
+ALTER TABLE products ADD FULLTEXT KEY ProName (ProName);
+ALTER TABLE categories ADD FULLTEXT KEY CatName (CatName);
+
+
 
 
 
