@@ -231,71 +231,23 @@
                 {{#each user}}
                   <div class="media mb-3">
                     <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3"
-                      src="https://mdbootstrap.com/img/Photos/Avatars/img (28).jpg" alt="Generic placeholder image">
+                      src="https://mdbootstrap.com/img/Photos/Avatars/img ({{id}}).jpg" alt="Generic placeholder image">
                     <div class="media-body">
                       <a>
-                        <h5 class="user-name font-weight-bold">{{this.f_Name}}</h5>
+                        <h5 class="user-name font-weight-bold">{{f_Username}}</h5>
                       </a>
                       <!-- Rating -->
-                      <ul class="rating mb-2">
-                        <li>
-                          <i class="fas fa-star blue-text"></i>
-                        </li>
-                        <li>
-                          <i class="fas fa-star blue-text"></i>
-                        </li>
-                        <li>
-                          <i class="fas fa-star blue-text"></i>
-                        </li>
-                        <li>
-                          <i class="fas fa-star blue-text"></i>
-                        </li>
-                        <li>
-                          <i class="fas fa-star grey-text"></i>
-                        </li>
+                      <ul class="rating mb-2">{{f_Evaluate}}
                       </ul>
                       <div class="card-data">
                         <ul class="list-unstyled mb-1">
                           <li class="comment-date font-small grey-text">
-                            <i class="far fa-clock"></i> 05/10/2015</li>
+                            <i class="far fa-clock"></i>{{Time}}</li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 {{/each}}
-                <div class="media">
-                  <img class=" card-img-100 rounded-circle z-depth-1-half d-flex mr-3"
-                    src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg" alt="Generic placeholder image">
-                  <div class="media-body">
-                    <a>
-                      <h5 class="user-name font-weight-bold">Lily Brown</h5>
-                    </a>
-                    <!-- Rating -->
-                    <ul class="rating mb-2">
-                      <li>
-                        <i class="fas fa-star blue-text"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star blue-text"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star blue-text"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star blue-text"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star blue-text"></i>
-                      </li>
-                    </ul>
-                    <div class="card-data">
-                      <ul class="list-unstyled mb-1">
-                        <li class="comment-date font-small grey-text">
-                          <i class="far fa-clock"></i> 05/10/2015</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </section>
               <!--Section: Block Content-->
             </div>

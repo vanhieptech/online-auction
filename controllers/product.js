@@ -47,11 +47,11 @@ module.exports = {
             const product = await mPro.getDetailById(proId);
             const catId = product[0].CatID;
             const ownerId = product[0].OwnerID;
-            const userId = product[0].UserID;
+            //const userId = product[0].UserID;
 
             const psRelative = await mPro.allByCatId(catId);
             const ownerInfo = await mUser.getDetailById(ownerId);
-            const userInfo = await mUser.getDetailById(userId);
+            const userInfo = await mPro.getTopUser(proId);
 
             //Kiểm tra đăng nhập chưa khi click vào button đấu giá
             product[0].isAuthenticated = req.session.isAuthenticated;

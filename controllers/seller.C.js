@@ -72,8 +72,19 @@ module.exports = {
     {
         var b = req.body;
         Seller.deleteWait(b.WaitID);
-        Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, 1);
-        res.redirect("/seller/Waitlist")
+        var Price= await Seller.loadMaxPrice(b.ProID);
+        if(b.Price>Price)
+        {
+            console.log("gia lon hon gia hien tai")
+            Seller.alterStatus(b.ProID);
+            Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, 1);
+        }
+        else
+        {
+            console.log("gia be hon gia hien tai");
+            Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, 0);
+        } 
+        res.redirect("/seller/Waitlist");
     },
     Cancel: async function(req,res)
     {
@@ -81,5 +92,12 @@ module.exports = {
         Seller.deleteWait(b.WaitID);
         Seller.addBidding(b.UserID, b.UserName, b.ProID, b.Price, -1);
         res.redirect("/seller/Waitlist")
-    }
+    },
+    AddReview: async function(req, res) 
+    {
+        var r = req.body;
+        const userId = req.session.authUser.id;
+        Seller.reviewUser(r.UserID, userId, r.Rate, r.reviewUser)
+        res.redirect("/seller/myProducts/Sold");
+    },
 };

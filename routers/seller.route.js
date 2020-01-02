@@ -19,6 +19,9 @@ router.get("/myProducts/Selling", async function(req,res){
 router.get("/myProducts/Sold", async function(req,res){
     Seller.LoadSold(req,res);
 });
+router.post("/myProducts/Sold/Review", async function(req,res){
+    Seller.AddReview(req,res);
+});
 router.get("/Waitlist", async function(req,res){
     Seller.LoadWaitlist(req,res);
 });

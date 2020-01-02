@@ -157,5 +157,14 @@ module.exports = {
             cb(error, null);
             console.log("Error Model: Product: insertOneToBiddingList", error);
         }
-    }
+    },
+    getTopUser: async id => {
+        try {
+            const sql = `SELECT u.id, u.f_Username, u.f_Evaluate, b.Price, b.Time FROM biddinglist b, users u WHERE b.ProID=${id} and b.UserID=u.id and b.Status!=2 order by Price desc`;
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Model: Product: all Pro Id", error);
+        }
+    },
 };

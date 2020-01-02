@@ -106,7 +106,6 @@ module.exports = {
         const userId = req.session.authUser.id;
         try {
             const Table = await mUser.loadReview(userId);
-            console.log(Table);
             for(let tb of Table){
                 tb.Rate = tb.Rate === 1 ? 1:0;
             }
