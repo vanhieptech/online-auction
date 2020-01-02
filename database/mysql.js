@@ -23,6 +23,25 @@ exports.load = sql => {
     });
 };
 
+exports.loadPIC = sql => {
+    return new Promise((resole, reject) => {
+        const con = createConnection();
+        con.connect(err => {
+            if (err) {
+                reject(err);
+            }
+        });
+        con.query(sql, (error, results, fields) => {
+            if (error) {
+                reject(error);
+            }
+            resole(results.insertId);
+        });
+        con.end();
+    });
+};
+
+
 exports.add = (tbName, entity) => {
     return new Promise((resole, reject) => {
         const con = createConnection();
