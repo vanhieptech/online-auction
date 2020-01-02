@@ -14,6 +14,6 @@ router.post("/:id/bid", ProductController.biddingByUserID);
 
 //Nếu nhỏ hơn 0.8 thì thêm yêu cầu vào danh sách waitinglist
 
-// router.post("/:id/wait",ProductController.addWaitingList);
+router.post("/:id/wait", ProductController.addWaitingList);
 
 module.exports = router;

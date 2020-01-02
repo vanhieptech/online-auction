@@ -141,24 +141,29 @@
                     <div class="font-weight-normal">
                       {{{FullDes}}}
                       {{#if isAuthenticated}}
-                        <form>
-                          <div class="mt-2 ">
-                            <div class="row text-center text-md-left">
-                              <label for="PriceBID" class="grey-text">Ra giá
-                                - Đề xuất: ${{SuggestPrice}}! with Step: {{Step}}
-                              </label>
+                        {{#unless checkUserInWaitingList}}
+                          <form class="area-to-input">
+                            <div class="mt-2 ">
+                              <div class="row text-center text-md-left">
+                                <label for="PriceBID" class="grey-text">Ra giá
+                                  - Đề xuất: ${{SuggestPrice}}! with Step: {{Step}}
+                                </label>
+                              </div>
+                              <input id="PriceBID" type="number" name="PriceBID" step={{Step}} min={{SuggestPrice}}
+                                max={{PriceToBuy}} required>
+                              <span class="validity"></span>
                             </div>
-                            <input id="PriceBID" type="number" name="PriceBID" step={{Step}} min={{SuggestPrice}}
-                              max={{PriceToBuy}} required>
-                            <span class="validity"></span>
-                          </div>
-                        </form>
+                          </form>
+                        {{/unless}}
                         <div class="row mt-3 mb-4">
                           <div class="col-md-12 text-center text-md-left text-md-right d-flex justify-content-center">
                             <button id="BID-button" data-id={{UserIDCurrent}} data-state={{ProID}}
                               data-rated={{RatedUserIDCurrent}} data-price-suggest={{SuggestPrice}}
-                              class="btn btn-danger btn-rounded">
-                              <i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>Đấu giá</button>
+                              class="btn btn-danger btn-rounded" {{#if checkUserInWaitingList}}disabled{{/if}}>
+                              <i class="fas fa-gavel mr-2 pr-2"
+                                aria-hidden="true"></i>{{#if checkUserInWaitingList}}Đang đợi
+                                duyệt
+                              {{else}}Đấu giá{{/if}}</button>
                           </div>
                         </div>
                       {{else}}

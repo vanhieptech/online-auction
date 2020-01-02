@@ -124,13 +124,15 @@
 
     const BIDRequested = check => {
         // const ProID = check.ProID;
-        const Price = check.Price;
-        const UserIDCurrent = check.UserBID;
+
+        const Rated = $("#BID-button").attr("data-rated");
         const Step = $(`#PriceBID`).attr("step");
         //Nếu rate>=0.8
-        if (UserIDCurrent.f_Evaluate >= 0.8) {
+        if (Rated >= 0.8) {
+            const Price = check.Price;
             console.log(Price);
             console.log($(`#PriceCurrent`).text());
+            $(`#BID-button`).attr("disabled", "disabled");
             $(`#PriceCurrent strong`).text(`${Price}`);
             // $(`#PriceCurrent`).prepend(`<i class="fas fa-dollar-sign">`);
             $(`label .grey-text`).text(
@@ -138,7 +140,7 @@
             );
         } else {
             //Nếu rate<0.8
-
+            $(`form.area-to-input`).remove();
             $(`#BID-button`).text(`Đang đợi duyệt`);
             $(`#BID-button`).prepend(
                 `<i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>`
@@ -155,19 +157,34 @@
         // console.log($(this).attr("disabled"));
 
         const ProID = $(this).attr("data-state");
-
+        const Rated = $(this).attr("data-rated");
         const Price = $("#PriceBID").val();
+        var obj = "";
+        if (Price === "") {
+            return;
+        }
+        if (Rated >= 0.8) {
+            obj = "bid";
+        } else {
+            obj = "wait";
+        }
         var ProIDInt = parseInt(ProID, 10);
         var PriceInt = parseInt(Price, 10);
 
-        var date = new Date().toString();
+        console.log(`hi`, Rated);
+        console.log(Price);
+        console.log(obj);
 
+        if (PriceInt === NaN) {
+            return;
+        }
         if ($(this).attr("disabled") === "disabled") {
             console.log("just tesing");
         } else {
             console.log("clicked!!");
+
             $.ajax({
-                    url: "products/:id/bid",
+                    url: `products/:id/${obj}`,
                     method: "POST",
                     data: {
                         ProID: ProIDInt,

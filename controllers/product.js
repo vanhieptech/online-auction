@@ -65,7 +65,9 @@ module.exports = {
             //Kiệm tra user hiện tại có đang dấu giá sản phẩm này hay không
             //và kiểm tra user đó đã thắng sản phẩm đó hay chưa
             //Tạo thể hiện button khác với các user khác
+            //Kiểm tra đang yêu cầu đấu giá
 
+            product[0].checkUserInWaitingList = false;
             if (req.session.isAuthenticated === true) {
                 const id = req.session.authUser.id;
                 const rated = req.session.authUser.f_Evaluate;
@@ -73,8 +75,9 @@ module.exports = {
                 //Thêm thông tin ID và đánh giá của mỗi user khi đăng nhập
                 product[0].UserIDCurrent = id;
                 product[0].RatedUserIDCurrent = rated;
-
-                console.log(`+++++++`, req.session.authUser.f_Evaluate);
+                const UsertoCheck = await mUser.getWaitingById(id, proId);
+                product[0].checkUserInWaitingList = UsertoCheck.length;
+                // console.log(`+++++++`, req.session.authUser.f_Evaluate);
             }
 
             res.render("vwProducts/detail", {
@@ -114,7 +117,7 @@ module.exports = {
         entity.UserID = req.session.authUser.id;
         entity.UserName = req.session.authUser.f_Username;
 
-        console.log(`+++++++++++`, entity);
+        // console.log(`+++++++++++`, entity);
 
         mPro.insertOneToBiddingList(entity, async(error, results) => {
             if (error) {
@@ -132,9 +135,9 @@ module.exports = {
 
             //Lấy thông tin user vừa biding để append vào top
             const user = await mUser.getDetailById(entity.UserID);
+
             return res.json({
                 //Trả về Price, ProID, UserDetail trong bidding list của sản phẩm đó
-
                 ProID: entity.ProID,
                 Price: entity.Price,
                 UserBID: user[0]
@@ -143,15 +146,18 @@ module.exports = {
     },
     addWaitingList: async(req, res) => {
         //Thêm user ID current
-        const entity = req.body;
+
+        const entity = {};
         entity.UserID = req.session.authUser.id;
+        entity.ProID = req.body.ProID;
+        entity.Price = req.body.Price;
 
         // console.log(entity);
 
-        mPro.insertOneToWishList(entity, (error, product) => {
+        mPro.insertOneToWaitingist(entity, (error, product) => {
             if (error) {
                 return res.status(401).json({
-                    message: "Not able to add favorite!"
+                    message: "Not able to add Waiting List!"
                 });
             }
 

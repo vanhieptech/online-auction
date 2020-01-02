@@ -56,6 +56,18 @@ module.exports = {
             console.log("Error Model: User: Detail Pro Id", error);
         }
     },
+    getWaitingById: async(id, ProID) => {
+        try {
+            const sql = `SELECT * FROM waitinglist WHERE UserID = ${id} AND ProID = ${ProID}`;
+
+            // console.log(`====`, sql)
+
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Model: User: Detail Pro Id", error);
+        }
+    },
     singleByUsername: async username => {
         const rows = await db.load(
             `select * from users where f_Username = '${username}'`
@@ -103,7 +115,7 @@ module.exports = {
             console.log("Error Model: Product: all", error);
         }
     },
-    loadReview: async(UserID) => {
+    loadReview: async UserID => {
         try {
             const sql = `SELECT u.id, u.f_Name, r.Comment, r.Rate, r.TimeRate FROM reviews r, users u WHERE r.UserID=${UserID} AND r.RatedID=u.id`;
             const rows = await db.load(sql);
@@ -111,5 +123,5 @@ module.exports = {
         } catch (error) {
             console.log("Error Review: check", error);
         }
-    },
+    }
 };

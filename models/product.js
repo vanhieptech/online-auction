@@ -138,6 +138,16 @@ module.exports = {
             console.log("Error Model: Product: insertOneToWishList", error);
         }
     },
+    insertOneToWaitingist: async(entity, cb) => {
+        try {
+            const rows = await db.add(`waitinglist`, entity);
+            // console.log(rows);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: insertOneToWaitingList", error);
+        }
+    },
     insertOneToBiddingList: async(entity, cb) => {
         try {
             const rows = await db.add(`biddinglist`, entity);
