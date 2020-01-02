@@ -117,4 +117,30 @@ module.exports = {
             console.log("Error Controller Seller All", error);
         }
     },
+    Bidding: async function(req, res)
+    {
+        const userId = req.session.authUser.id;
+        try {
+            const Table = await mUser.loadBidding(userId);
+            res.render("vwBidder/bidder",{
+                title: "Bidding",
+                Table: Table,
+            });
+        } catch (error) {
+            console.log("Error Controller Seller All", error);
+        }
+    },
+    Bidded: async function(req, res)
+    {
+        const userId = req.session.authUser.id;
+        try {
+            const Table = await mUser.loadBidded(userId);
+            res.render("vwBidder/bidder",{
+                title: "Bidded",
+                Table: Table,
+            });
+        } catch (error) {
+            console.log("Error Controller Seller All", error);
+        }
+    },
 };

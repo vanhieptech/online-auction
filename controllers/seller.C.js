@@ -19,13 +19,8 @@ module.exports = {
         entity.TimeFinish = "2020-01-03 20:00:21";
         if (req.body.extension == 'on') entity.Extension = 1;
         else entity.Extension = 0;
-
-
-
-
-        console.log(entity);
-
-        var date = new Date().toString();
+        //console.log(entity);
+        //var date = new Date().toString();
         const ProID = Seller.add(entity);
         return ProID;
     },

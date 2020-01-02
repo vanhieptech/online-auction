@@ -1,0 +1,76 @@
+<style>
+  .rate-popover{
+  color: #c4c4c4;
+}
+.live{
+  color: black;
+}
+</style>
+<header>
+  <!-- Navbar -->
+  {{>home/header}}
+</header>
+<main>
+<!-- Editable table -->
+
+<div class="card">
+  <div class="card-header text-center font-weight-bold text-uppercase py-4">.</div>
+  <div class="card-header text-center font-weight-bold text-uppercase py-4">Products of {{authUser.f_Name}}</div>
+  <div class="card-body">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Product ID</th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Owner ID</th>
+          </tr>
+        </thead>
+        {{#each Table}}
+        <tbody>
+          <tr>
+            <td class="pt-3-half" >{{ProID}}</td>
+            <td class="pt-3-half" >{{ProName}}</td>
+            <td class="pt-3-half" >{{Price}}</td>
+            <td class="pt-3-half" >{{OwnerID}}</td>
+          <!-- This is our clonable table line -->
+        </tbody>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+
+</div>
+<!-- Editable table -->
+</main>
+<footer>
+  <i class="footer-bor" style="background:#acacac;opacity:.1;"></i>
+  <div id="footer" class="footer wow slideInUp backcolor back-footer animated"
+    style="background: rgb(236, 179, 90); visibility: visible; animation-name: slideInUp;">
+    {{>home/bottom}}
+  </div>
+  <!-- /footer -->
+  <script type="text/javascript">
+    var qq_left = "3",
+      qq_topbottom = 50;
+    $(".kefu_q3 .default").on("click", function () {
+      $(this).animate({
+        "right": -120 + '%'
+      }, 100);
+      $(".default-hide").animate({
+        "margin-right": 0
+      }, 300);
+    })
+    $(".colse").on("click", function () {
+      $(".default-hide").animate({
+        "margin-right": -120 + '%'
+      }, 100);
+      $(".kefu_q3 .default").animate({
+        "right": qq_left + 'px',
+        "bottom": qq_topbottom + 'px'
+      }, 300);
+    })
+  </script>
+</footer>
+<script>
+</script>

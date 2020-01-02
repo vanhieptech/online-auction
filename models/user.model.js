@@ -123,5 +123,23 @@ module.exports = {
         } catch (error) {
             console.log("Error Review: check", error);
         }
-    }
+    },
+    loadBidding: async UserID => {
+        try {
+            const sql = `SELECT p.ProID, p.ProName, p.Price, p.OwnerID FROM biddinglist b, products p WHERE b.UserID=${UserID} AND (b.Status=0 OR b.Status=1) AND b.ProID=p.ProID`;
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Bidding: check", error);
+        }
+    },
+    loadBidded: async UserID => {
+        try {
+            const sql = `SELECT p.ProID, p.ProName, p.Price, p.OwnerID FROM biddinglist b, products p WHERE b.UserID=${UserID} AND b.Status=2 AND b.ProID=p.ProID`;
+            const rows = await db.load(sql);
+            return rows;
+        } catch (error) {
+            console.log("Error Bidded: check", error);
+        }
+    },
 };

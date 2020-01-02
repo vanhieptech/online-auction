@@ -51,8 +51,20 @@ module.exports = {
 
             const psRelative = await mPro.allByCatId(catId);
             const ownerInfo = await mUser.getDetailById(ownerId);
-            const userInfo = await mPro.getTopUser(proId);
+            var userInfo = await mPro.getTopUser(proId);
+            for(var i=0;i<userInfo.length;i++)
+            {
+                var a=userInfo[i].f_Username.length-3;
+                {
+                    var temp="";
+                    for(var j=0;j<a;j++)
+                    {
+                        temp+="*";
+                    }
+                    userInfo[i].f_Username=temp+userInfo[i].f_Username.substr(a,3);
 
+                }
+            }
             //Kiểm tra đăng nhập chưa khi click vào button đấu giá
             product[0].isAuthenticated = req.session.isAuthenticated;
 
