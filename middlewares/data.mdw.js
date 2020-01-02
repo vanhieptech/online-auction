@@ -21,6 +21,8 @@ module.exports = async(req, res, next) => {
             try {
                 const user = await mUser.getRequestById(id);
 
+                // const checkRated = await mUser.getRatedById(id);
+
                 if (user.length === 0) {
                     res.locals.isRequested = false;
                 }

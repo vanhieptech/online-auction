@@ -48,24 +48,41 @@ module.exports = {
             const catId = product[0].CatID;
             const ownerId = product[0].OwnerID;
             const userId = product[0].UserID;
-            // console.log(product)
-            // console.log(product[0].OwnerID)
-            // console.log("ownerId", ownerId)
+
             const psRelative = await mPro.allByCatId(catId);
             const ownerInfo = await mUser.getDetailById(ownerId);
             const userInfo = await mUser.getDetailById(userId);
 
-            // console.log(`++++++++++`, catId);
-            // console.log(`++++++++++`, psRelative);
+            //Kiểm tra đăng nhập chưa khi click vào button đấu giá
+            product[0].isAuthenticated = req.session.isAuthenticated;
 
-            const chectRatedPoint = res.render("vwProducts/detail", {
+            const checkRatedPoint = false;
+            //Mặc  định userID không tồn tại khi chưa đăng nhập
+            //Và mặc định đánh giá là 0 khi chưa ai đăng nhập
+            product[0].UserIDCurrent = 0;
+            product[0].RatedUserIDCurrent = 0;
+            product[0].SuggestPrice = product[0].Price + product[0].Step;
+            //Kiệm tra user hiện tại có đang dấu giá sản phẩm này hay không
+            //và kiểm tra user đó đã thắng sản phẩm đó hay chưa
+            //Tạo thể hiện button khác với các user khác
+
+            if (req.session.isAuthenticated === true) {
+                const id = req.session.authUser.id;
+                const rated = req.session.authUser.f_Evaluate;
+
+                //Thêm thông tin ID và đánh giá của mỗi user khi đăng nhập
+                product[0].UserIDCurrent = id;
+                product[0].RatedUserIDCurrent = rated;
+
+                console.log(`+++++++`, req.session.authUser.f_Evaluate);
+            }
+
+            res.render("vwProducts/detail", {
                 title: "Chi tiết sản phẩm",
                 product: product,
                 owner: ownerInfo,
                 user: userInfo,
-                psRelative: psRelative,
-                // check: checkRatedPoint > 0.8
-                checkPoint: false
+                psRelative: psRelative
             });
         } catch (error) {
             console.log("Error Controller Product getByProId", error);
@@ -77,7 +94,7 @@ module.exports = {
         const entity = req.body;
         entity.UserID = req.session.authUser.id;
 
-        console.log(entity);
+        // console.log(entity);
 
         mPro.insertOneToWishList(entity, (error, product) => {
             if (error) {
