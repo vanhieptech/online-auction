@@ -123,7 +123,7 @@
                     <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">Sắp hết thời gian</span>
                     <span class="badge badge-success product mb-4 ml-2">SALE</span>
                     <h3 class="h3-responsive text-center text-md-left mb-3 ml-xl-0 ml-4">
-                      <span class="red-text font-weight-bold"><i class="fas fa-dollar-sign"></i>
+                      <span id="PriceCurrent" class="red-text font-weight-bold "><i class="fas fa-dollar-sign"></i>
                         <strong>{{Price}}</strong>
                       </span>
                       <span class="pl-2 grey-text">
@@ -152,15 +152,15 @@
                               max={{PriceToBuy}} required>
                             <span class="validity"></span>
                           </div>
-                          <div class="row mt-3 mb-4">
-                            <div class="col-md-12 text-center text-md-left text-md-right d-flex justify-content-center">
-                              <button type="submit" data-id={{UserIDCurrent}} data-state={{ProID}}
-                                data-rated={{RatedUserIDCurrent}} data-price-suggest={{SuggestPrice}}
-                                class="btn btn-danger btn-rounded">
-                                <i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>Đấu giá</button>
-                            </div>
-                          </div>
                         </form>
+                        <div class="row mt-3 mb-4">
+                          <div class="col-md-12 text-center text-md-left text-md-right d-flex justify-content-center">
+                            <button id="BID-button" data-id={{UserIDCurrent}} data-state={{ProID}}
+                              data-rated={{RatedUserIDCurrent}} data-price-suggest={{SuggestPrice}}
+                              class="btn btn-danger btn-rounded">
+                              <i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>Đấu giá</button>
+                          </div>
+                        </div>
                       {{else}}
                         <form action="/account/login" method="get">
                           <div class="row mt-3 mb-4">

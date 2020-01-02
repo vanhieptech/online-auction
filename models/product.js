@@ -1,4 +1,5 @@
-const db = require("../database/mysql");
+const db = require("../database/mysql"),
+    run = db.errorHandle;
 const config = require("../config/default.json");
 
 const tbName = `Products`;
@@ -73,6 +74,14 @@ module.exports = {
         delete entity.ProID;
         return db.patch("products", entity, condition);
     },
+    update: async entity => {
+        const [nr, err] = await run(db.update(tbName, idField, entity));
+        if (err) {
+            console.log("Error Model: Product: update", err);
+            throw err;
+        }
+        return nr;
+    },
     //Chú ý Tìm cách truy vấn về time thực
     getTop5ProductsReadyFinish: async() => {
         try {
@@ -127,6 +136,16 @@ module.exports = {
         } catch (error) {
             cb(error, null);
             console.log("Error Model: Product: insertOneToWishList", error);
+        }
+    },
+    insertOneToBiddingList: async(entity, cb) => {
+        try {
+            const rows = await db.add(`biddinglist`, entity);
+            // console.log(rows);
+            cb(null, rows);
+        } catch (error) {
+            cb(error, null);
+            console.log("Error Model: Product: insertOneToBiddingList", error);
         }
     }
 };

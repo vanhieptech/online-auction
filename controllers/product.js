@@ -108,6 +108,58 @@ module.exports = {
             });
         });
     },
+    biddingByUserID: async(req, res) => {
+        //Thêm user ID current
+        const entity = req.body;
+        entity.UserID = req.session.authUser.id;
+        entity.UserName = req.session.authUser.f_Username;
+
+        console.log(`+++++++++++`, entity);
+
+        mPro.insertOneToBiddingList(entity, async(error, results) => {
+            if (error) {
+                return res.status(401).json({
+                    message: "Not able to add to biddling list!"
+                });
+            }
+            const entityPro = {};
+            entityPro.ProID = entity.ProID;
+            entityPro.Price = entity.Price;
+            entityPro.UserID = entity.UserID;
+            //Cập nhật lại thông tin về giá và UserID trong sản phẩm
+            const result = await mPro.update(entityPro);
+            // Cập nhật lại trạng thái của các user khác đang đấu giá sản phẩm đó thành 0
+
+            //Lấy thông tin user vừa biding để append vào top
+            const user = await mUser.getDetailById(entity.UserID);
+            return res.json({
+                //Trả về Price, ProID, UserDetail trong bidding list của sản phẩm đó
+
+                ProID: entity.ProID,
+                Price: entity.Price,
+                UserBID: user[0]
+            });
+        });
+    },
+    addWaitingList: async(req, res) => {
+        //Thêm user ID current
+        const entity = req.body;
+        entity.UserID = req.session.authUser.id;
+
+        // console.log(entity);
+
+        mPro.insertOneToWishList(entity, (error, product) => {
+            if (error) {
+                return res.status(401).json({
+                    message: "Not able to add favorite!"
+                });
+            }
+
+            return res.json({
+                ProID: entity.ProID
+            });
+        });
+    },
 
     delete: async(req, res) => {
         const ProID = parseInt(req.params.id);

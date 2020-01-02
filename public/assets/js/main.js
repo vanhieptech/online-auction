@@ -104,4 +104,80 @@
                 .catch(requestFail);
         }
     });
+
+    //Gửi yêu cầu đấu giá
+
+    //Nếu rate trên 0.8 thì thực hiện đấu giá luôn
+    //Cập nhật lại giá
+    //Cập nhật lại userID người đấu giá cao nhất
+    //Cập nhật lại biddinglist với các
+
+    //Nếu rate dưới 0.8 thì
+    //Sau khi click
+    //Xoá input và label
+    //Đổi text của button thành Đang đợi duyệt và disable button
+
+    //Nhớ phải thêm hàm check dang đợi duyêt của USERIDcurrent
+    //Và chỉ show button với trang thái giống như client
+
+    //Nếu đang đợi thì không được đấu giá cho đến khi UserID không còn nằm trong watiting list
+
+    const BIDRequested = check => {
+        // const ProID = check.ProID;
+        const Price = check.Price;
+        const UserIDCurrent = check.UserBID;
+        const Step = $(`#PriceBID`).attr("step");
+        //Nếu rate>=0.8
+        if (UserIDCurrent.f_Evaluate >= 0.8) {
+            console.log(Price);
+            console.log($(`#PriceCurrent`).text());
+            $(`#PriceCurrent strong`).text(`${Price}`);
+            // $(`#PriceCurrent`).prepend(`<i class="fas fa-dollar-sign">`);
+            $(`label .grey-text`).text(
+                `Ra giá - Đề xuất: ${Step}! with Step: ${Step}`
+            );
+        } else {
+            //Nếu rate<0.8
+
+            $(`#BID-button`).text(`Đang đợi duyệt`);
+            $(`#BID-button`).prepend(
+                `<i class="fas fa-gavel mr-2 pr-2" aria-hidden="true"></i>`
+            );
+            $(`#BID-button`).attr("disabled", "disabled");
+        }
+    };
+
+    const BIDRequestFail = response => {
+        alert("Can't BID!");
+    };
+
+    $(document).on("click", "#BID-button", function() {
+        // console.log($(this).attr("disabled"));
+
+        const ProID = $(this).attr("data-state");
+
+        const Price = $("#PriceBID").val();
+        var ProIDInt = parseInt(ProID, 10);
+        var PriceInt = parseInt(Price, 10);
+
+        var date = new Date().toString();
+
+        if ($(this).attr("disabled") === "disabled") {
+            console.log("just tesing");
+        } else {
+            console.log("clicked!!");
+            $.ajax({
+                    url: "products/:id/bid",
+                    method: "POST",
+                    data: {
+                        ProID: ProIDInt,
+                        Price: PriceInt,
+                        Time: "2020-01-03 08:00:21",
+                        Status: 1 //Trạng thái đang giữ giá
+                    }
+                })
+                .then(BIDRequested)
+                .catch(BIDRequestFail);
+        }
+    });
 })(jQuery);
