@@ -12,15 +12,7 @@ connection.connect();
 
 router.get("/search", function(req, res) {
     connection.query(
-        `SELECT *,
-        MATCH(products.ProName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE) as tscore,
-        MATCH(categories.CatName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE) as ascore
-       FROM products 
-       LEFT JOIN categories ON products.CatID = categories.CatID 
-       WHERE 
-       MATCH(products.ProName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE)
-       OR MATCH(categories.CatName) AGAINST('${req.query.key}' IN NATURAL LANGUAGE MODE)
-       ORDER BY (tscore + ascore) DESC`,
+        `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` + req.query.key + `%'`,
         function(err, rows, fields) {
             if (err) throw err;
             var data = [];
@@ -30,8 +22,22 @@ router.get("/search", function(req, res) {
             }
             console.log(data);
             res.end(JSON.stringify(data));
+
         }
     );
+});
+router.post("/", async function(req, res) {
+    var Proname = console.log(req.body.typeahead);
+    console.log(req.body.typeahead);
+    var sql = `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` + req.body.typeahead + `%'`;
+    const products = await db.load(sql);
+    console.log(products);
+
+
+    res.render("vwSearch/search", {
+        title: req.body.typeahead,
+        products: products
+    });
 });
 //Router to home
 router.get("/", CategoryController.getTop);
