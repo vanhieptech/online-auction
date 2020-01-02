@@ -1,0 +1,35 @@
+{{>home/header}}
+<div class="container my-7" style="height:1050px;
+                        background-image: url(&quot;../../images/bg_47.jpg&quot);
+                        background-repeat: no-repeat;
+                        background-attachment: fixed;
+                        background-size: 100%;
+                        display: flex; justify-content: center;">
+  <section class="dark-grey-text mb-5">
+    <h3 class="font-weight-bold text-center mb-5">Reviews</h3>
+    {{#each Table}}
+    <div class="media mb-3">
+      <img class="card-img-100 rounded-circle z-depth-1-half d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Avatars/img ({{id}}).jpg" alt="Generic placeholder image">
+      <div class="media-body">
+        <a>
+          <h5 class="user-name font-weight-bold">{{f_Name}}</h5>
+        </a>
+        <!-- Rating -->
+        {{log Rate}}
+        {{#if Rate}}
+            <i class="far fa-thumbs-up blue-text"></i>
+            {{else}}
+            <i class="far fa-thumbs-down blue-text"></i>
+        {{/if}}
+        <div class="card-data">
+          <ul class="list-unstyled mb-1">
+            <li class="comment-date font-small grey-text">
+              <i class="far fa-clock"></i>{{TimeRate}}</li>
+          </ul>
+        </div>
+        <p class="dark-grey-text article">{{Comment}}</p>
+      </div>
+    </div>
+    {{/each}}
+	</section>
+</div>

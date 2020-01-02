@@ -27,7 +27,7 @@ module.exports = {
         try {
             const Table = await Seller.load(userId, 2);
             res.render("./vwSeller/myProducts", {
-                title: "My Product",
+                title: "My Selling",
                 Table: Table,
             });
         } catch (error) {
@@ -40,7 +40,7 @@ module.exports = {
         try {
             const Table = await Seller.load(userId, 3);
             res.render("./vwSeller/Sold.hbs", {
-                title: "My Product",
+                title: "My Sold",
                 Table: Table,
             });
         } catch (error) {
@@ -54,11 +54,11 @@ module.exports = {
             const Table = await Seller.load(userId, 4);
             console.log(Table);
             res.render("./vwSeller/myWaitlist", {
-                title: "My Product",
+                title: "My Waitlist",
                 Table: Table,
             });
         } catch (error) {
-            console.log("Error Controller Seller Wishlist", error);
+            console.log("Error Controller Seller Waitlist", error);
         }
     },
     EditDes: async function(req, res)

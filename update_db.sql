@@ -44,8 +44,9 @@ CREATE TABLE `reviews` (
     `ReviewID` INT (11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `UserID` INT (11) UNSIGNED NOT NULL,
     `RatedID` INT (11) UNSIGNED NOT NULL,
-    `Rate`INT (11) UNSIGNED NOT NULL,
+    `Rate`INT (11) NOT NULL,
     `Comment` VARCHAR(100)CHARACTER SET UTF8 COLLATE UTF8_UNICODE_CI NOT NULL,
+	`TimeRate` DATETIME NOT NULL,
     PRIMARY KEY (`ReviewID`) USING BTREE
   ) ENGINE = MYISAM AUTO_INCREMENT = 8 CHARACTER 
 SET = UTF8 COLLATE = UTF8_UNICODE_CI;
@@ -55,13 +56,13 @@ SET = UTF8 COLLATE = UTF8_UNICODE_CI;
   BEGIN;
 INSERT INTO `reviews`
 VALUES
-  (1,4, 2,1,'Sản phẩm tốt'),
-  (2,4, 2,1,'Sản phẩm tốt'),
-  (3,7, 2,1,'Shop xin'),
-  (4,7, 3,1,'Sản phẩm tốt'), 
-  (5,7, 3,1,'KHong tot'), 
-  (6,8, 3,1,'Sản phẩm tốt'),
-  (7,8, 3,1,'Sản phẩm lỗi');
+  (1,4, 2,1,'Sản phẩm tốt',subtime(now(),'1 1:5:0')),
+  (2,4, 2,1,'Sản phẩm tốt',subtime(now(),'1 3:8:0')),
+  (3,7, 2,1,'Shop xin',subtime(now(),'4 2:5:0')),
+  (4,7, 3,1,'Sản phẩm tốt',subtime(now(),'8 1:5:0')), 
+  (5,7, 3,1,'KHong tot',subtime(now(),'1 1:20:0')), 
+  (6,8, 3,1,'Sản phẩm tốt',subtime(now(),'20 1:5:0')),
+  (7,8, 3,1,'Sản phẩm lỗi',subtime(now(),'11 8:5:0'));
 COMMIT;
 
 DROP TABLE IF EXISTS `biddinglist`;

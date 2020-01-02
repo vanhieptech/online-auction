@@ -4,6 +4,7 @@ const moment = require("moment");
 const userModel = require("../models/account.M");
 const restrict = require("../middlewares/auth.mdw");
 const VerifiEmail = require("../models/EmailVerification");
+const cUser = require("../controllers/user.C");
 const router = express.Router();
 const passport = require("passport");
 router.get("/register", async(req, res) => {
@@ -22,6 +23,9 @@ router.get("/login/forgotPassword", (req, res) => {
 });
 router.get("/profile", restrict, (req, res) => {
     res.render("vwAccount/profile");
+});
+router.get("/viewReview", restrict, (req, res) => {
+    cUser.review(req,res);
 });
 router.get("/update", restrict, (req, res) => {
     res.render("vwAccount/update");

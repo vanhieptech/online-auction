@@ -103,14 +103,13 @@ module.exports = {
             console.log("Error Model: Product: all", error);
         }
     },
-    checkBanned: async(UserID, ProID) => {
+    loadReview: async(UserID) => {
         try {
-            const sql = `SELECT Status FROM biddinglist WHERE UserID=${UserID} AND ProID=${ProID}`;
+            const sql = `SELECT u.id, u.f_Name, r.Comment, r.Rate, r.TimeRate FROM reviews r, users u WHERE r.UserID=${UserID} AND r.RatedID=u.id`;
             const rows = await db.load(sql);
-            const stt = rows[0].Status;
-            return stt;
+            return rows;
         } catch (error) {
-            console.log("Error Model Bidding: check", error);
+            console.log("Error Review: check", error);
         }
     },
 };

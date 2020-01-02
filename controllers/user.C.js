@@ -101,4 +101,21 @@ module.exports = {
             });
         });
     },
+    review: async function(req, res)
+    {
+        const userId = req.session.authUser.id;
+        try {
+            const Table = await mUser.loadReview(userId);
+            console.log(Table);
+            for(let tb of Table){
+                tb.Rate = tb.Rate === 1 ? 1:0;
+            }
+            res.render("vwAccount/review",{
+                title: "Review",
+                Table: Table,
+            });
+        } catch (error) {
+            console.log("Error Controller Seller All", error);
+        }
+    },
 };
