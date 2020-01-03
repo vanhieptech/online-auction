@@ -24,6 +24,7 @@
             <th class="text-center">Product Name</th>
             <th class="text-center">Price</th>
             <th class="text-center">Owner ID</th>
+            <th class="text-center">View detail</th>
           </tr>
         </thead>
         {{#each Table}}
@@ -33,6 +34,11 @@
             <td class="pt-3-half" >{{ProName}}</td>
             <td class="pt-3-half" >{{Price}}</td>
             <td class="pt-3-half" >{{OwnerID}}</td>
+            <td>
+              <span>
+                <button type="button" data-toggle="modal" data-target="#modalCart{{ProID}}"class="btn btn-danger btn-rounded btn-sm my-0" onclick=window.location.href='/products/{{ProID}}'>Detail</button>
+              </span>
+            </td>
           <!-- This is our clonable table line -->
         </tbody>
         {{/each}}
@@ -72,5 +78,3 @@
     })
   </script>
 </footer>
-<script>
-</script>
