@@ -85,7 +85,7 @@ module.exports = {
     //Chú ý Tìm cách truy vấn về time thực
     getTop5ProductsReadyFinish: async() => {
         try {
-            const sql = `SELECT * FROM ${tbName} ORDER BY Price DESC LIMIT 5`;
+            const sql = `SELECT * FROM ${tbName} ORDER BY DATEDIFF(TimeFinish, TimeStart) ASC LIMIT 5`;
             const rows = await db.load(sql);
 
             return rows;
@@ -166,5 +166,5 @@ module.exports = {
         } catch (error) {
             console.log("Error Model: Product: all Pro Id", error);
         }
-    },
+    }
 };

@@ -25,7 +25,7 @@ router.get("/profile", restrict, (req, res) => {
     res.render("vwAccount/profile");
 });
 router.get("/viewReview", restrict, (req, res) => {
-    cUser.review(req,res);
+    cUser.review(req, res);
 });
 router.get("/update", restrict, (req, res) => {
     res.render("vwAccount/update");
@@ -282,12 +282,12 @@ router.post("/login/infoFB", async(req, res) => {
     entity.f_Password = bcrypt.hashSync("10" + N, 10);
     entity.f_Evaluate = 0;
     entity.f_Permission = 0;
-    req.session.authUser = entity;
+    // req.session.authUser = entity;
     const result = await userModel.add(entity);
     if (result) {
-        req.session.isAuthenticated = true;
+        // req.session.isAuthenticated = true;
         console.log("Đăng kí thành công");
-        return res.redirect("/");
+        return res.redirect("/account/login");
     } else {
         console.log("Đăng kí thất bại do add data");
         return res.render("vwAccount/register");
@@ -324,13 +324,14 @@ router.post("/login/infoGG", async(req, res) => {
     entity.f_Password = bcrypt.hashSync("10" + N, 10);
     entity.f_Evaluate = 0;
     entity.f_Permission = 0;
-    req.session.authUser = entity;
+    // req.session.authUser = entity;
     console.log(entity);
     const result = await userModel.add(entity);
     if (result) {
-        req.session.isAuthenticated = true;
+        // req.session.isAuthenticated = true;
+
         console.log("Đăng kí thành công");
-        return res.redirect("/");
+        return res.redirect("/account/login");
     } else {
         console.log("Đăng kí thất bại do add data");
         return res.render("vwAccount/register");

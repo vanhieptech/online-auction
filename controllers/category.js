@@ -2,6 +2,7 @@ const mCat = require("../models/category");
 const mPro = require("../models/product");
 const mUser = require("../models/user.model");
 const config = require("../config/default.json");
+const moment = require("moment");
 
 module.exports = {
     getAll: async(req, res) => {
@@ -32,6 +33,11 @@ module.exports = {
 
             for (var i = 0; i <= 4; i++) {
                 const user = await mUser.getDetailById(psByTimeout[i].UserID);
+                psByTimeout[i].TimeFinish = moment(
+                    psByTimeout[i].TimeFinish,
+                    "YYYY-MM-DD HH:MM:SS"
+                ).format("YYYY-MM-DD HH:MM:SS");
+
                 // console.log(user[0]);
                 if (user.length != 0) {
                     psByTimeout[i].UserName = user[0].f_Username;
@@ -39,12 +45,19 @@ module.exports = {
             }
             for (var i = 0; i <= 4; i++) {
                 const user = await mUser.getDetailById(psByBID[i].UserID);
+                psByBID[i].TimeFinish = moment(
+                    psByBID[i].TimeFinish,
+                    "YYYY-MM-DD HH:MM:SS"
+                ).format("YYYY-MM-DD HH:MM:SS");
 
                 psByBID[i].UserName = user[0].f_Username;
             }
             for (var i = 0; i <= 4; i++) {
                 const user = await mUser.getDetailById(psByPrice[i].UserID);
-
+                psByPrice[i].TimeFinish = moment(
+                    psByPrice[i].TimeFinish,
+                    "YYYY-MM-DD HH:MM:SS"
+                ).format("YYYY-MM-DD HH:MM:SS");
                 psByPrice[i].UserName = user[0].f_Username;
             }
 
@@ -81,6 +94,11 @@ module.exports = {
             for (var i = 0; i < rows.length; i++) {
                 const user = await mUser.getDetailById(rows[i].UserID);
                 // console.log(user[0]);
+
+                rows[i].TimeFinish = moment(
+                    rows[i].TimeFinish,
+                    "YYYY-MM-DD HH:MM:SS"
+                ).format("YYYY-MM-DD HH:MM:SS");
                 rows[i].UserName = user[0].f_Username;
             }
 

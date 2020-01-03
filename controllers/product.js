@@ -1,6 +1,7 @@
 const mCat = require("../models/category");
 const mPro = require("../models/product");
 const mUser = require("../models/user.model");
+const moment = require("moment");
 
 module.exports = {
     getAll: async(req, res) => {
@@ -50,19 +51,22 @@ module.exports = {
             //const userId = product[0].UserID;
 
             const psRelative = await mPro.allByCatId(catId);
+
+            for (let ps of psRelative) {
+                ps.TimeFinish = moment(ps.TimeFinish, "YYYY-MM-DD HH:MM:SS").format(
+                    "YYYY-MM-DD"
+                );
+            }
+
             const ownerInfo = await mUser.getDetailById(ownerId);
             var userInfo = await mPro.getTopUser(proId);
-            for(var i=0;i<userInfo.length;i++)
-            {
-                var a=userInfo[i].f_Username.length-3;
-                {
-                    var temp="";
-                    for(var j=0;j<a;j++)
-                    {
-                        temp+="*";
+            for (var i = 0; i < userInfo.length; i++) {
+                var a = userInfo[i].f_Username.length - 3; {
+                    var temp = "";
+                    for (var j = 0; j < a; j++) {
+                        temp += "*";
                     }
-                    userInfo[i].f_Username=temp+userInfo[i].f_Username.substr(a,3);
-
+                    userInfo[i].f_Username = temp + userInfo[i].f_Username.substr(a, 3);
                 }
             }
             //Kiểm tra đăng nhập chưa khi click vào button đấu giá
@@ -92,6 +96,14 @@ module.exports = {
                 // console.log(`+++++++`, req.session.authUser.f_Evaluate);
             }
 
+            product[0].TimeFinish = moment(
+                product[0].TimeFinish,
+                "YYYY-MM-DD HH:MM:SS"
+            ).format("YYYY-MM-DD HH:MM:SS");
+            product[0].TimeStart = moment(
+                product[0].TimeStart,
+                "YYYY-MM-DD HH:MM:SS"
+            ).format("YYYY-MM-DD HH:MM:SS");
             res.render("vwProducts/detail", {
                 title: "Chi tiết sản phẩm",
                 product: product,
