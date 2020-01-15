@@ -12,7 +12,9 @@ connection.connect();
 
 router.get("/search", function(req, res) {
     connection.query(
-        `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` + req.query.key + `%'`,
+        `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` +
+        req.query.key +
+        `%'`,
         function(err, rows, fields) {
             if (err) throw err;
             var data = [];
@@ -22,17 +24,19 @@ router.get("/search", function(req, res) {
             }
             console.log(data);
             res.end(JSON.stringify(data));
-
         }
     );
 });
 router.post("/", async function(req, res) {
     var Proname = console.log(req.body.typeahead);
     console.log(req.body.typeahead);
-    var sql = `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` + req.body.typeahead + `%'`;
+    var sql =
+        `select* from products p, categories c where c.CatID=p.CatID and p.ProName like N'%` +
+        req.body.typeahead +
+        `%'`;
     const products = await db.load(sql);
-    console.log(products);
 
+    console.log(products);
 
     res.render("vwSearch/search", {
         title: req.body.typeahead,
